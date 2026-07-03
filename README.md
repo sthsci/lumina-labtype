@@ -2,10 +2,11 @@
 
 **Your research personality, visualised as data · 你的科研人格，被可视化成数据**
 
-LUMINA LabType is a fictional, for-entertainment research-work-style personality test that dresses a
-deterministic scoring engine in the visual language of a high-dimensional data-analysis pipeline —
-feature vectors, normalisation, PCA, clustering, nearest prototypes and bootstrap resampling — while
-staying explicit that the archetypes are pure fiction.
+LUMINA LabType is a fictional, for-entertainment research-work-style personality test focused on
+biological experiments, materials characterisation, computational bioinformatics and theoretical
+biophysics. It dresses a deterministic scoring engine in the visual language of a high-dimensional
+data-analysis pipeline — feature vectors, normalisation, PCA, clustering, nearest prototypes and
+bootstrap resampling — while staying explicit that the archetypes are pure fiction.
 
 Everything runs **entirely in the browser**: no backend, no shared database, no AI API, no
 analytics, no account, no transmission of answers. The optional cohort database is local to the
@@ -23,7 +24,7 @@ browser and stores only derived result vectors. It deploys as a static site to G
 ## Feature overview
 
 - **36 fictional work-style questions** on a five-point scale, in Simplified Chinese, Traditional
-  Chinese and English
+  Chinese and English, each with concrete lab/computation/modelling examples
 - **15 dimensions** in five groups (question / evidence / execution / collaboration / sustainability)
 - **21 archetypes** (18 visible + 3 hidden, rule-triggered), each with a 15-dimensional prototype
   vector and a procedurally drawn abstract emblem

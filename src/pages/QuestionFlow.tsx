@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
 import { useAppStore } from '@/app/store';
 import { useReducedMotion } from '@/app/hooks/useReducedMotion';
@@ -64,7 +64,7 @@ export function QuestionFlow() {
   const allAnswered = answeredCount === total;
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-3xl">
       <div className="mb-6">
         <div className="flex items-center justify-between text-xs text-haze">
           <span>{t('question.progress', { current: index + 1, total })}</span>
@@ -85,45 +85,47 @@ export function QuestionFlow() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={questionId}
-          initial={reduced ? false : { opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={reduced ? { opacity: 0 } : { opacity: 0, x: -24 }}
-          transition={{ duration: reduced ? 0 : 0.25 }}
-          className="panel p-6 sm:p-8"
-        >
-          <p className="kicker mb-3">{t('question.instruction')}</p>
-          <p className="min-h-[4.5rem] text-xl font-medium leading-snug text-parchment sm:text-2xl">
-            {t(`questions.${questionId}`)}
-          </p>
+      <motion.div
+        key={questionId}
+        initial={reduced ? false : { opacity: 0, x: 24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: reduced ? 0 : 0.22 }}
+        className="panel specimen-card p-6 sm:p-8"
+      >
+        <p className="kicker mb-3">{t('question.instruction')}</p>
+        <p className="min-h-[4.5rem] text-xl font-medium leading-snug text-parchment sm:text-2xl">
+          {t(`questions.${questionId}`)}
+        </p>
 
-          <div
-            className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-5"
-            role="radiogroup"
-            aria-label={t('question.instruction')}
-          >
-            {[1, 2, 3, 4, 5].map((value) => (
-              <button
-                key={value}
-                type="button"
-                role="radio"
-                aria-checked={current === value}
-                onClick={() => choose(value)}
-                className={`flex min-h-[64px] flex-col items-center justify-center gap-1 rounded-xl border px-2 py-3 text-center text-xs transition-all ${
-                  current === value
-                    ? 'border-lumina-400 bg-lumina-400/20 text-parchment'
-                    : 'border-line bg-white/[0.02] text-haze hover:border-lumina-400/40 hover:text-parchment'
-                }`}
-              >
-                <span className="font-mono text-base text-lumina-200">{value}</span>
-                <span className="leading-tight">{t(`question.scaleShort.${value}`)}</span>
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      </AnimatePresence>
+        <div className="mt-5 rounded-xl border border-line bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)]">
+          <p className="kicker mb-2 text-[10px] text-amber-glow/80">{t('question.exampleLabel')}</p>
+          <p className="text-sm leading-relaxed text-parchment/75">{t(`question.examples.${questionId}`)}</p>
+        </div>
+
+        <div
+          className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-5"
+          role="radiogroup"
+          aria-label={t('question.instruction')}
+        >
+          {[1, 2, 3, 4, 5].map((value) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={current === value}
+              onClick={() => choose(value)}
+              className={`flex min-h-[64px] flex-col items-center justify-center gap-1 rounded-xl border px-2 py-3 text-center text-xs transition-all ${
+                current === value
+                  ? 'border-lumina-400 bg-lumina-400/20 text-parchment'
+                  : 'border-line bg-white/[0.02] text-haze hover:border-lumina-400/40 hover:text-parchment'
+              }`}
+            >
+              <span className="font-mono text-base text-lumina-200">{value}</span>
+              <span className="leading-tight">{t(`question.scaleShort.${value}`)}</span>
+            </button>
+          ))}
+        </div>
+      </motion.div>
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <button type="button" className="btn-ghost" onClick={goPrev} disabled={index === 0}>

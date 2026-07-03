@@ -6,14 +6,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // LUMINA dark scientific-editorial palette
-        void: '#070a0f',
-        ink: '#0c1119',
-        slate850: '#141b26',
-        panel: 'rgba(18, 25, 36, 0.72)',
-        line: 'rgba(148, 173, 210, 0.14)',
-        haze: '#8ea3c4',
-        parchment: '#e8e2d1',
+        // LUMINA soft lab-material palette
+        void: '#080907',
+        ink: '#11120f',
+        slate850: '#1a1b18',
+        panel: 'rgba(24, 26, 23, 0.74)',
+        line: 'rgba(218, 208, 184, 0.16)',
+        haze: '#a7b6b0',
+        parchment: '#ede7d8',
         lumina: {
           50: '#eafcff',
           100: '#c9f5ff',
@@ -68,11 +68,13 @@ const config: Config = {
         ],
       },
       boxShadow: {
-        panel: '0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 60px -30px rgba(0,0,0,0.8)',
-        emblem: '0 0 40px -12px rgba(46, 194, 230, 0.5)',
+        panel:
+          '0 1px 0 rgba(255,255,255,0.08) inset, 0 18px 44px -26px rgba(0,0,0,0.86), 0 36px 90px -58px rgba(242,182,76,0.28)',
+        emblem: '0 0 36px -14px rgba(95, 220, 247, 0.55), 0 18px 36px -28px rgba(242, 182, 76, 0.5)',
       },
       backgroundImage: {
-        grid: 'linear-gradient(rgba(148,173,210,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(148,173,210,0.06) 1px, transparent 1px)',
+        grid:
+          'linear-gradient(rgba(237,231,216,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(237,231,216,0.045) 1px, transparent 1px)',
       },
       backgroundSize: {
         grid: '32px 32px',
