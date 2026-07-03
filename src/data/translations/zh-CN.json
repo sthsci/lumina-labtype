@@ -298,9 +298,15 @@
     }
   },
   "cross": {
-    "title": "交叉解读：LBTI × SBTI × 星座",
-    "subtitle": "LBTI 结果才是分析主体；SBTI 类型与星座只是你自选的叙事层，只改变措辞，绝不改变你的分数。",
-    "disclaimer": "数值来自你的十五维 LBTI 问卷。SBTI 类型与星座是用户主动选择的娱乐叙事层，并非科学测量，也不构成任何心理、职业或医学建议。",
+    "title": "交叉解读：LBTI × SBTI（非 MBTI）× 星座",
+    "subtitle": "LBTI 结果才是分析主体；SBTI 类型与星座只是你自选的叙事层，只改变措辞，绝不改变你的分数。这里的 SBTI 指独立的 SBTI 项目，不是 Myers-Briggs Type Indicator（MBTI）。",
+    "sbtiNote": "是独立的娱乐叙事参考，不是 Myers-Briggs Type Indicator（MBTI），也不是本网站的评分依据。",
+    "sbtiCreditLead": "SBTI 原测试作者：",
+    "sbtiOriginalAuthor": "B站@蛆肉儿串儿（UID 417038183）",
+    "sbtiCreditMiddle": "；交互版开发：",
+    "sbtiInteractiveDeveloper": "@sx349",
+    "sbtiCreditTail": "。本页仅引用其公开类型标签作为外部娱乐叙事层，并向原作者与交互版开发者致谢。",
+    "disclaimer": "数值来自你的十五维 LBTI 问卷。SBTI 类型与星座是用户主动选择的娱乐叙事层，并非科学测量，也不构成任何心理、职业或医学建议；SBTI 与 MBTI 不是一回事。",
     "selectLbti": "你的 LBTI 类型",
     "selectSbti": "你的 SBTI 类型（可选）",
     "selectZodiac": "你的星座（可选）",
@@ -328,24 +334,7 @@
       "role": "最适合你的实验室角色往往是：{lean} {sbti} {zodiac}",
       "blindspot": "一个需要留意的盲点：你的证据习惯偏向{lean}，请在风险找上你之前先说出它。{sbti} {zodiac}"
     },
-    "sbtiClauses": {
-      "EI": {
-        "E": "外向的一面让你边想边说，把整个房间都拉进来。",
-        "I": "内向的一面让你先在心里想清楚，再对外承诺。"
-      },
-      "SN": {
-        "S": "务实的一面让你紧扣测量到的事实。",
-        "N": "直觉的一面让你追逐测量背后的模式。"
-      },
-      "TF": {
-        "T": "思考的一面让你用论证的逻辑来定夺。",
-        "F": "情感的一面让你顾及相关的人会作何感受。"
-      },
-      "JP": {
-        "J": "判断的一面让你开始前先把计划敲定。",
-        "P": "感知的一面让你在工作中仍保留多种可能。"
-      }
-    },
+    "sbtiTypeClause": "SBTI 的 {type} 只作为外部娱乐标签参与这段解读，不参与 LBTI 的科研画像评分。",
     "zodiacClauses": {
       "fire": "火象星座推着你在犹豫来临前先行动。",
       "earth": "土象星座把你引向稳妥、可验证的路径。",
@@ -578,7 +567,7 @@
   },
   "about": {
     "title": "关于 LBTI",
-    "body": "LBTI 起于一个简单的问题：如果一个人格测验坦诚承认自己其实是数学，会怎样？它给一个确定性的打分引擎穿上数据分析流水线的视觉外衣——热图、投影、聚类与重采样——同时坦白人格纯属虚构。",
+    "body": "LBTI 起于一个简单的问题：如果一份科研画像问卷坦诚承认自己其实是数学，会怎样？它给一个确定性的打分引擎穿上数据分析流水线的视觉外衣——热图、投影、聚类与重采样——同时坦白原型纯属虚构。",
     "openSourceTitle": "开放且静态",
     "openSourceBody": "整个网站是静态的：没有服务器、没有密钥、不收集数据。它能免费部署到 GitHub Pages，也能被 fork 后重新编写——新题目、新人格、新语言。",
     "creditsTitle": "技术栈",
@@ -587,7 +576,7 @@
   "viz": {
     "common": {
       "synthetic": "合成参考画像",
-      "syntheticNote": "在每个原型周围、带种子的确定性点。它们代表任何真人。",
+      "syntheticNote": "在每个原型周围、带种子的确定性点。它们不代表任何真人。",
       "hideSynthetic": "隐藏合成点",
       "showSynthetic": "显示合成点",
       "you": "你",
@@ -599,7 +588,7 @@
     },
     "radar": {
       "title": "维度雷达",
-      "plain": "你的十五个维度，与你最接近的两种人格对比。",
+      "plain": "你的十五个科研画像维度，与你最接近的两种虚构原型对比。",
       "full": "十五维",
       "grouped": "五大类",
       "summary": "在十五个维度中，你最突出的倾向是 {topDim}。雷达图把你的画像叠加在 {primary} 与 {secondary} 原型之上。"

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useI18n } from '@/i18n/I18nProvider';
 import {
   buildCrossInterpretation,
-  SBTI_TYPES,
+  SBTI_TYPE_OPTIONS,
   ZODIAC_SIGNS,
 } from '@/features/results/crossInterpretation';
 import type { ScoreResult } from '@/features/scoring/types';
@@ -28,6 +28,38 @@ export function CrossInterpretation({ result }: { result: ScoreResult }) {
     <section className="panel p-5 sm:p-6" aria-label={t('cross.title')}>
       <h2 className="text-lg font-semibold">{t('cross.title')}</h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-haze">{t('cross.subtitle')}</p>
+      <p className="mt-2 max-w-3xl text-xs leading-relaxed text-haze">
+        <a
+          href="https://sx349.github.io/sbti-interactive/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-lumina-200 underline decoration-lumina-200/35 underline-offset-4 hover:text-lumina-100"
+        >
+          SBTI
+        </a>{' '}
+        {t('cross.sbtiNote')}
+      </p>
+      <p className="mt-1 max-w-3xl text-xs leading-relaxed text-haze">
+        {t('cross.sbtiCreditLead')}{' '}
+        <a
+          href="https://space.bilibili.com/417038183"
+          target="_blank"
+          rel="noreferrer"
+          className="text-lumina-200 underline decoration-lumina-200/35 underline-offset-4 hover:text-lumina-100"
+        >
+          {t('cross.sbtiOriginalAuthor')}
+        </a>
+        {t('cross.sbtiCreditMiddle')}{' '}
+        <a
+          href="https://github.com/sx349"
+          target="_blank"
+          rel="noreferrer"
+          className="text-lumina-200 underline decoration-lumina-200/35 underline-offset-4 hover:text-lumina-100"
+        >
+          {t('cross.sbtiInteractiveDeveloper')}
+        </a>
+        {t('cross.sbtiCreditTail')}
+      </p>
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <label className="flex flex-col gap-1 text-xs text-haze">
@@ -41,9 +73,9 @@ export function CrossInterpretation({ result }: { result: ScoreResult }) {
           {t('cross.selectSbti')}
           <select className={selectClass} value={sbti} onChange={(e) => setSbti(e.target.value)}>
             <option value="">{t('cross.none')}</option>
-            {SBTI_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
+            {SBTI_TYPE_OPTIONS.map((type) => (
+              <option key={type.code} value={type.code}>
+                {type.code}（{type.cn}）
               </option>
             ))}
           </select>

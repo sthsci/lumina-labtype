@@ -13,9 +13,12 @@ const answers = Object.fromEntries(Array.from({ length: 36 }, (_, i) => [`q${Str
 const result = scoreAnswers(answers);
 
 describe('cross-interpretation config', () => {
-  it('enumerates all 16 SBTI codes and 12 zodiac signs', () => {
-    expect(SBTI_TYPES).toHaveLength(16);
-    expect(new Set(SBTI_TYPES).size).toBe(16);
+  it('enumerates SBTI project codes and 12 zodiac signs', () => {
+    expect(SBTI_TYPES).toHaveLength(27);
+    expect(new Set(SBTI_TYPES).size).toBe(27);
+    expect(SBTI_TYPES).toContain('CTRL');
+    expect(SBTI_TYPES).toContain('DRUNK');
+    expect(SBTI_TYPES).not.toContain('INTJ');
     expect(ZODIAC_SIGNS).toHaveLength(12);
   });
 
@@ -27,7 +30,8 @@ describe('cross-interpretation config', () => {
   });
 
   it('validates SBTI and zodiac inputs', () => {
-    expect(isSbtiType('INTJ')).toBe(true);
+    expect(isSbtiType('CTRL')).toBe(true);
+    expect(isSbtiType('INTJ')).toBe(false);
     expect(isSbtiType('XXXX')).toBe(false);
     expect(isZodiacSign('leo')).toBe(true);
     expect(isZodiacSign('nope')).toBe(false);
@@ -36,7 +40,7 @@ describe('cross-interpretation config', () => {
 
 describe('buildCrossInterpretation', () => {
   it('produces exactly eight aspects with non-empty, marker-free text', () => {
-    const reading = buildCrossInterpretation(result, 'INTJ', 'leo', 'en');
+    const reading = buildCrossInterpretation(result, 'CTRL', 'leo', 'en');
     expect(reading.aspects).toHaveLength(8);
     for (const aspect of reading.aspects) {
       expect(aspect.title.trim()).not.toBe('');
@@ -46,17 +50,17 @@ describe('buildCrossInterpretation', () => {
   });
 
   it('is deterministic for identical inputs', () => {
-    const a = buildCrossInterpretation(result, 'ENFP', 'scorpio', 'zh-CN');
-    const b = buildCrossInterpretation(result, 'ENFP', 'scorpio', 'zh-CN');
+    const a = buildCrossInterpretation(result, 'SHIT', 'scorpio', 'zh-CN');
+    const b = buildCrossInterpretation(result, 'SHIT', 'scorpio', 'zh-CN');
     expect(a).toEqual(b);
   });
 
   it('changes wording when the SBTI type changes but keeps eight aspects', () => {
-    const intj = buildCrossInterpretation(result, 'INTJ', 'leo', 'en');
-    const esfp = buildCrossInterpretation(result, 'ESFP', 'leo', 'en');
-    expect(esfp.aspects).toHaveLength(8);
+    const ctrl = buildCrossInterpretation(result, 'CTRL', 'leo', 'en');
+    const drunk = buildCrossInterpretation(result, 'DRUNK', 'leo', 'en');
+    expect(drunk.aspects).toHaveLength(8);
     // at least one aspect differs in wording between the two SBTI types
-    const differs = intj.aspects.some((a, i) => a.text !== esfp.aspects[i].text);
+    const differs = ctrl.aspects.some((a, i) => a.text !== drunk.aspects[i].text);
     expect(differs).toBe(true);
   });
 
@@ -71,7 +75,7 @@ describe('buildCrossInterpretation', () => {
 
   it('renders localized aspect text in all three languages', () => {
     for (const lang of ['en', 'zh-CN', 'zh-TW'] as const) {
-      const reading = buildCrossInterpretation(result, 'ISTJ', 'capricorn', lang);
+      const reading = buildCrossInterpretation(result, 'CTRL', 'capricorn', lang);
       expect(reading.aspects[0].text.length).toBeGreaterThan(0);
     }
   });

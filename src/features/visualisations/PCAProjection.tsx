@@ -12,9 +12,9 @@ import { Legend } from './RadarChart';
 import { SIGNAL } from './palette';
 import type { ScoreResult } from '@/features/scoring/types';
 
-const W = 340;
-const H = 300;
-const PAD = 30;
+const W = 520;
+const H = 420;
+const PAD = 62;
 
 export function PCAProjection({ result }: { result: ScoreResult }) {
   const { t } = useI18n();
@@ -62,7 +62,7 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
   ];
   const x = scaleLinear([Math.min(...allX), Math.max(...allX)], [PAD, W - PAD]);
   const y = scaleLinear([Math.min(...allY), Math.max(...allY)], [H - PAD, PAD]);
-  const loadScale = Math.min(W, H) * 0.32;
+  const loadScale = Math.min(W, H) * 0.24;
 
   const pc1 = Math.round(model.pca.explainedVariance[0] * 100);
   const pc2 = Math.round(model.pca.explainedVariance[1] * 100);
@@ -105,7 +105,7 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
         </table>
       }
     >
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-lg" role="img" aria-label={t('viz.pca.title')}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-2xl" role="img" aria-label={t('viz.pca.title')}>
         <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
         <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
         <text x={W - PAD} y={H - PAD + 12} fontSize={9} fill="#8ea3c4" textAnchor="end">PC1 · {pc1}%</text>
@@ -118,14 +118,17 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
 
         {/* loading vectors */}
         {showLoadings &&
-          model.loadings.map((l) => {
+          model.loadings.map((l, i) => {
             const cx = x((x.domain()[0] + x.domain()[1]) / 2);
             const cy = y((y.domain()[0] + y.domain()[1]) / 2);
+            const ex = cx + l.x * loadScale;
+            const ey = cy - l.y * loadScale;
             return (
               <g key={l.id}>
-                <line x1={cx} y1={cy} x2={cx + l.x * loadScale} y2={cy - l.y * loadScale} stroke="#f2b054" strokeOpacity={0.5} markerEnd="url(#arrow)" />
-                <text x={cx + l.x * loadScale * 1.05} y={cy - l.y * loadScale * 1.05} fontSize={6.5} fill="#f2b054" fillOpacity={0.85}>
-                  {t(`dimensions.${l.id}.name`)}
+                <line x1={cx} y1={cy} x2={ex} y2={ey} stroke="#f2b054" strokeOpacity={0.55} markerEnd="url(#arrow)" />
+                <circle cx={ex} cy={ey} r={6.5} fill="#1e1b13" stroke="#f2b054" strokeOpacity={0.6} />
+                <text x={ex} y={ey + 2.4} fontSize={7.5} fill="#f2b054" textAnchor="middle" fontWeight={700}>
+                  {i + 1}
                 </text>
               </g>
             );
@@ -193,6 +196,15 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
           ...(settings.hideSynthetic ? [] : [{ label: t('viz.common.synthetic'), color: '#5c6a7d' }]),
         ]}
       />
+      {showLoadings && (
+        <ol className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-amber-glow/85">
+          {model.loadings.map((l, i) => (
+            <li key={l.id} className="whitespace-nowrap">
+              <span className="font-mono">{i + 1}</span> {t(`dimensions.${l.id}.name`)}
+            </li>
+          ))}
+        </ol>
+      )}
     </ChartFrame>
   );
 }

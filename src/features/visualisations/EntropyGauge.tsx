@@ -11,9 +11,9 @@ export function EntropyGauge({ result }: { result: ScoreResult }) {
   const phrase = value < 0.6 ? t('viz.entropy.low') : t('viz.entropy.high');
 
   // semicircle gauge
-  const cx = 110;
-  const cy = 100;
-  const r = 78;
+  const cx = 130;
+  const cy = 112;
+  const r = 88;
   const a0 = Math.PI;
   const a1 = 0;
   const angle = a0 + (a1 - a0) * value;
@@ -34,7 +34,7 @@ export function EntropyGauge({ result }: { result: ScoreResult }) {
       description={t('viz.entropy.plain')}
       summary={t('viz.entropy.summary', { value: value.toFixed(2), phrase })}
     >
-      <svg viewBox="0 0 220 130" className="mx-auto w-full max-w-xs" role="img" aria-label={t('viz.entropy.title')}>
+      <svg viewBox="0 0 260 155" className="mx-auto w-full max-w-sm" role="img" aria-label={t('viz.entropy.title')}>
         <path d={arc(Math.PI, 0)} fill="none" stroke="rgba(148,173,210,0.15)" strokeWidth={12} strokeLinecap="round" />
         <defs>
           <linearGradient id="entropy-grad" x1="0" y1="0" x2="1" y2="0">
@@ -54,10 +54,12 @@ export function EntropyGauge({ result }: { result: ScoreResult }) {
         />
         <line x1={cx} y1={cy} x2={nx} y2={ny} stroke="#e8e2d1" strokeWidth={2} />
         <circle cx={cx} cy={cy} r={4} fill="#e8e2d1" />
-        <text x={cx} y={cy + 24} fontSize={22} fill="#e8e2d1" textAnchor="middle" className="font-mono">{value.toFixed(2)}</text>
-        <text x={32} y={122} fontSize={8} fill="#8ea3c4">{t('viz.entropy.low')}</text>
-        <text x={188} y={122} fontSize={8} fill="#8ea3c4" textAnchor="end">{t('viz.entropy.high')}</text>
+        <text x={cx} y={cy + 31} fontSize={24} fill="#e8e2d1" textAnchor="middle" className="font-mono">{value.toFixed(2)}</text>
       </svg>
+      <div className="mx-auto mt-1 flex max-w-sm items-start justify-between gap-4 text-[11px] leading-snug text-haze">
+        <span className="max-w-[45%]">{t('viz.entropy.low')}</span>
+        <span className="max-w-[45%] text-right">{t('viz.entropy.high')}</span>
+      </div>
       <p className="mt-2 text-center text-sm text-parchment/75">{phrase}</p>
     </ChartFrame>
   );

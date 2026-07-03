@@ -11,20 +11,37 @@ import { resolvePath, translations, type LanguageCode } from '@/i18n';
 import { dimensionOrder } from '@/data/content';
 import type { ScoreResult } from '@/features/scoring/types';
 
-export const SBTI_AXES = ['EI', 'SN', 'TF', 'JP'] as const;
-export const SBTI_LETTERS: Record<(typeof SBTI_AXES)[number], [string, string]> = {
-  EI: ['E', 'I'],
-  SN: ['S', 'N'],
-  TF: ['T', 'F'],
-  JP: ['J', 'P'],
-};
+export const SBTI_TYPE_OPTIONS = [
+  { code: 'CTRL', cn: '拿捏者' },
+  { code: 'ATM-er', cn: '送钱者' },
+  { code: 'Dior-s', cn: '屌丝' },
+  { code: 'BOSS', cn: '领导者' },
+  { code: 'THAN-K', cn: '感恩者' },
+  { code: 'OH-NO', cn: '哦不人' },
+  { code: 'GOGO', cn: '行者' },
+  { code: 'SEXY', cn: '尤物' },
+  { code: 'LOVE-R', cn: '多情者' },
+  { code: 'MUM', cn: '妈妈' },
+  { code: 'FAKE', cn: '伪人' },
+  { code: 'OJBK', cn: '无所谓人' },
+  { code: 'MALO', cn: '吗喽' },
+  { code: 'JOKE-R', cn: '小丑' },
+  { code: 'WOC!', cn: '握草人' },
+  { code: 'THIN-K', cn: '思考者' },
+  { code: 'SHIT', cn: '愤世者' },
+  { code: 'ZZZZ', cn: '装死者' },
+  { code: 'POOR', cn: '贫困者' },
+  { code: 'MONK', cn: '僧人' },
+  { code: 'IMSB', cn: '傻者' },
+  { code: 'SOLO', cn: '孤儿' },
+  { code: 'FUCK', cn: '草者' },
+  { code: 'DEAD', cn: '死者' },
+  { code: 'IMFW', cn: '废物' },
+  { code: 'HHHH', cn: '傻乐者' },
+  { code: 'DRUNK', cn: '酒鬼' },
+] as const;
 
-/** All 16 SBTI-style four-letter codes, generated from the axis letters. */
-export const SBTI_TYPES: string[] = SBTI_LETTERS.EI.flatMap((a) =>
-  SBTI_LETTERS.SN.flatMap((b) =>
-    SBTI_LETTERS.TF.flatMap((c) => SBTI_LETTERS.JP.map((d) => `${a}${b}${c}${d}`)),
-  ),
-);
+export const SBTI_TYPES: string[] = SBTI_TYPE_OPTIONS.map((type) => type.code);
 
 export const ZODIAC_SIGNS = [
   'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
@@ -41,20 +58,20 @@ const ELEMENT_OF: Record<ZodiacSign, ZodiacElement> = {
 };
 
 export const elementOf = (sign: ZodiacSign): ZodiacElement => ELEMENT_OF[sign];
-export const isSbtiType = (value: string): boolean => /^[EI][SN][TF][JP]$/.test(value);
+export const isSbtiType = (value: string): boolean => SBTI_TYPES.includes(value);
 export const isZodiacSign = (value: string): value is ZodiacSign =>
   (ZODIAC_SIGNS as readonly string[]).includes(value);
 
-/** Which SBTI axis and (for most) LBTI dimension each aspect draws on. */
-const ASPECTS: { id: string; axis: (typeof SBTI_AXES)[number]; dimension?: string }[] = [
-  { id: 'decision', axis: 'SN', dimension: 'hypothesis_pattern' },
-  { id: 'design', axis: 'JP', dimension: 'safe_risk' },
-  { id: 'collaboration', axis: 'EI', dimension: 'team_independent' },
-  { id: 'mentorship', axis: 'TF', dimension: 'specialist_organiser' },
-  { id: 'conflict', axis: 'TF', dimension: 'diplomatic_direct' },
-  { id: 'pressure', axis: 'JP', dimension: 'rumination_adaptation' },
-  { id: 'role', axis: 'EI' },
-  { id: 'blindspot', axis: 'SN', dimension: 'result_reproducibility' },
+/** Which LBTI dimension each cross-reading aspect draws on. */
+const ASPECTS: { id: string; dimension?: string }[] = [
+  { id: 'decision', dimension: 'hypothesis_pattern' },
+  { id: 'design', dimension: 'safe_risk' },
+  { id: 'collaboration', dimension: 'team_independent' },
+  { id: 'mentorship', dimension: 'specialist_organiser' },
+  { id: 'conflict', dimension: 'diplomatic_direct' },
+  { id: 'pressure', dimension: 'rumination_adaptation' },
+  { id: 'role' },
+  { id: 'blindspot', dimension: 'result_reproducibility' },
 ];
 
 export interface CrossAspect {
@@ -72,11 +89,9 @@ function str(lang: LanguageCode, key: string): string {
   return typeof value === 'string' ? value : '';
 }
 
-/** Letter the chosen SBTI type carries on a given axis, or '' if none selected. */
-function letterFor(sbti: string, axis: (typeof SBTI_AXES)[number]): string {
-  if (!isSbtiType(sbti)) return '';
-  const index = SBTI_AXES.indexOf(axis);
-  return sbti[index] ?? '';
+export function sbtiLabel(sbti: string): string {
+  const type = SBTI_TYPE_OPTIONS.find((option) => option.code === sbti);
+  return type ? `${type.code}（${type.cn}）` : '';
 }
 
 export function buildCrossInterpretation(
@@ -91,11 +106,15 @@ export function buildCrossInterpretation(
 
   const header = interpolate(str(lang, 'cross.header'), {
     archetype: archetypeName,
-    sbti: isSbtiType(sbti) ? sbti : str(lang, 'cross.noneShort'),
+    sbti: sbtiLabel(sbti) || str(lang, 'cross.noneShort'),
     zodiac: sign ? str(lang, `cross.zodiac.${sign}`) : str(lang, 'cross.noneShort'),
   });
 
-  const aspects: CrossAspect[] = ASPECTS.map(({ id, axis, dimension }) => {
+  const sbtiClause = sbtiLabel(sbti)
+    ? interpolate(str(lang, 'cross.sbtiTypeClause'), { type: sbtiLabel(sbti) })
+    : '';
+
+  const aspects: CrossAspect[] = ASPECTS.map(({ id, dimension }) => {
     // LBTI lean clause (the analytical subject)
     let lean: string;
     if (id === 'role') {
@@ -108,8 +127,6 @@ export function buildCrossInterpretation(
       lean = archetypeName;
     }
 
-    const letter = letterFor(sbti, axis);
-    const sbtiClause = letter ? str(lang, `cross.sbtiClauses.${axis}.${letter}`) : '';
     const zodiacClause = element ? str(lang, `cross.zodiacClauses.${element}`) : '';
 
     const text = interpolate(str(lang, `cross.aspects.${id}`), {

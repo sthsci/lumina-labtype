@@ -121,9 +121,9 @@ function LogoMark() {
       aria-hidden="true"
     >
       <img
-        src={joinBase(BASE_URL, '/lbti-logo.png')}
+        src={joinBase(BASE_URL, '/favicon.svg')}
         alt=""
-        className="h-full w-full scale-125 object-cover"
+        className="h-full w-full object-cover"
         draggable={false}
       />
     </span>

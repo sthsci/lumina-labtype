@@ -11,9 +11,11 @@ interface RadarProps {
   result: ScoreResult;
 }
 
-const R = 130;
-const CX = 160;
-const CY = 150;
+const W = 420;
+const H = 360;
+const R = 118;
+const CX = W / 2;
+const CY = H / 2;
 
 export function RadarChart({ result }: RadarProps) {
   const { t } = useI18n();
@@ -105,13 +107,15 @@ export function RadarChart({ result }: RadarProps) {
         </table>
       }
     >
-      <svg viewBox="0 0 320 300" className="mx-auto w-full max-w-md" role="img" aria-label={t('viz.radar.title')}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-2xl overflow-visible" role="img" aria-label={t('viz.radar.title')}>
         {[0.25, 0.5, 0.75, 1].map((f) => (
           <circle key={f} cx={CX} cy={CY} r={R * f} fill="none" stroke="rgba(148,173,210,0.14)" />
         ))}
         {axes.map((a, i) => {
           const [x, y] = point(i, 108);
-          const [lx, ly] = point(i, 118);
+          const [lx, ly] = point(i, 137);
+          const anchor = lx < CX - 8 ? 'end' : lx > CX + 8 ? 'start' : 'middle';
+          const lines = labelLines(a.label, grouped);
           return (
             <g key={a.id}>
               <line x1={CX} y1={CY} x2={point(i, 100)[0]} y2={point(i, 100)[1]} stroke="rgba(148,173,210,0.1)" />
@@ -119,12 +123,16 @@ export function RadarChart({ result }: RadarProps) {
               <text
                 x={lx}
                 y={ly}
-                fontSize={grouped ? 9 : 6.5}
+                fontSize={grouped ? 10 : 8.5}
                 fill="#8ea3c4"
-                textAnchor={lx < CX - 5 ? 'end' : lx > CX + 5 ? 'start' : 'middle'}
+                textAnchor={anchor}
                 dominantBaseline="middle"
               >
-                {a.label}
+                {lines.map((line, lineIndex) => (
+                  <tspan key={line} x={lx} dy={lineIndex === 0 ? `${-(lines.length - 1) * 0.55}em` : '1.1em'}>
+                    {line}
+                  </tspan>
+                ))}
               </text>
             </g>
           );
@@ -169,6 +177,11 @@ export function Legend({ items }: { items: { label: string; color: string }[] })
 
 function mean(xs: number[]) {
   return xs.reduce((a, b) => a + b, 0) / xs.length;
+}
+function labelLines(label: string, grouped: boolean) {
+  if (grouped || label.length <= 6) return [label];
+  const middle = Math.ceil(label.length / 2);
+  return [label.slice(0, middle), label.slice(middle)];
 }
 function strongestIdx(scores: number[]) {
   let best = 0;
