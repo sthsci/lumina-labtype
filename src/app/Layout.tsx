@@ -27,10 +27,10 @@ export function Layout() {
 
       <header className="sticky top-0 z-20 border-b border-line bg-void/70 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5" title={t('common.appFullName')}>
             <LogoMark />
             <span className="font-display text-lg font-semibold tracking-tight text-parchment">
-              LUMINA <span className="text-lumina-300">LabType</span>
+              LBTI
             </span>
           </Link>
 

@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 // E2E runs against the production preview served under the GitHub Pages base path,
 // so subpath navigation is exercised the same way it will be in production.
-const BASE = '/lumina-labtype/';
+const BASE = '/academic_personality/';
 const PORT = 4173;
 
 export default defineConfig({

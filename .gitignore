@@ -11,3 +11,6 @@ test-results
 node_modules/.tmp
 *.tsbuildinfo
 .claude
+.env
+.env.local
+.env.*.local

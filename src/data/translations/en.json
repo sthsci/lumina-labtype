@@ -1,8 +1,13 @@
 {
   "meta": { "code": "en", "name": "English", "dir": "ltr" },
   "common": {
-    "appName": "LUMINA LabType",
-    "tagline": "Your research personality, visualised as data",
+    "appName": "LBTI",
+    "appFullName": "Laboratory Behaviour Type Indicator",
+    "tagline": "Fifteen variables describing how you decide, collaborate and survive in the lab.",
+    "refresh": "Refresh",
+    "retry": "Retry",
+    "saving": "Saving",
+    "saved": "Saved",
     "entertainmentDisclaimer": "A fictional, for-entertainment instrument. Not a scientific, clinical, or employment assessment.",
     "fictionalBadge": "Fictional · For reflection",
     "skip": "Skip",
@@ -52,9 +57,9 @@
     "about": "About"
   },
   "landing": {
-    "kicker": "A computational-biology-flavoured personality toy",
-    "title": "LUMINA LabType",
-    "subtitle": "Your research personality, visualised as data",
+    "kicker": "Laboratory Behaviour Type Indicator",
+    "title": "LBTI",
+    "subtitle": "Fifteen variables describing how you decide, collaborate and survive in the lab.",
     "lede": "Answer grounded questions about biological experiments, materials characterisation, bioinformatics, and theoretical biophysics, then watch your responses travel through a beautiful analysis pipeline — feature vector, normalisation, projection, nearest prototype — until a fictional research archetype is annotated onto your profile.",
     "cta": "Start the test",
     "ctaResume": "Resume where you left off",
@@ -239,6 +244,9 @@
     "matchStrengthNote": "A display score, not a probability.",
     "classificationMargin": "Classification margin",
     "profileStability": "Profile stability",
+    "cohortPercentile": "Cohort percentile",
+    "cohortPercentileNote": "Compared with cached public cohort margins. Higher means your primary type separated more clearly than more cached records.",
+    "cohortPercentileUnavailable": "Available after the public cohort atlas has loaded at least five records on this device.",
     "topFive": "Your five nearest archetypes",
     "fiveGroups": "Five-group overview",
     "fifteenDimensions": "Fifteen-dimension profile",
@@ -263,11 +271,15 @@
     "hiddenNote": "A rare, rule-triggered result. Entirely fictional and affectionate.",
     "secondaryIntro": "Close behind sits your secondary archetype",
     "shareTitle": "Share your result",
-    "cohortTitle": "Add yourself as a cell",
-    "cohortBody": "Optional: save this derived 15-dimensional result into a local browser cohort database. It stores your scores, archetype labels and loose context only; raw answers are not included and nothing is uploaded.",
-    "cohortSave": "Save as cohort cell",
-    "cohortSaved": "Cell saved",
-    "cohortSavedBody": "Saved to the local cohort database on this device.",
+    "cohortTitle": "Join the public cohort map",
+    "cohortBody": "Optional: anonymously add this derived 15-dimensional result to the shared public cohort atlas. Only your dimension scores, archetype codes and the loose context you chose are uploaded — never your raw answers, name, email or any identifying detail.",
+    "cohortSave": "Anonymously join the public map",
+    "cohortSaving": "Uploading…",
+    "cohortSaved": "Added to the public map",
+    "cohortSavedBody": "Your anonymous cell is now part of the shared cohort atlas, visible from any device.",
+    "cohortError": "Upload failed",
+    "cohortErrorBody": "Could not reach the shared database: {message}",
+    "cohortUnconfigured": "The shared database is not configured, so nothing was uploaded.",
     "openCohort": "Open cohort atlas",
     "exploreUniverse": "Explore an alternate research universe",
     "openMlLab": "Open the ML Lab",
@@ -285,27 +297,96 @@
       "download": "Export PNG"
     }
   },
+  "cross": {
+    "title": "Cross-reading: LBTI × SBTI × zodiac",
+    "subtitle": "Your LBTI result is the analysis; SBTI type and star sign are optional narrative layers you choose. They change the wording only — never your scores.",
+    "disclaimer": "The numbers come from your 15-dimension LBTI questionnaire. SBTI type and zodiac sign are self-selected entertainment layers and are not scientific measurement. Nothing here is psychological, career or medical advice.",
+    "selectLbti": "Your LBTI type",
+    "selectSbti": "Your SBTI type (optional)",
+    "selectZodiac": "Your star sign (optional)",
+    "none": "Not specified",
+    "noneShort": "—",
+    "generate": "Generate cross-reading",
+    "header": "{archetype} · {sbti} · {zodiac}",
+    "aspectTitles": {
+      "decision": "Research decisions",
+      "design": "Experiment design & risk",
+      "collaboration": "How you collaborate",
+      "mentorship": "With supervisors & students",
+      "conflict": "Conflict style",
+      "pressure": "Under pressure",
+      "role": "Best-fit lab role",
+      "blindspot": "Blind spots & survival"
+    },
+    "aspects": {
+      "decision": "On how you reach research decisions, you lean {lean}. {sbti} {zodiac}",
+      "design": "In experiment design and risk appetite, you lean {lean}. {sbti} {zodiac}",
+      "collaboration": "In collaboration you lean {lean}. {sbti} {zodiac}",
+      "mentorship": "With supervisors and students you lean {lean}. {sbti} {zodiac}",
+      "conflict": "When conflict appears you lean {lean}. {sbti} {zodiac}",
+      "pressure": "Under pressure you lean {lean}. {sbti} {zodiac}",
+      "role": "Your most natural lab role tends to be: {lean} {sbti} {zodiac}",
+      "blindspot": "A blind spot to watch: your evidence habit leans {lean}, so name the risk before it names you. {sbti} {zodiac}"
+    },
+    "sbtiClauses": {
+      "EI": {
+        "E": "Your extraverted side means you think out loud and pull the room in.",
+        "I": "Your introverted side means you process privately before committing."
+      },
+      "SN": {
+        "S": "Your sensing side keeps you anchored to what the measurements actually show.",
+        "N": "Your intuitive side keeps you chasing the pattern behind the measurements."
+      },
+      "TF": {
+        "T": "Your thinking side settles it by the logic of the argument.",
+        "F": "Your feeling side weighs how the people involved will land."
+      },
+      "JP": {
+        "J": "Your judging side wants the plan locked before you begin.",
+        "P": "Your perceiving side keeps options open well into the work."
+      }
+    },
+    "zodiacClauses": {
+      "fire": "A fire sign nudges you to act before hesitation sets in.",
+      "earth": "An earth sign nudges you toward the steady, verifiable path.",
+      "air": "An air sign nudges you to talk the idea through from every angle.",
+      "water": "A water sign nudges you to read the undercurrents in the group."
+    },
+    "zodiac": {
+      "aries": "Aries", "taurus": "Taurus", "gemini": "Gemini", "cancer": "Cancer",
+      "leo": "Leo", "virgo": "Virgo", "libra": "Libra", "scorpio": "Scorpio",
+      "sagittarius": "Sagittarius", "capricorn": "Capricorn", "aquarius": "Aquarius", "pisces": "Pisces"
+    }
+  },
   "cohort": {
     "title": "Cohort atlas",
-    "subtitle": "A scRNA-seq-style cluster map for opt-in saved result cells.",
-    "databaseTitle": "Local cohort database",
-    "databaseBody": "Saved cells stay in this browser's localStorage. On GitHub Pages this is not a shared server database; use a hosted backend if you want cross-device public aggregation.",
-    "addFromResult": "Add from result",
-    "clearAll": "Clear cohort",
-    "clearConfirm": "This deletes saved cohort cells from this device. Continue?",
-    "cleared": "Local cohort database cleared.",
-    "emptyTitle": "No saved cells yet",
-    "emptyBody": "Save a result from the result page to populate the cohort atlas.",
-    "plotTitle": "scRNA-style cohort cluster plot",
-    "plotDescription": "Each opt-in saved result is drawn as a cell in a runtime PCA projection; clusters come from deterministic k-means when enough cells exist.",
-    "plotSummary": "{count} saved cells are projected onto PC1 and PC2, explaining {pc1}% and {pc2}% of the fitted variance. The plot currently shows {clusters} clusters.",
+    "subtitle": "A shared, anonymous cluster map built from everyone who opted in.",
+    "databaseTitle": "Public cohort database",
+    "databaseBody": "These cells are anonymous, derived result vectors contributed by people across devices and stored in a shared public database. No raw answers or identities are ever included, and individual anonymous cells cannot be edited or deleted here.",
+    "addFromResult": "Add your result",
+    "refresh": "Refresh",
+    "loading": "Loading the shared cohort…",
+    "error": "Could not load the shared cohort",
+    "errorBody": "{message}",
+    "unconfiguredTitle": "Shared database not configured",
+    "unconfiguredBody": "This deployment has no Supabase credentials, so the public cohort map is unavailable. The rest of LBTI still works entirely in your browser.",
+    "emptyTitle": "No cells yet",
+    "emptyBody": "Be the first to anonymously add a result from the result page.",
+    "cachedNote": "Showing a cached copy from your last visit while the live data loads.",
+    "migrateTitle": "Upload your older local cells?",
+    "migrateBody": "We found {count} result cell(s) saved only in this browser from before the shared map existed. Upload them anonymously to the public cohort? This happens once.",
+    "migrateConfirm": "Upload {count} cell(s)",
+    "migrateSkip": "Not now",
+    "migrateDone": "Migrated {count} local cell(s) to the public cohort.",
+    "plotTitle": "Cohort cluster map",
+    "plotDescription": "Each anonymous cell is drawn in a runtime PCA projection; clusters come from deterministic k-means when enough cells exist.",
+    "plotSummary": "{count} anonymous cells are projected onto PC1 and PC2, explaining {pc1}% and {pc2}% of the fitted variance. The plot currently shows {clusters} clusters.",
     "cellCount": "{count} cells",
     "silhouette": "silhouette {value}",
     "hoverCell": "Cell {cell} · cluster {cluster}",
     "clusterLabel": "Cluster {cluster}",
     "prototypeLabel": "Archetype prototypes",
-    "recordsTitle": "Recorded cells",
-    "deleteRecord": "Delete",
+    "recordsTitle": "Recent cells",
     "table": {
       "cell": "Cell",
       "cluster": "Cluster",
@@ -446,7 +527,7 @@
   },
   "methodology": {
     "title": "Methodology & honesty",
-    "intro": "LUMINA borrows the visual grammar of data analysis, but it is a toy. This page draws a clear line between what is genuinely calculated and what is editorial fiction.",
+    "intro": "LBTI borrows the visual grammar of data analysis, but it is a toy. This page draws a clear line between what is genuinely calculated and what is editorial fiction.",
     "realTitle": "What is genuinely calculated",
     "realList": [
       "Dimension scores from your answers via documented weighted arithmetic.",
@@ -480,24 +561,24 @@
     "title": "Privacy",
     "intro": "The most private analytics are the ones that never happen.",
     "points": [
-      "Everything runs in your browser. There is no backend or shared database; the optional cohort database is local to this browser.",
-      "Your answers and optional cohort result vectors are stored only in this device's localStorage.",
-      "Nothing you enter is ever uploaded or transmitted.",
-      "There is no analytics, no tracking, and no cookies by default.",
-      "We never collect names, institutions, emails, or free text.",
-      "You can erase every stored value with the delete button on your result, or here."
+      "Your raw answers stay in your browser. They are stored only in this device's localStorage and are never uploaded.",
+      "The cohort atlas is opt-in. If you choose to join it, only a derived record is uploaded: your 15 dimension scores, your primary/secondary archetype codes, and the loose field/career context you selected.",
+      "We never upload or collect raw answers, names, institutions, emails, free text, or any directly identifying information.",
+      "Uploaded cohort cells are anonymous and shared publicly; because they carry no identity, individual cells cannot be selectively deleted from a browser.",
+      "There is no advertising analytics, tracking, or cookies by default.",
+      "You can erase all local data (answers, settings, cache) with the delete button on your result, or here."
     ],
     "deleteButton": "Delete all my local data now",
     "deleted": "Done — your local data has been erased."
   },
   "disclaimer": {
     "title": "Disclaimer",
-    "body": "LUMINA LabType is a work of interactive fiction for entertainment and gentle self-reflection. It is not a scientific instrument, a psychological assessment, a diagnostic tool, or an employment screen. The archetypes are invented, the prototype vectors are hand-designed, and the 'analysis' dramatises simple arithmetic. Please do not make any consequential decision on the basis of your result. If a statement here amuses or annoys you, that is the intended range of outcomes.",
+    "body": "LBTI is a work of interactive fiction for entertainment and gentle self-reflection. It is not a scientific instrument, a psychological assessment, a diagnostic tool, or an employment screen. The archetypes are invented, the prototype vectors are hand-designed, and the 'analysis' dramatises simple arithmetic. Please do not make any consequential decision on the basis of your result. If a statement here amuses or annoys you, that is the intended range of outcomes.",
     "hiddenNote": "Hidden archetypes are affectionate caricatures of common research habits. They never allege misconduct and are triggered only by explicit answer patterns."
   },
   "about": {
-    "title": "About LUMINA",
-    "body": "LUMINA LabType began as a simple question: what if a personality quiz were honest about being maths? It dresses a deterministic scoring engine in the visual language of a data-analysis pipeline — heatmaps, projections, clusters and resampling — while staying transparent that the archetypes are pure fiction.",
+    "title": "About LBTI",
+    "body": "LBTI began as a simple question: what if a personality quiz were honest about being maths? It dresses a deterministic scoring engine in the visual language of a data-analysis pipeline — heatmaps, projections, clusters and resampling — while staying transparent that the archetypes are pure fiction.",
     "openSourceTitle": "Open and static",
     "openSourceBody": "The whole thing is a static site: no server, no keys, no data collection. It deploys for free to GitHub Pages and can be forked and re-authored — new questions, new archetypes, new languages.",
     "creditsTitle": "Built with",

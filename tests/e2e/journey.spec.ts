@@ -8,7 +8,7 @@ test.describe('complete test journey', () => {
     await page.goto('./');
 
     // landing
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('LUMINA');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('LBTI');
     await page.getByRole('link', { name: 'Start the test' }).click();
 
     // intro

@@ -64,10 +64,12 @@ describe('translation completeness', () => {
     const allowedIdentical = new Set([
       'meta.code',
       'common.appName',
+      'common.appFullName',
       'landing.title',
       'viz.pca.pc1',
       'viz.pca.pc2',
       'viz.dendro.ward',
+      'cross.header', // pure "{archetype} · {sbti} · {zodiac}" format string
     ]);
     const suspicious: string[] = [];
     for (const [key, value] of Object.entries(flat.en)) {

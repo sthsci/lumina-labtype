@@ -1,9 +1,9 @@
 {
-  "name": "lumina-labtype",
+  "name": "lbti",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "LUMINA LabType — a fictional research-personality test visualised as a bioinformatics + ML pipeline. Fully static, client-side only.",
+  "description": "LBTI — a fictional research-work-style test visualised as an honest data-analysis pipeline.",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -19,6 +19,7 @@
     "check": "npm run validate:content && npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.0",
     "d3": "^7.9.0",
     "framer-motion": "^11.3.19",
     "html-to-image": "^1.11.11",

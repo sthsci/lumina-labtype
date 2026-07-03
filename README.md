@@ -1,13 +1,13 @@
-# LUMINA LabType
+# LBTI
 
-**Your research personality, visualised as data · 你的科研人格，被可视化成数据**
+**Laboratory Behaviour Type Indicator · 实验室行为类型指标**
 
-Live site: https://sthsci.github.io/lumina-labtype/
+Live site: https://sthsci.github.io/academic_personality/
 
-LUMINA LabType is a fictional research-work-style personality test for people who live around
-biological experiments, materials characterisation, computational bioinformatics and theoretical
-biophysics. It turns answers into a deterministic 15-dimensional profile, then explains the result
-with real mathematical visualisations: distances, PCA, clustering, entropy and bootstrap stability.
+LBTI is a fictional research-work-style test for people who live around biological experiments,
+materials characterisation, computational bioinformatics and theoretical biophysics. It turns
+answers into a deterministic 15-dimensional profile, then explains the result with real
+mathematical visualisations: distances, PCA, clustering, entropy and bootstrap stability.
 
 It is an interactive toy for reflection and amusement. It is not a scientific, clinical,
 psychological or employment assessment.
@@ -19,17 +19,17 @@ psychological or employment assessment.
   bioinformatics, simulations and mathematical modelling.
 - 21 fictional research archetypes with deterministic scoring and authored result prose.
 - ML Lab with plain-language explanations, Python mini-tutorials and student learning resources.
-- Result visualisations, share-card PNG export and an optional local cohort atlas.
-- Fully static: no backend, no account, no analytics and no uploaded answers.
+- Result visualisations, share-card PNG export and an optional shared public cohort atlas.
+- Static frontend, no account, no analytics and no uploaded raw answers.
 
 ## Privacy
 
-Everything runs in the browser. Answers, settings and optional cohort cells are stored only in
-`localStorage` under `lumina:` keys. Share cards never include raw answers. The delete controls on
-the Result and Privacy pages erase all local LUMINA data.
+Answers and settings stay in the browser. Share cards never include raw answers. The delete
+controls on the Result and Privacy pages erase local LBTI data.
 
-The cohort atlas is local to each browser on GitHub Pages. A public cross-user database would
-require a separate hosted backend and explicit consent design.
+The cohort atlas is opt-in and uses Supabase as the shared public database. Uploaded records contain
+only derived dimension scores, archetype codes and loose context. They do not contain names, emails,
+institutions, free text or raw answers.
 
 ## Development
 
@@ -41,7 +41,7 @@ npm run dev
 Default local URL:
 
 ```text
-http://localhost:5173/lumina-labtype/
+http://localhost:5173/academic_personality/
 ```
 
 Quality gates:

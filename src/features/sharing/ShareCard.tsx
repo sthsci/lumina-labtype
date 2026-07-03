@@ -53,7 +53,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
         backgroundColor: '#070a0f',
       });
       const link = document.createElement('a');
-      link.download = `lumina-labtype-${result.primary}-${format}.png`;
+      link.download = `lbti-${result.primary}-${format}.png`;
       link.href = dataUrl;
       link.click();
     } finally {
@@ -97,7 +97,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
         >
           <div className="flex items-center justify-between px-6 pt-5">
             <span style={{ color: '#5fdcf7', fontSize: 13, letterSpacing: 2, fontWeight: 600 }}>
-              LUMINA LABTYPE
+              LBTI
             </span>
             <span style={{ color: '#8ea3c4', fontSize: 11 }}>{t('common.fictionalBadge')}</span>
           </div>

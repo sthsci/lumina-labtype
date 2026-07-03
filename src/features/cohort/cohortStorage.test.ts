@@ -5,8 +5,13 @@ import {
   addCohortRecord,
   clearCohortRecords,
   createCohortRecord,
+  hasMigratedLegacyRecords,
+  legacyLocalRecords,
+  loadCohortCache,
   loadCohortRecords,
+  markLegacyRecordsMigrated,
   removeCohortRecord,
+  saveCohortCache,
   saveCohortRecords,
 } from './cohortStorage';
 
@@ -27,7 +32,7 @@ describe('cohort storage', () => {
     expect(stored.context?.field).toBe('computational');
   });
 
-  it('removes individual records and clears the local cohort database', () => {
+  it('removes individual records and clears only the legacy local cohort collection', () => {
     const result = scoreAnswers(answers);
     const first = createCohortRecord(result, null);
     const second = createCohortRecord(result, null);
@@ -45,5 +50,41 @@ describe('cohort storage', () => {
     );
 
     expect(loadCohortRecords()).toEqual([]);
+  });
+});
+
+describe('cohort local cache', () => {
+  beforeEach(() => clearAll());
+
+  it('round-trips a fetched cohort as a read-only cache', () => {
+    const result = scoreAnswers(answers);
+    const record = createCohortRecord(result, { field: 'theory', stage: 'postdoc' });
+    saveCohortCache([record]);
+    const [cached] = loadCohortCache();
+    expect(cached.primary).toBe(result.primary);
+    expect(cached.vector).toHaveLength(15);
+  });
+
+  it('cache is independent from the legacy local records key', () => {
+    const result = scoreAnswers(answers);
+    saveCohortCache([createCohortRecord(result, null)]);
+    expect(loadCohortRecords()).toEqual([]); // legacy store untouched
+    expect(loadCohortCache()).toHaveLength(1);
+  });
+});
+
+describe('legacy record migration bookkeeping', () => {
+  beforeEach(() => clearAll());
+
+  it('exposes legacy local records and a one-time migration flag', () => {
+    const result = scoreAnswers(answers);
+    addCohortRecord(createCohortRecord(result, null));
+    expect(legacyLocalRecords()).toHaveLength(1);
+    expect(hasMigratedLegacyRecords()).toBe(false);
+
+    markLegacyRecordsMigrated();
+    expect(hasMigratedLegacyRecords()).toBe(true);
+    // originals are dropped so they cannot be uploaded twice
+    expect(legacyLocalRecords()).toEqual([]);
   });
 });

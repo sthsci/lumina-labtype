@@ -161,6 +161,7 @@ export const TranslationFileSchema = z.object({
   question: z.record(z.string(), stringTree),
   pipeline: z.record(z.string(), stringTree),
   result: z.record(z.string(), stringTree),
+  cross: z.record(z.string(), stringTree),
   cohort: z.record(z.string(), stringTree),
   mllab: z.record(z.string(), stringTree),
   atlas: z.record(z.string(), stringTree),
