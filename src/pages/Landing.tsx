@@ -29,7 +29,7 @@ export function Landing() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
           >
-            LUMINA <span className="text-lumina-300">LabType</span>
+            LBTI
           </motion.h1>
           <p className="mt-4 text-lg text-parchment/80">{t('landing.subtitle')}</p>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-haze">{t('landing.lede')}</p>

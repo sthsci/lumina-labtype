@@ -1,5 +1,5 @@
 /**
- * LUMINA visualisation palette.
+ * LBTI visualisation palette.
  *
  * An original diverging scale (cool → neutral → warm) chosen to stay legible on
  * the dark theme and to remain distinguishable for common colour-vision

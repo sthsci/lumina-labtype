@@ -15,20 +15,20 @@ test.describe('internationalisation', () => {
     // (Deliberately no init-script seeding here: it would re-seed on reload
     // and mask the persistence we are asserting.)
     await page.goto('./');
-    await expect(page.getByText('Your research personality, visualised as data').first()).toBeVisible();
+    await expect(page.getByText('Fifteen variables describing how you decide, collaborate and survive in the lab.').first()).toBeVisible();
 
     await openLanguageSwitcher(page);
     await page.getByRole('button', { name: '简体中文' }).first().click();
-    await expect(page.getByText('你的科研人格，被可视化成数据').first()).toBeVisible();
+    await expect(page.getByText('用十五维变量，描绘你在实验室里的决策、协作与生存方式。').first()).toBeVisible();
 
     // persists across reload via localStorage
     await page.reload();
-    await expect(page.getByText('你的科研人格，被可视化成数据').first()).toBeVisible();
+    await expect(page.getByText('用十五维变量，描绘你在实验室里的决策、协作与生存方式。').first()).toBeVisible();
 
     // traditional Chinese
     await openLanguageSwitcher(page);
     await page.getByRole('button', { name: '繁體中文' }).first().click();
-    await expect(page.getByText('你的科研人格，被視覺化成資料').first()).toBeVisible();
+    await expect(page.getByText('用十五維變量，描繪你在實驗室裡的決策、協作與生存方式。').first()).toBeVisible();
   });
 
   test('html lang attribute follows the selection', async ({ page }) => {

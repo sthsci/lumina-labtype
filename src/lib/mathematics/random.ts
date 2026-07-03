@@ -1,7 +1,7 @@
 /**
  * Deterministic pseudo-random number generation.
  *
- * Every stochastic element of LUMINA (synthetic reference profiles, bootstrap
+ * Every stochastic element of LBTI (synthetic reference profiles, bootstrap
  * resampling, k-means initialisation, pipeline particle layout) is driven by a
  * SEEDED generator so that identical inputs always produce identical output.
  * We never call Math.random() in production paths.

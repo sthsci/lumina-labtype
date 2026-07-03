@@ -1,8 +1,13 @@
 {
   "meta": { "code": "zh-CN", "name": "简体中文", "dir": "ltr" },
   "common": {
-    "appName": "LUMINA LabType",
-    "tagline": "你的科研人格，被可视化成数据",
+    "appName": "LBTI",
+    "appFullName": "实验室行为类型指标",
+    "tagline": "用十五维变量，描绘你在实验室里的决策、协作与生存方式。",
+    "refresh": "刷新",
+    "retry": "重试",
+    "saving": "保存中",
+    "saved": "已保存",
     "entertainmentDisclaimer": "一个虚构的娱乐性工具，并非科学、临床或就业评估。",
     "fictionalBadge": "虚构 · 供自我反思",
     "skip": "跳过",
@@ -52,9 +57,9 @@
     "about": "关于"
   },
   "landing": {
-    "kicker": "一个带计算生物学味道的人格玩具",
-    "title": "LUMINA LabType",
-    "subtitle": "你的科研人格，被可视化成数据",
+    "kicker": "实验室行为类型指标",
+    "title": "LBTI",
+    "subtitle": "用十五维变量，描绘你在实验室里的决策、协作与生存方式。",
     "lede": "回答一组更贴近生物实验、材料表征、生物信息学与理论生物物理的问题，看你的回答如何流经一条漂亮的分析流水线——特征向量、归一化、降维投影、最近原型——直到一个虚构的科研人格被“注释”到你的画像上。",
     "cta": "开始测试",
     "ctaResume": "从上次的进度继续",
@@ -239,6 +244,9 @@
     "matchStrengthNote": "一个展示分数，并非概率。",
     "classificationMargin": "分类间隔",
     "profileStability": "画像稳定性",
+    "cohortPercentile": "群体百分位",
+    "cohortPercentileNote": "与本设备缓存的公开群体分类间隔比较。数值越高，表示你的主型比更多缓存记录分得更清楚。",
+    "cohortPercentileUnavailable": "本设备加载过至少五条公开群体记录后才会显示。",
     "topFive": "离你最近的五种人格",
     "fiveGroups": "五大类概览",
     "fifteenDimensions": "十五维画像",
@@ -263,11 +271,15 @@
     "hiddenNote": "一个由规则触发的稀有结果。纯属虚构，且饱含善意。",
     "secondaryIntro": "紧随其后的是你的副型人格",
     "shareTitle": "分享你的结果",
-    "cohortTitle": "把自己加入为一个细胞",
-    "cohortBody": "可选：把这份派生的十五维结果保存进本浏览器的本地群体数据库。它只保存分数、人格标签和粗略背景；不包含原始答案，也不会上传。",
-    "cohortSave": "保存为群体细胞",
-    "cohortSaved": "细胞已保存",
-    "cohortSavedBody": "已保存到本设备的本地群体数据库。",
+    "cohortTitle": "匿名加入公开群体图谱",
+    "cohortBody": "可选：把这份派生的十五维结果匿名加入公开的共享群体图谱。只会上传你的维度分数、人格代码，以及你主动选择的粗略背景——绝不上传原始回答、姓名、邮箱或任何可识别身份的信息。",
+    "cohortSave": "匿名加入公开图谱",
+    "cohortSaving": "上传中…",
+    "cohortSaved": "已加入公开图谱",
+    "cohortSavedBody": "你的匿名细胞已成为共享群体图谱的一部分，任何设备都能看到。",
+    "cohortError": "上传失败",
+    "cohortErrorBody": "无法连接共享数据库：{message}",
+    "cohortUnconfigured": "共享数据库尚未配置，因此没有上传任何内容。",
     "openCohort": "打开群体图谱",
     "exploreUniverse": "探索另一个科研平行宇宙",
     "openMlLab": "打开 ML 实验室",
@@ -285,27 +297,96 @@
       "download": "导出 PNG"
     }
   },
+  "cross": {
+    "title": "交叉解读：LBTI × SBTI × 星座",
+    "subtitle": "LBTI 结果才是分析主体；SBTI 类型与星座只是你自选的叙事层，只改变措辞，绝不改变你的分数。",
+    "disclaimer": "数值来自你的十五维 LBTI 问卷。SBTI 类型与星座是用户主动选择的娱乐叙事层，并非科学测量，也不构成任何心理、职业或医学建议。",
+    "selectLbti": "你的 LBTI 类型",
+    "selectSbti": "你的 SBTI 类型（可选）",
+    "selectZodiac": "你的星座（可选）",
+    "none": "未指定",
+    "noneShort": "—",
+    "generate": "生成交叉解读",
+    "header": "{archetype} · {sbti} · {zodiac}",
+    "aspectTitles": {
+      "decision": "研究决策方式",
+      "design": "实验设计与风险偏好",
+      "collaboration": "合作方式",
+      "mentorship": "与导师/学生的互动",
+      "conflict": "冲突模式",
+      "pressure": "压力下的表现",
+      "role": "最适合的实验室角色",
+      "blindspot": "潜在盲点与生存建议"
+    },
+    "aspects": {
+      "decision": "在如何做出研究决策上，你偏向{lean}。{sbti} {zodiac}",
+      "design": "在实验设计与风险偏好上，你偏向{lean}。{sbti} {zodiac}",
+      "collaboration": "在合作方式上，你偏向{lean}。{sbti} {zodiac}",
+      "mentorship": "在与导师和学生的互动上，你偏向{lean}。{sbti} {zodiac}",
+      "conflict": "当冲突出现时，你偏向{lean}。{sbti} {zodiac}",
+      "pressure": "在压力之下，你偏向{lean}。{sbti} {zodiac}",
+      "role": "最适合你的实验室角色往往是：{lean} {sbti} {zodiac}",
+      "blindspot": "一个需要留意的盲点：你的证据习惯偏向{lean}，请在风险找上你之前先说出它。{sbti} {zodiac}"
+    },
+    "sbtiClauses": {
+      "EI": {
+        "E": "外向的一面让你边想边说，把整个房间都拉进来。",
+        "I": "内向的一面让你先在心里想清楚，再对外承诺。"
+      },
+      "SN": {
+        "S": "务实的一面让你紧扣测量到的事实。",
+        "N": "直觉的一面让你追逐测量背后的模式。"
+      },
+      "TF": {
+        "T": "思考的一面让你用论证的逻辑来定夺。",
+        "F": "情感的一面让你顾及相关的人会作何感受。"
+      },
+      "JP": {
+        "J": "判断的一面让你开始前先把计划敲定。",
+        "P": "感知的一面让你在工作中仍保留多种可能。"
+      }
+    },
+    "zodiacClauses": {
+      "fire": "火象星座推着你在犹豫来临前先行动。",
+      "earth": "土象星座把你引向稳妥、可验证的路径。",
+      "air": "风象星座让你从各个角度把想法聊透。",
+      "water": "水象星座让你读懂团队里的暗流。"
+    },
+    "zodiac": {
+      "aries": "白羊座", "taurus": "金牛座", "gemini": "双子座", "cancer": "巨蟹座",
+      "leo": "狮子座", "virgo": "处女座", "libra": "天秤座", "scorpio": "天蝎座",
+      "sagittarius": "射手座", "capricorn": "摩羯座", "aquarius": "水瓶座", "pisces": "双鱼座"
+    }
+  },
   "cohort": {
     "title": "群体图谱",
-    "subtitle": "一个类单细胞 RNA-seq 的聚类图，用于展示自愿保存的结果细胞。",
-    "databaseTitle": "本地群体数据库",
-    "databaseBody": "保存的细胞只留在本浏览器的 localStorage。部署在 GitHub Pages 时，它不是跨用户共享的服务器数据库；如果需要跨设备公开聚合，需要接入托管后端。",
-    "addFromResult": "从结果页加入",
-    "clearAll": "清空群体",
-    "clearConfirm": "这会从本设备删除已保存的群体细胞。要继续吗？",
-    "cleared": "本地群体数据库已清空。",
-    "emptyTitle": "还没有保存的细胞",
-    "emptyBody": "在结果页保存一次结果，即可填充群体图谱。",
-    "plotTitle": "类单细胞群体聚类图",
-    "plotDescription": "每个自愿保存的结果都会作为一个细胞，放进实时计算的 PCA 投影；当细胞足够多时，簇来自确定性的 k-means。",
-    "plotSummary": "{count} 个已保存细胞被投影到 PC1 和 PC2；二者分别解释拟合方差的 {pc1}% 与 {pc2}%。当前图中显示 {clusters} 个簇。",
+    "subtitle": "一张由所有自愿加入者共同构成的、匿名的共享聚类图。",
+    "databaseTitle": "公开群体数据库",
+    "databaseBody": "这些细胞是来自各地设备、匿名派生的结果向量，保存在一个公开的共享数据库中。其中绝不包含原始回答或身份信息；由于是匿名的，个别细胞无法在此编辑或删除。",
+    "addFromResult": "加入你的结果",
+    "refresh": "刷新",
+    "loading": "正在加载共享群体…",
+    "error": "无法加载共享群体",
+    "errorBody": "{message}",
+    "unconfiguredTitle": "共享数据库尚未配置",
+    "unconfiguredBody": "此部署没有 Supabase 凭据，因此公开群体图谱不可用。LBTI 的其余部分仍完全在你的浏览器中运行。",
+    "emptyTitle": "还没有细胞",
+    "emptyBody": "在结果页匿名加入你的结果，成为第一个。",
+    "cachedNote": "正在加载实时数据，先显示你上次访问的缓存副本。",
+    "migrateTitle": "上传你较早的本地细胞？",
+    "migrateBody": "我们发现有 {count} 个结果细胞，是在共享图谱出现之前只保存在本浏览器里的。要把它们匿名上传到公开群体吗？此操作只进行一次。",
+    "migrateConfirm": "上传 {count} 个细胞",
+    "migrateSkip": "暂不",
+    "migrateDone": "已将 {count} 个本地细胞迁移到公开群体。",
+    "plotTitle": "群体聚类图",
+    "plotDescription": "每个匿名细胞都被放进实时计算的 PCA 投影；当细胞足够多时，簇来自确定性的 k-means。",
+    "plotSummary": "{count} 个匿名细胞被投影到 PC1 和 PC2；二者分别解释拟合方差的 {pc1}% 与 {pc2}%。当前图中显示 {clusters} 个簇。",
     "cellCount": "{count} 个细胞",
     "silhouette": "轮廓系数 {value}",
     "hoverCell": "细胞 {cell} · 簇 {cluster}",
     "clusterLabel": "簇 {cluster}",
     "prototypeLabel": "人格原型",
-    "recordsTitle": "已记录细胞",
-    "deleteRecord": "删除",
+    "recordsTitle": "最近的细胞",
     "table": {
       "cell": "细胞",
       "cluster": "簇",
@@ -446,7 +527,7 @@
   },
   "methodology": {
     "title": "方法与诚实声明",
-    "intro": "LUMINA 借用了数据分析的视觉语法，但它是个玩具。本页清楚划出哪些是真实计算、哪些是编写的虚构。",
+    "intro": "LBTI 借用了数据分析的视觉语法，但它是个玩具。本页清楚划出哪些是真实计算、哪些是编写的虚构。",
     "realTitle": "哪些是真实计算的",
     "realList": [
       "通过有文档的加权算术，从你的答案算出的维度分数。",
@@ -480,24 +561,24 @@
     "title": "隐私",
     "intro": "最私密的分析，是根本不发生的分析。",
     "points": [
-      "一切都在你的浏览器里运行。没有后端，也没有共享数据库；可选的群体数据库仅保存在本浏览器。",
-      "你的答案和可选的群体结果向量只保存在本设备的 localStorage 里。",
-      "你输入的任何内容都不会被上传或传输。",
-      "默认没有任何统计分析、追踪或 cookie。",
-      "我们从不收集姓名、机构、邮箱或自由文本。",
-      "你可以在结果页的删除按钮，或在这里，清除所有已存的数据。"
+      "你的原始回答留在你的浏览器里。它们只保存在本设备的 localStorage，绝不上传。",
+      "群体图谱是自愿加入的。若你选择加入，只会上传一条派生记录：你的十五个维度分数、主/副人格代码，以及你自选的粗略领域与阶段背景。",
+      "我们绝不上传或收集原始回答、姓名、机构、邮箱、自由文本或任何可直接识别身份的信息。",
+      "已上传的群体细胞是匿名并公开共享的；由于不含身份信息，个别细胞无法在浏览器中被单独删除。",
+      "默认没有任何广告统计、追踪或 cookie。",
+      "你可以在结果页的删除按钮，或在这里，清除所有本地数据（答案、设置、缓存）。"
     ],
     "deleteButton": "立即删除我全部的本地数据",
     "deleted": "已完成——你的本地数据已被清除。"
   },
   "disclaimer": {
     "title": "免责声明",
-    "body": "LUMINA LabType 是一件用于娱乐与温和自省的交互式虚构作品。它不是科学工具、心理评估、诊断手段或就业筛查。人格是虚构的，原型向量是手工设计的，所谓“分析”只是把简单算术演得很戏剧化。请不要据此做任何重要决定。如果这里的某句话让你会心一笑或有点恼火，那正是它预期的效果范围。",
+    "body": "LBTI 是一件用于娱乐与温和自省的交互式虚构作品。它不是科学工具、心理评估、诊断手段或就业筛查。人格是虚构的，原型向量是手工设计的，所谓“分析”只是把简单算术演得很戏剧化。请不要据此做任何重要决定。如果这里的某句话让你会心一笑或有点恼火，那正是它预期的效果范围。",
     "hiddenNote": "隐藏人格是对常见科研习惯饱含善意的漫画化。它们从不指控学术不端，只由明确的答题模式触发。"
   },
   "about": {
-    "title": "关于 LUMINA",
-    "body": "LUMINA LabType 起于一个简单的问题：如果一个人格测验坦诚承认自己其实是数学，会怎样？它给一个确定性的打分引擎穿上数据分析流水线的视觉外衣——热图、投影、聚类与重采样——同时坦白人格纯属虚构。",
+    "title": "关于 LBTI",
+    "body": "LBTI 起于一个简单的问题：如果一个人格测验坦诚承认自己其实是数学，会怎样？它给一个确定性的打分引擎穿上数据分析流水线的视觉外衣——热图、投影、聚类与重采样——同时坦白人格纯属虚构。",
     "openSourceTitle": "开放且静态",
     "openSourceBody": "整个网站是静态的：没有服务器、没有密钥、不收集数据。它能免费部署到 GitHub Pages，也能被 fork 后重新编写——新题目、新人格、新语言。",
     "creditsTitle": "技术栈",

@@ -1,5 +1,11 @@
 import type { ScoreResult } from '@/features/scoring/types';
-import { readJSON, STORAGE_KEYS, type TestContext, writeJSON } from '@/lib/storage/storage';
+import {
+  readJSON,
+  STORAGE_KEYS,
+  type StorageWriteResult,
+  type TestContext,
+  writeJSON,
+} from '@/lib/storage/storage';
 
 export interface CohortRecord {
   id: string;
@@ -48,8 +54,11 @@ export function loadCohortRecords(): CohortRecord[] {
     .filter((record): record is CohortRecord => record !== null);
 }
 
-export function saveCohortRecords(records: CohortRecord[]): void {
-  writeJSON(STORAGE_KEYS.cohort, records.map(normaliseRecord).filter((record): record is CohortRecord => record !== null));
+export function saveCohortRecords(records: CohortRecord[]): StorageWriteResult {
+  return writeJSON(
+    STORAGE_KEYS.cohort,
+    records.map(normaliseRecord).filter((record): record is CohortRecord => record !== null),
+  );
 }
 
 export function addCohortRecord(record: CohortRecord): CohortRecord[] {
@@ -64,6 +73,38 @@ export function removeCohortRecord(id: string): CohortRecord[] {
   return records;
 }
 
-export function clearCohortRecords(): void {
+export function clearCohortRecords(): StorageWriteResult {
+  return saveCohortRecords([]);
+}
+
+/* ---- optional local cache of the Supabase cohort (read-only convenience) --- */
+
+/** Cache the last successfully fetched public cohort for a faster first paint. */
+export function saveCohortCache(records: CohortRecord[]): StorageWriteResult {
+  return writeJSON(
+    STORAGE_KEYS.cohortCache,
+    records.map(normaliseRecord).filter((record): record is CohortRecord => record !== null),
+  );
+}
+
+export function loadCohortCache(): CohortRecord[] {
+  return readJSON<CohortRecord[]>(STORAGE_KEYS.cohortCache, [])
+    .map(normaliseRecord)
+    .filter((record): record is CohortRecord => record !== null);
+}
+
+/* ---- one-time migration bookkeeping for legacy local-only records ---------- */
+
+export function legacyLocalRecords(): CohortRecord[] {
+  return loadCohortRecords();
+}
+
+export function hasMigratedLegacyRecords(): boolean {
+  return readJSON<boolean>(STORAGE_KEYS.cohortMigrated, false);
+}
+
+export function markLegacyRecordsMigrated(): void {
+  writeJSON(STORAGE_KEYS.cohortMigrated, true);
+  // The uploaded copies now live in Supabase; drop the local originals.
   saveCohortRecords([]);
 }

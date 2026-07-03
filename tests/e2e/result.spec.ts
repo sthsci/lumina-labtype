@@ -36,7 +36,7 @@ test.describe('result page (direct navigation under the Pages subpath)', () => {
     const downloadPromise = page.waitForEvent('download', { timeout: 45_000 });
     await page.getByTestId('share-download').click();
     const download = await downloadPromise;
-    expect(download.suggestedFilename()).toContain('lumina-labtype');
+    expect(download.suggestedFilename()).toContain('lbti-');
   });
 
   test('ml-lab and atlas load directly under the subpath', async ({ page }) => {
@@ -46,14 +46,32 @@ test.describe('result page (direct navigation under the Pages subpath)', () => {
     await expect(page.getByRole('heading', { name: 'Archetype atlas' })).toBeVisible();
   });
 
-  test('optionally records the result as a cohort cell', async ({ page }) => {
+  test('cohort join never fakes success (blocked network shows a real state)', async ({ page }) => {
+    // Block the Supabase REST API. Depending on whether credentials are present
+    // in this build, the app must surface EITHER "upload failed" (real error)
+    // or "not configured" — but never a false "saved".
+    await page.route('**/rest/v1/**', (route) => route.abort());
     await page.goto('./result');
-    await page.getByRole('button', { name: 'Save as cohort cell' }).click();
-    await expect(page.getByText('Saved to the local cohort database on this device.')).toBeVisible();
+    await page.getByTestId('cohort-save').click();
+
+    const failed = page.getByText('Upload failed');
+    const unconfigured = page.getByText('The shared database is not configured, so nothing was uploaded.');
+    await expect(failed.or(unconfigured)).toBeVisible();
+    // must NOT claim success
+    await expect(page.getByText('Added to the public map')).toHaveCount(0);
 
     await page.getByRole('link', { name: 'Open cohort atlas' }).click();
     await expect(page.getByRole('heading', { name: 'Cohort atlas' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'scRNA-style cohort cluster plot' })).toBeVisible();
-    await expect(page.getByText('1 cells')).toBeVisible();
+  });
+
+  test('renders the LBTI × SBTI × zodiac cross-reading with eight aspects', async ({ page }) => {
+    await page.goto('./result');
+    const cross = page.getByRole('region', { name: 'Cross-reading: LBTI × SBTI × zodiac' });
+    await expect(cross).toBeVisible();
+    // choose an SBTI type and a star sign; text updates deterministically
+    await cross.getByLabel('Your SBTI type (optional)').selectOption('INTJ');
+    await cross.getByLabel('Your star sign (optional)').selectOption('leo');
+    await expect(cross.getByText('Research decisions', { exact: true })).toBeVisible();
+    await expect(cross.getByText('Best-fit lab role', { exact: true })).toBeVisible();
   });
 });

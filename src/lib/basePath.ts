@@ -2,7 +2,7 @@
  * GitHub Pages base-path helpers.
  *
  * Vite injects the configured `base` as import.meta.env.BASE_URL (e.g.
- * "/lumina-labtype/"). React Router uses it as its basename, and absolute asset
+ * "/academic_personality/"). React Router uses it as its basename, and absolute asset
  * URLs are built from it. joinBase() is a pure function so it can be unit tested
  * without a bundler.
  */

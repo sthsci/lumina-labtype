@@ -43,19 +43,22 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # The Playwright webServer builds and previews under /lumina-labtype/,
+      # The Playwright webServer builds and previews under /academic_personality/,
       # exercising the same subpath routing GitHub Pages will use.
       - name: End-to-end tests (chromium)
         run: npx playwright test --project=chromium
         env:
-          VITE_BASE: /lumina-labtype/
+          VITE_BASE: /academic_personality/
 
       # Final production build AFTER e2e so the uploaded dist uses the real
-      # repository name as its base path.
+      # repository name as its base path. Supabase credentials are injected from
+      # repository secrets; if unset, the app degrades to "shared DB not configured".
       - name: Build for Pages (base path derived from repository name)
         run: npm run build
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -22,7 +22,9 @@ import { EntropyGauge } from '@/features/visualisations/EntropyGauge';
 import { BootstrapStability } from '@/features/visualisations/BootstrapStability';
 import { DecisionPlayground } from '@/features/visualisations/DecisionPlayground';
 import { ShareCard } from '@/features/sharing/ShareCard';
-import { addCohortRecord, createCohortRecord } from '@/features/cohort/cohortStorage';
+import { CrossInterpretation } from '@/features/results/CrossReadingPanel';
+import { insertCohortRecord, isSupabaseConfigured, mapResultToInsert } from '@/features/cohort/cohortDb';
+import { loadCohortCache } from '@/features/cohort/cohortStorage';
 import type { ScoreResult } from '@/features/scoring/types';
 
 export function Result() {
@@ -52,7 +54,10 @@ function ResultContent({ result }: { result: ScoreResult }) {
   const resetTest = useAppStore((s) => s.resetTest);
   const clearAllData = useAppStore((s) => s.clearAllData);
   const [deleted, setDeleted] = useState(false);
-  const [cohortSaved, setCohortSaved] = useState(false);
+  const [cohortState, setCohortState] = useState<'idle' | 'saving' | 'saved' | 'error' | 'unconfigured'>(
+    'idle',
+  );
+  const [cohortError, setCohortError] = useState('');
 
   const archetype = archetypeByCode.get(result.primary)!;
   const secondaryArchetype = archetypeByCode.get(result.secondary)!;
@@ -83,6 +88,14 @@ function ResultContent({ result }: { result: ScoreResult }) {
     .slice(0, 3);
 
   const visibleRanked = result.distances.filter((d) => !d.hidden).slice(0, 5);
+  const cohortPercentile = useMemo(() => {
+    const margins = loadCohortCache()
+      .map((record) => record.classificationMargin)
+      .filter((margin) => Number.isFinite(margin));
+    if (margins.length < 5) return null;
+    const atOrBelow = margins.filter((margin) => margin <= result.classificationMargin).length;
+    return Math.round((atOrBelow / margins.length) * 100);
+  }, [result.classificationMargin]);
 
   const restart = () => {
     resetTest();
@@ -95,9 +108,21 @@ function ResultContent({ result }: { result: ScoreResult }) {
       navigate('/');
     }
   };
-  const recordForCohort = () => {
-    addCohortRecord(createCohortRecord(result, context));
-    setCohortSaved(true);
+  const recordForCohort = async () => {
+    if (cohortState === 'saving' || cohortState === 'saved') return; // guard double-click
+    if (!isSupabaseConfigured) {
+      setCohortState('unconfigured');
+      return;
+    }
+    setCohortState('saving');
+    setCohortError('');
+    try {
+      await insertCohortRecord(mapResultToInsert(result, context));
+      setCohortState('saved');
+    } catch (err) {
+      setCohortError(err instanceof Error ? err.message : String(err));
+      setCohortState('error');
+    }
   };
 
   return (
@@ -146,6 +171,11 @@ function ResultContent({ result }: { result: ScoreResult }) {
               <Stat label={t('result.matchStrength')} value={`${result.matchStrength}`} note={t('result.matchStrengthNote')} />
               <Stat label={t('result.classificationMargin')} value={result.classificationMargin.toFixed(2)} />
               <Stat label={t('result.profileStability')} value={`${Math.round(quickStability)}%`} />
+              <Stat
+                label={t('result.cohortPercentile')}
+                value={cohortPercentile === null ? '—' : `${cohortPercentile}%`}
+                note={t(cohortPercentile === null ? 'result.cohortPercentileUnavailable' : 'result.cohortPercentileNote')}
+              />
             </div>
             <p className="mt-4 text-sm text-haze">
               {t('result.secondaryIntro')}:{' '}
@@ -297,6 +327,9 @@ function ResultContent({ result }: { result: ScoreResult }) {
         </section>
       </div>
 
+      {/* cross-reading: LBTI × SBTI × zodiac */}
+      <CrossInterpretation result={result} />
+
       {/* alternate universe */}
       <section id="alternate-universe">
         <DecisionPlayground result={result} />
@@ -308,7 +341,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
         <ShareCard result={result} />
       </section>
 
-      {/* optional local cohort database */}
+      {/* anonymous public cohort database */}
       <section className="panel p-5 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-3xl">
@@ -316,17 +349,42 @@ function ResultContent({ result }: { result: ScoreResult }) {
             <p className="mt-2 text-sm leading-relaxed text-haze">{t('result.cohortBody')}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" className="btn-primary" onClick={recordForCohort} disabled={cohortSaved}>
-              {cohortSaved ? t('result.cohortSaved') : t('result.cohortSave')}
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={recordForCohort}
+              disabled={cohortState === 'saving' || cohortState === 'saved'}
+              data-testid="cohort-save"
+            >
+              {cohortState === 'saving'
+                ? t('result.cohortSaving')
+                : cohortState === 'saved'
+                  ? t('result.cohortSaved')
+                  : t('result.cohortSave')}
             </button>
+            {cohortState === 'error' && (
+              <button type="button" className="btn-ghost" onClick={recordForCohort}>
+                {t('common.retry')}
+              </button>
+            )}
             <Link to="/cohort" className="btn-ghost">
               {t('result.openCohort')}
             </Link>
           </div>
         </div>
-        {cohortSaved && (
+        {cohortState === 'saved' && (
           <p className="mt-3 text-sm text-lumina-200" role="status">
             {t('result.cohortSavedBody')}
+          </p>
+        )}
+        {cohortState === 'error' && (
+          <p className="mt-3 text-sm text-signal-pos" role="alert">
+            {t('result.cohortError')} — {t('result.cohortErrorBody', { message: cohortError })}
+          </p>
+        )}
+        {cohortState === 'unconfigured' && (
+          <p className="mt-3 text-sm text-amber-glow" role="status">
+            {t('result.cohortUnconfigured')}
           </p>
         )}
       </section>
