@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "themes": [
+    "reproducibility",
+    "curiosity",
+    "quantitative",
+    "completion",
+    "risk",
+    "collaboration",
+    "scepticism",
+    "planning",
+    "boundaries"
+  ]
+}

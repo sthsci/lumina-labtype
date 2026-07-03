@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "groups": [
+    { "id": "question", "dimensions": ["hypothesis_pattern", "explanation_prediction", "depth_breadth"] },
+    { "id": "evidence", "dimensions": ["acceptance_scepticism", "qualitative_quantitative", "result_reproducibility"] },
+    { "id": "execution", "dimensions": ["improvisation_planning", "launch_iteration", "opening_completing"] },
+    { "id": "collaboration", "dimensions": ["team_independent", "diplomatic_direct", "specialist_organiser"] },
+    { "id": "sustainability", "dimensions": ["safe_risk", "rumination_adaptation", "fusion_boundaries"] }
+  ],
+  "dimensions": [
+    { "id": "hypothesis_pattern", "group": "question", "importance": 1.1 },
+    { "id": "explanation_prediction", "group": "question", "importance": 1.0 },
+    { "id": "depth_breadth", "group": "question", "importance": 1.1 },
+    { "id": "acceptance_scepticism", "group": "evidence", "importance": 1.2 },
+    { "id": "qualitative_quantitative", "group": "evidence", "importance": 1.1 },
+    { "id": "result_reproducibility", "group": "evidence", "importance": 1.2 },
+    { "id": "improvisation_planning", "group": "execution", "importance": 1.0 },
+    { "id": "launch_iteration", "group": "execution", "importance": 0.9 },
+    { "id": "opening_completing", "group": "execution", "importance": 1.1 },
+    { "id": "team_independent", "group": "collaboration", "importance": 1.0 },
+    { "id": "diplomatic_direct", "group": "collaboration", "importance": 0.9 },
+    { "id": "specialist_organiser", "group": "collaboration", "importance": 1.0 },
+    { "id": "safe_risk", "group": "sustainability", "importance": 1.1 },
+    { "id": "rumination_adaptation", "group": "sustainability", "importance": 0.9 },
+    { "id": "fusion_boundaries", "group": "sustainability", "importance": 0.9 }
+  ]
+}

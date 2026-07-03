@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "comment": "Vectors are 15-dimensional prototype profiles in dimensionOrder (see scoring-config.json), each value 0-100. All visible prose lives in the translation files under the `archetypes.<CODE>` namespace. Emblems are procedural: {glyph, seed, hue}.",
+  "archetypes": [
+    { "code": "BAYES", "hidden": false, "vector": [20,45,25,70,90,80,70,45,55,55,45,30,45,60,50], "emblem": { "glyph": "distribution", "seed": 4127, "hue": 190 }, "idealCollaborator": "MODEL", "difficultCollaborator": "NIGHT" },
+    { "code": "PIPET", "hidden": false, "vector": [45,40,25,60,60,90,80,40,85,50,45,15,20,55,60], "emblem": { "glyph": "lanes", "seed": 2210, "hue": 40 }, "idealCollaborator": "REPRO", "difficultCollaborator": "PREPRINT" },
+    { "code": "R2D2", "hidden": false, "vector": [40,30,20,98,70,88,70,40,60,55,92,35,30,45,55], "emblem": { "glyph": "network", "seed": 8801, "hue": 6 }, "idealCollaborator": "CONTROL", "difficultCollaborator": "PREPRINT" },
+    { "code": "FIG1", "hidden": false, "vector": [30,10,45,40,40,45,55,50,55,45,45,45,55,55,45], "emblem": { "glyph": "grid", "seed": 5560, "hue": 212 }, "idealCollaborator": "MODEL", "difficultCollaborator": "R2D2" },
+    { "code": "NULL", "hidden": false, "vector": [45,40,40,85,65,92,60,45,65,55,60,40,55,55,50], "emblem": { "glyph": "contour", "seed": 3049, "hue": 158 }, "idealCollaborator": "REPRO", "difficultCollaborator": "PREPRINT" },
+    { "code": "GIT", "hidden": false, "vector": [50,50,40,60,60,95,90,55,88,45,55,55,30,60,65], "emblem": { "glyph": "branches", "seed": 9153, "hue": 132 }, "idealCollaborator": "PIPELINE", "difficultCollaborator": "NIGHT" },
+    { "code": "EXCEL", "hidden": false, "vector": [70,60,60,45,80,55,50,65,60,55,50,45,40,60,45], "emblem": { "glyph": "matrix", "seed": 6672, "hue": 88 }, "idealCollaborator": "PIPELINE", "difficultCollaborator": "R2D2" },
+    { "code": "OMNI", "hidden": false, "vector": [80,55,90,45,45,40,30,65,25,45,50,55,75,65,40], "emblem": { "glyph": "field", "seed": 1394, "hue": 300 }, "idealCollaborator": "MODEL", "difficultCollaborator": "CONTROL" },
+    { "code": "NIGHT", "hidden": false, "vector": [50,55,45,40,50,35,15,75,45,55,50,45,65,60,8], "emblem": { "glyph": "trajectory", "seed": 7025, "hue": 250 }, "idealCollaborator": "ESC", "difficultCollaborator": "GIT" },
+    { "code": "REPRO", "hidden": false, "vector": [45,45,45,80,75,98,80,45,75,45,60,45,30,55,55], "emblem": { "glyph": "grid", "seed": 4488, "hue": 175 }, "idealCollaborator": "CONTROL", "difficultCollaborator": "PREPRINT" },
+    { "code": "TODO", "hidden": false, "vector": [45,45,40,80,60,70,45,40,12,50,45,40,45,40,35], "emblem": { "glyph": "orbit", "seed": 3312, "hue": 34 }, "idealCollaborator": "ESC", "difficultCollaborator": "R2D2" },
+    { "code": "ESC", "hidden": false, "vector": [60,60,70,45,55,45,40,70,35,55,55,60,70,92,50], "emblem": { "glyph": "trajectory", "seed": 5904, "hue": 20 }, "idealCollaborator": "OMNI", "difficultCollaborator": "REPRO" },
+    { "code": "MODEL", "hidden": false, "vector": [65,90,40,55,92,65,70,55,60,60,55,40,60,60,50], "emblem": { "glyph": "field", "seed": 8237, "hue": 262 }, "idealCollaborator": "BAYES", "difficultCollaborator": "PIPET" },
+    { "code": "GRANT", "hidden": false, "vector": [45,45,65,40,50,50,75,35,65,35,40,90,45,65,55], "emblem": { "glyph": "network", "seed": 2748, "hue": 46 }, "idealCollaborator": "PI", "difficultCollaborator": "NULL" },
+    { "code": "PREPRINT", "hidden": false, "vector": [55,60,55,35,55,35,40,90,55,50,55,50,75,70,30], "emblem": { "glyph": "trajectory", "seed": 6119, "hue": 12 }, "idealCollaborator": "ESC", "difficultCollaborator": "R2D2" },
+    { "code": "SOLO", "hidden": false, "vector": [50,45,25,60,55,60,55,45,60,95,60,25,55,50,55], "emblem": { "glyph": "orbit", "seed": 4033, "hue": 200 }, "idealCollaborator": "PIPELINE", "difficultCollaborator": "GRANT" },
+    { "code": "CONTROL", "hidden": false, "vector": [45,40,35,88,70,90,78,40,70,45,60,35,25,50,55], "emblem": { "glyph": "matrix", "seed": 7781, "hue": 165 }, "idealCollaborator": "REPRO", "difficultCollaborator": "NIGHT" },
+    { "code": "PIPELINE", "hidden": false, "vector": [55,60,55,55,70,80,88,60,80,50,50,65,40,65,55], "emblem": { "glyph": "branches", "seed": 3567, "hue": 186 }, "idealCollaborator": "GIT", "difficultCollaborator": "NIGHT" },
+
+    { "code": "PI", "hidden": true, "vector": [55,55,80,50,50,55,70,55,55,40,55,95,55,70,45], "emblem": { "glyph": "network", "seed": 9902, "hue": 50 }, "idealCollaborator": "GRANT", "difficultCollaborator": "SOLO" },
+    { "code": "GHOST", "hidden": true, "vector": [50,50,50,50,50,50,45,50,45,92,20,40,40,55,85], "emblem": { "glyph": "contour", "seed": 1201, "hue": 220 }, "idealCollaborator": "SOLO", "difficultCollaborator": "PI" },
+    { "code": "POLISH", "hidden": true, "vector": [45,40,55,35,35,30,55,55,60,45,40,55,50,55,45], "emblem": { "glyph": "distribution", "seed": 6644, "hue": 320 }, "idealCollaborator": "FIG1", "difficultCollaborator": "R2D2" }
+  ]
+}

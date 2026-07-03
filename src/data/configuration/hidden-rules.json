@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "comment": "Hidden archetypes are unlocked by explicit, deterministic rules. All conditions in a rule must hold. Rules are evaluated top-to-bottom; the first match wins. These are playful, non-accusatory reframings of familiar research habits.",
+  "rules": [
+    {
+      "id": "became-supervisor",
+      "archetype": "PI",
+      "conditions": [
+        { "type": "dimensionAbove", "dimension": "specialist_organiser", "value": 78 },
+        { "type": "dimensionAbove", "dimension": "depth_breadth", "value": 58 },
+        { "type": "dimensionAbove", "dimension": "safe_risk", "value": 45 }
+      ]
+    },
+    {
+      "id": "meeting-invisibility",
+      "archetype": "GHOST",
+      "conditions": [
+        { "type": "dimensionAbove", "dimension": "team_independent", "value": 80 },
+        { "type": "dimensionBelow", "dimension": "diplomatic_direct", "value": 32 },
+        { "type": "dimensionAbove", "dimension": "fusion_boundaries", "value": 64 }
+      ]
+    },
+    {
+      "id": "presentation-first",
+      "archetype": "POLISH",
+      "conditions": [
+        { "type": "answerAtLeast", "questionId": "q32", "value": 5 },
+        { "type": "dimensionBelow", "dimension": "result_reproducibility", "value": 40 }
+      ]
+    }
+  ]
+}
