@@ -40,7 +40,7 @@ test.describe('persistence and local data', () => {
     await page.goto('./result');
     page.on('dialog', (dialog) => dialog.accept());
     await page.getByRole('button', { name: 'Delete all my local data' }).click();
-    await expect(page).toHaveURL(/\/lumina-labtype\/?$/);
+    await expect(page).toHaveURL(/\/academic_personality\/?$/);
     const answers = await page.evaluate(() => localStorage.getItem('lumina:answers'));
     expect(answers).toBeNull();
   });
