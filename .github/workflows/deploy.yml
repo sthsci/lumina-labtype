@@ -51,14 +51,13 @@ jobs:
           VITE_BASE: /academic_personality/
 
       # Final production build AFTER e2e so the uploaded dist uses the real
-      # repository name as its base path. Supabase credentials are injected from
-      # repository secrets; if unset, the app degrades to "shared DB not configured".
-      - name: Build for Pages (base path derived from repository name)
+      # repository name as its base path.
+      - name: Build
         run: npm run build
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_URL: https://pygdujykbzjtiabubvgi.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_3j4dHy9FlrC1FtmImvB7FQ_B0FwiqAS
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
