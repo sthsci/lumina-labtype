@@ -315,7 +315,7 @@
   },
   "mllab": {
     "title": "ML 实验室",
-    "subtitle": "看看一个虚构的科研人格如何变成一个点、一个簇、一个最近原型。",
+    "subtitle": "学习这些地图背后的核心概念，并尝试生物数据、材料实验和理论建模中常用的小型 Python 模式。",
     "academic": "学术表述",
     "plain": "大白话",
     "noResultTitle": "还没有画像",
@@ -329,7 +329,84 @@
       "hierarchical": "层次树",
       "bootstrap": "自助法稳定性",
       "entropy": "熵",
-      "decision": "决策区域"
+      "decision": "决策区域",
+      "python": "Python 教程",
+      "resources": "学习资源"
+    },
+    "study": {
+      "kicker": "学生路线",
+      "title": "如何阅读这个实验室",
+      "body": "把这页当作实验与计算之间的一座小桥：先理解测量如何变成向量，再看距离和投影如何暴露结构，最后用重采样检查结论是否脆弱。",
+      "steps": {
+        "measure": {
+          "title": "测量",
+          "body": "从胶图、显微、流式、扫描电镜、测序、模拟或模型输出中收集特征。"
+        },
+        "clean": {
+          "title": "清理",
+          "body": "解释地图前，先检查元数据、对照、缩放、批次效应和缺失值。"
+        },
+        "model": {
+          "title": "建模",
+          "body": "用距离、PCA、聚类或微分方程让结构变得可见。"
+        },
+        "explain": {
+          "title": "解释",
+          "body": "把数值结果重新连回机制、不确定性和实验设计。"
+        }
+      }
+    },
+    "python": {
+      "qc": {
+        "kicker": "实验表格",
+        "title": "汇总重复",
+        "body": "从整洁表格开始。按条件分组，统计重复数并查看变异，再判断生物或材料信号是否可信。"
+      },
+      "pca": {
+        "kicker": "特征矩阵",
+        "title": "投影与聚类",
+        "body": "在 PCA 或 k-means 前先标准化特征，避免某个量纲很大的测量主导几何结构。"
+      },
+      "ode": {
+        "kicker": "生物物理模型",
+        "title": "模拟反馈系统",
+        "body": "一个很小的 ODE 模型可以把语言描述的机制变成可检查、可拟合、可被数据挑战的轨迹。"
+      }
+    },
+    "resourcesIntro": "好的学习材料应该清楚、可运行，并诚实说明假设。下面的链接指向官方或常用文档，适合学生在写真实分析 notebook 时反复查阅。",
+    "resources": {
+      "python": {
+        "title": "Python 教程",
+        "body": "语言基础、函数、模块和脚本。"
+      },
+      "numpy": {
+        "title": "NumPy 学习",
+        "body": "数组、广播和数值思维。"
+      },
+      "pandas": {
+        "title": "pandas 入门",
+        "body": "整洁表格、分组、连接和读写。"
+      },
+      "scipy": {
+        "title": "SciPy 用户指南",
+        "body": "优化、积分、统计和科学计算例程。"
+      },
+      "sklearn": {
+        "title": "scikit-learn",
+        "body": "预处理、PCA、聚类和模型评估。"
+      },
+      "scanpy": {
+        "title": "Scanpy 教程",
+        "body": "单细胞 RNA-seq 工作流与 AnnData。"
+      },
+      "biopython": {
+        "title": "Biopython 教程",
+        "body": "序列、文件、注释和生物格式。"
+      },
+      "pymc": {
+        "title": "PyMC 学习",
+        "body": "用于不确定性推断的贝叶斯建模。"
+      }
     },
     "concepts": {
       "cosineAcademic": "余弦相似度比较两个向量的方向，对正的等比缩放不敏感。",

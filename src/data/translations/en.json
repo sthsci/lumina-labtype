@@ -315,7 +315,7 @@
   },
   "mllab": {
     "title": "ML Lab",
-    "subtitle": "See how a fictional research personality becomes a point, a cluster and a nearest prototype.",
+    "subtitle": "Learn the core ideas behind the maps, then try small Python patterns used in biological data, materials experiments and theoretical modelling.",
     "academic": "Academic",
     "plain": "Plain language",
     "noResultTitle": "No profile yet",
@@ -329,7 +329,84 @@
       "hierarchical": "Hierarchical trees",
       "bootstrap": "Bootstrap stability",
       "entropy": "Entropy",
-      "decision": "Decision regions"
+      "decision": "Decision regions",
+      "python": "Python tutorials",
+      "resources": "Learning resources"
+    },
+    "study": {
+      "kicker": "Student route",
+      "title": "How to read this lab",
+      "body": "Treat the page as a gentle bridge between experiments and computation: first understand how measurements become vectors, then how distances and projections expose structure, then how resampling tests whether a conclusion is fragile.",
+      "steps": {
+        "measure": {
+          "title": "Measure",
+          "body": "Collect features from gels, microscopy, flow cytometry, SEM, sequencing, simulations or model outputs."
+        },
+        "clean": {
+          "title": "Clean",
+          "body": "Check metadata, controls, scaling, batch effects and missing values before interpreting a map."
+        },
+        "model": {
+          "title": "Model",
+          "body": "Use distances, PCA, clustering or differential equations to make structure visible."
+        },
+        "explain": {
+          "title": "Explain",
+          "body": "Connect the numerical result back to mechanism, uncertainty and experimental design."
+        }
+      }
+    },
+    "python": {
+      "qc": {
+        "kicker": "Assay table",
+        "title": "Summarise replicates",
+        "body": "Start with a tidy table. Group by condition, count replicates and inspect variation before you trust a biological or materials signal."
+      },
+      "pca": {
+        "kicker": "Feature matrix",
+        "title": "Project and cluster",
+        "body": "Standardise features before PCA or k-means so one large-scale measurement does not dominate the geometry."
+      },
+      "ode": {
+        "kicker": "Biophysical model",
+        "title": "Simulate a feedback system",
+        "body": "A tiny ODE model turns a verbal mechanism into a trajectory you can inspect, fit and challenge with data."
+      }
+    },
+    "resourcesIntro": "Good learning materials are clear, runnable and honest about assumptions. These links point to official or widely used documentation that students can return to while building real analysis notebooks.",
+    "resources": {
+      "python": {
+        "title": "Python tutorial",
+        "body": "Language basics, functions, modules and scripts."
+      },
+      "numpy": {
+        "title": "NumPy learning",
+        "body": "Arrays, broadcasting and numerical thinking."
+      },
+      "pandas": {
+        "title": "pandas getting started",
+        "body": "Tidy tables, grouping, joining and IO."
+      },
+      "scipy": {
+        "title": "SciPy user guide",
+        "body": "Optimisation, integration, statistics and scientific routines."
+      },
+      "sklearn": {
+        "title": "scikit-learn",
+        "body": "Preprocessing, PCA, clustering and model evaluation."
+      },
+      "scanpy": {
+        "title": "Scanpy tutorials",
+        "body": "Single-cell RNA-seq workflows and AnnData."
+      },
+      "biopython": {
+        "title": "Biopython tutorial",
+        "body": "Sequences, files, annotations and biological formats."
+      },
+      "pymc": {
+        "title": "PyMC learning",
+        "body": "Bayesian modelling for uncertainty-aware inference."
+      }
     },
     "concepts": {
       "cosineAcademic": "Cosine similarity compares the orientation of two vectors and is invariant to uniform positive scaling.",

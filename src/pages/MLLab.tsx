@@ -14,6 +14,64 @@ import { EntropyGauge } from '@/features/visualisations/EntropyGauge';
 import { BootstrapStability } from '@/features/visualisations/BootstrapStability';
 import { DecisionPlayground } from '@/features/visualisations/DecisionPlayground';
 
+const PYTHON_TUTORIALS = [
+  {
+    id: 'qc',
+    code: `import pandas as pd
+
+# One row per sample/cell/material condition.
+df = pd.read_csv("measurements.csv")
+
+qc = (
+    df.groupby("condition")
+      .agg(n=("sample_id", "count"),
+           mean_signal=("signal", "mean"),
+           cv_signal=("signal", lambda x: x.std() / x.mean()))
+      .reset_index()
+)
+print(qc.sort_values("cv_signal"))`,
+  },
+  {
+    id: 'pca',
+    code: `import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
+# rows = cells/samples, columns = features
+X = np.loadtxt("feature_matrix.csv", delimiter=",")
+Xz = StandardScaler().fit_transform(X)
+
+xy = PCA(n_components=2, random_state=0).fit_transform(Xz)
+labels = KMeans(n_clusters=4, random_state=0, n_init="auto").fit_predict(Xz)
+print(xy[:5], labels[:5])`,
+  },
+  {
+    id: 'ode',
+    code: `import numpy as np
+from scipy.integrate import solve_ivp
+
+def feedback(t, y, k_on=1.2, k_off=0.35):
+    active, inactive = y
+    return [k_on * inactive - k_off * active, -k_on * inactive + k_off * active]
+
+t_eval = np.linspace(0, 12, 200)
+sol = solve_ivp(feedback, (0, 12), y0=[0.1, 0.9], t_eval=t_eval)
+active_trace = sol.y[0]`,
+  },
+] as const;
+
+const LEARNING_RESOURCES = [
+  ['python', 'https://docs.python.org/3/tutorial/'],
+  ['numpy', 'https://numpy.org/learn/'],
+  ['pandas', 'https://pandas.pydata.org/docs/getting_started/index.html'],
+  ['scipy', 'https://docs.scipy.org/doc/scipy/tutorial/index.html'],
+  ['sklearn', 'https://scikit-learn.org/stable/getting_started.html'],
+  ['scanpy', 'https://scanpy.readthedocs.io/en/stable/tutorials/index.html'],
+  ['biopython', 'https://biopython.org/docs/latest/Tutorial/'],
+  ['pymc', 'https://www.pymc.io/projects/docs/en/stable/learn.html'],
+] as const;
+
 /** Two-layer explanation: precise wording + plain-language rephrasing. */
 function Concept({ id }: { id: string }) {
   const { t } = useI18n();
@@ -55,6 +113,8 @@ export function MLLab() {
     'bootstrap',
     'entropy',
     'decision',
+    'python',
+    'resources',
   ] as const;
 
   return (
@@ -78,6 +138,21 @@ export function MLLab() {
           </Link>
         </div>
       )}
+
+      <section className="panel p-5 sm:p-6">
+        <p className="kicker mb-2">{t('mllab.study.kicker')}</p>
+        <h2 className="text-xl font-semibold">{t('mllab.study.title')}</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-haze">{t('mllab.study.body')}</p>
+        <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-4">
+          {(['measure', 'clean', 'model', 'explain'] as const).map((step, i) => (
+            <div key={step} className="rounded-xl border border-line bg-white/[0.025] p-4">
+              <p className="font-mono text-xs text-amber-glow/90">0{i + 1}</p>
+              <h3 className="mt-2 text-sm font-semibold text-parchment">{t(`mllab.study.steps.${step}.title`)}</h3>
+              <p className="mt-1 text-xs leading-relaxed text-haze">{t(`mllab.study.steps.${step}.body`)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <Section id="vectors" title={t('mllab.sections.vectors')}>
         <Concept id="vectors" />
@@ -169,6 +244,41 @@ export function MLLab() {
       <Section id="decision" title={t('mllab.sections.decision')}>
         <Concept id="decision" />
         <DecisionPlayground result={result ?? undefined} />
+      </Section>
+
+      <Section id="python" title={t('mllab.sections.python')}>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {PYTHON_TUTORIALS.map((tutorial) => (
+            <article key={tutorial.id} className="panel flex min-h-full flex-col p-4">
+              <p className="kicker mb-2 text-[10px]">{t(`mllab.python.${tutorial.id}.kicker`)}</p>
+              <h3 className="text-base font-semibold">{t(`mllab.python.${tutorial.id}.title`)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-haze">{t(`mllab.python.${tutorial.id}.body`)}</p>
+              <pre className="mt-4 min-h-[220px] overflow-x-auto rounded-xl border border-line bg-black/30 p-3 text-xs leading-relaxed text-parchment/85">
+                <code>{tutorial.code}</code>
+              </pre>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="resources" title={t('mllab.sections.resources')}>
+        <div className="panel p-5">
+          <p className="max-w-3xl text-sm leading-relaxed text-haze">{t('mllab.resourcesIntro')}</p>
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {LEARNING_RESOURCES.map(([id, href]) => (
+              <a
+                key={id}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-line bg-white/[0.025] p-4 transition-colors hover:border-lumina-400/45 hover:bg-white/[0.055]"
+              >
+                <h3 className="text-sm font-semibold text-parchment">{t(`mllab.resources.${id}.title`)}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-haze">{t(`mllab.resources.${id}.body`)}</p>
+              </a>
+            ))}
+          </div>
+        </div>
       </Section>
     </div>
   );
