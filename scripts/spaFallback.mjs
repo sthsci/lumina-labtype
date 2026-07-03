@@ -1,16 +1,37 @@
 /**
- * GitHub Pages SPA fallback.
+ * GitHub Pages SPA route export.
  *
- * Pages serves 404.html for unknown paths. Copying the built index.html to
- * 404.html means a direct visit to e.g. /lumina-labtype/result loads the app,
- * and React Router then renders the right view. Runs automatically after
- * `npm run build`.
+ * Pages serves normal files with a 200 status, but falls back to 404.html for
+ * unknown paths. Copying index.html into each app route gives public direct
+ * links a proper 200 response. The 404 copy remains as a backup for unexpected
+ * paths, where React Router can still render the in-app not-found view.
  */
-import { copyFileSync, existsSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
+
+const routes = [
+  'intro',
+  'context',
+  'test',
+  'pipeline',
+  'result',
+  'ml-lab',
+  'atlas',
+  'cohort',
+  'methodology',
+  'privacy',
+  'disclaimer',
+  'about',
+];
 
 if (!existsSync('dist/index.html')) {
   console.error('dist/index.html not found — run the build first.');
   process.exit(1);
 }
+
+for (const route of routes) {
+  mkdirSync(`dist/${route}`, { recursive: true });
+  copyFileSync('dist/index.html', `dist/${route}/index.html`);
+}
+
 copyFileSync('dist/index.html', 'dist/404.html');
-console.log('✓ SPA fallback created: dist/404.html');
+console.log(`✓ Static route pages created: ${routes.length} routes + dist/404.html`);
