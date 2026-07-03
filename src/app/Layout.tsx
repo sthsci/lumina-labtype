@@ -3,6 +3,7 @@ import { NavLink, Outlet, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nProvider';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { SettingsMenu } from '@/components/SettingsMenu';
+import { joinBase, BASE_URL } from '@/lib/basePath';
 
 const NAV = [
   { to: '/', key: 'home', end: true },
@@ -115,19 +116,16 @@ export function Layout() {
 
 function LogoMark() {
   return (
-    <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
-      <defs>
-        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#5fdcf7" />
-          <stop offset="100%" stopColor="#116586" />
-        </linearGradient>
-      </defs>
-      <circle cx="20" cy="20" r="17" fill="none" stroke="url(#logo-grad)" strokeWidth="1.4" opacity="0.6" />
-      <circle cx="20" cy="20" r="3.4" fill="url(#logo-grad)" />
-      <circle cx="30" cy="14" r="2.2" fill="#5fdcf7" opacity="0.9" />
-      <circle cx="12" cy="27" r="2.2" fill="#f2b64c" opacity="0.85" />
-      <line x1="20" y1="20" x2="30" y2="14" stroke="#5fdcf7" strokeWidth="0.8" opacity="0.55" />
-      <line x1="20" y1="20" x2="12" y2="27" stroke="#f2b64c" strokeWidth="0.8" opacity="0.5" />
-    </svg>
+    <span
+      className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full border border-parchment/15 bg-void shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+      aria-hidden="true"
+    >
+      <img
+        src={joinBase(BASE_URL, '/lbti-logo.png')}
+        alt=""
+        className="h-full w-full scale-125 object-cover"
+        draggable={false}
+      />
+    </span>
   );
 }
