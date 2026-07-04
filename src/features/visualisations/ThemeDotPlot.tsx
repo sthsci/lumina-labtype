@@ -47,8 +47,8 @@ export function ThemeDotPlot({ result }: { result: ScoreResult }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-lg" role="img" aria-label={t('viz.themeDot.title')}>
         {[0, 25, 50, 75, 100].map((tick) => (
           <g key={tick}>
-            <line x1={x(tick)} y1={16} x2={x(tick)} y2={H - 14} stroke="rgba(148,173,210,0.1)" />
-            <text x={x(tick)} y={H - 4} fontSize={7} fill="#8ea3c4" textAnchor="middle">{tick}</text>
+            <line x1={x(tick)} y1={16} x2={x(tick)} y2={H - 14} stroke="rgba(52,64,80,0.1)" />
+            <text x={x(tick)} y={H - 4} fontSize={7} fill="#5d6570" textAnchor="middle">{tick}</text>
           </g>
         ))}
         {themes.map((th, i) => {
@@ -56,14 +56,14 @@ export function ThemeDotPlot({ result }: { result: ScoreResult }) {
           const size = 4 + (th.informativeQuestions / maxInform) * 8;
           return (
             <g key={th.id}>
-              <text x={PAD_L - 8} y={cy + 3} fontSize={9} fill="#e8e2d1" textAnchor="end">{t(`themes.${th.id}`)}</text>
-              <line x1={PAD_L} y1={cy} x2={x(th.score)} y2={cy} stroke="rgba(148,173,210,0.15)" />
+              <text x={PAD_L - 8} y={cy + 3} fontSize={9} fill="#262b31" textAnchor="end">{t(`themes.${th.id}`)}</text>
+              <line x1={PAD_L} y1={cy} x2={x(th.score)} y2={cy} stroke="rgba(52,64,80,0.15)" />
               <circle
                 cx={x(th.score)}
                 cy={cy}
                 r={size}
                 fill={scoreColor(th.score)}
-                stroke="#e8e2d1"
+                stroke="#262b31"
                 strokeOpacity={0.3 + th.specificity * 0.7}
                 strokeWidth={1 + th.specificity * 2}
               />

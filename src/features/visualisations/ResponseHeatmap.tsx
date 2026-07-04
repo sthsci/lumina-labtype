@@ -137,7 +137,7 @@ export function ResponseHeatmap({ result }: { result: ScoreResult }) {
       </div>
       <div className="mt-3 flex items-center justify-center gap-2 font-mono text-[10px] text-haze">
         <span>{centred ? '−1' : '0'}</span>
-        <span className="h-2 w-32 rounded-full" style={{ background: 'linear-gradient(90deg,#3b82c4,#5c6a7d,#f2b054)' }} />
+        <span className="h-2 w-32 rounded-full" style={{ background: 'linear-gradient(90deg,#2f6fb0,#d4d0c4,#c26d10)' }} />
         <span>{centred ? '+1' : '100'}</span>
       </div>
     </ChartFrame>

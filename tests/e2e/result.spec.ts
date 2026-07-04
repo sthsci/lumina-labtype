@@ -64,14 +64,15 @@ test.describe('result page (direct navigation under the Pages subpath)', () => {
     await expect(page.getByRole('heading', { name: 'Cohort atlas' })).toBeVisible();
   });
 
-  test('renders the LBTI × SBTI × zodiac cross-reading with eight aspects', async ({ page }) => {
+  test('renders the LBTI × SBTI × zodiac cross-reading with structured sections', async ({ page }) => {
     await page.goto('./result');
     const cross = page.getByRole('region', { name: 'Cross-reading: LBTI × SBTI (not MBTI) × zodiac' });
     await expect(cross).toBeVisible();
     // choose an SBTI type and a star sign; text updates deterministically
     await cross.getByLabel('Your SBTI type (optional)').selectOption('CTRL');
     await cross.getByLabel('Your star sign (optional)').selectOption('leo');
-    await expect(cross.getByText('Research decisions', { exact: true })).toBeVisible();
-    await expect(cross.getByText('Best-fit lab role', { exact: true })).toBeVisible();
+    await expect(cross.getByText('How you make research decisions', { exact: true })).toBeVisible();
+    await expect(cross.getByText('Your laboratory role', { exact: true })).toBeVisible();
+    await expect(cross.getByText('Shareable final line', { exact: true })).toBeVisible();
   });
 });

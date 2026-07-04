@@ -5,7 +5,7 @@ export function LanguageSwitcher() {
   const { lang, setLang, t } = useI18n();
   return (
     <div
-      className="inline-flex rounded-lg border border-line bg-white/[0.02] p-0.5"
+      className="inline-flex rounded-lg border border-line bg-slate850/40 p-0.5"
       role="group"
       aria-label={t('common.language')}
     >

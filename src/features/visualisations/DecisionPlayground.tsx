@@ -7,7 +7,7 @@ import type { ScoreResult } from '@/features/scoring/types';
 
 const SIZE = 300;
 const GRID = 30;
-const COLORS = ['#5fdcf7', '#f2b054', '#8f7bff', '#4ad6a8', '#ef7d8f', '#a0d468', '#ff9f68', '#6bb8ff', '#c58a4e', '#7bd1ff'];
+const COLORS = ['#0d7f9b', '#c26d10', '#6d4fc9', '#0f9d76', '#c34f6b', '#6f8f24', '#b8562a', '#3577c2', '#c58a4e', '#3577c2'];
 
 export function DecisionPlayground({ result }: { result?: ScoreResult }) {
   const { t } = useI18n();
@@ -141,11 +141,11 @@ export function DecisionPlayground({ result }: { result?: ScoreResult }) {
           {protos.map((p) => (
             <g key={p.code}>
               <circle cx={toSvg(p.x)} cy={SIZE - toSvg(p.y)} r={3} fill={COLORS[p.idx % COLORS.length]} />
-              <text x={toSvg(p.x) + 4} y={SIZE - toSvg(p.y) + 2} fontSize={6} fill="#e8e2d1">{p.code}</text>
+              <text x={toSvg(p.x) + 4} y={SIZE - toSvg(p.y) + 2} fontSize={6} fill="#262b31">{p.code}</text>
             </g>
           ))}
           <circle cx={toSvg(point[0])} cy={SIZE - toSvg(point[1])} r={7} fill="#fff" stroke="#070a0f" strokeWidth={2} />
-          <text x={4} y={SIZE - 4} fontSize={7} fill="#8ea3c4">{t(`dimensions.${xDim}.name`)} →</text>
+          <text x={4} y={SIZE - 4} fontSize={7} fill="#5d6570">{t(`dimensions.${xDim}.name`)} →</text>
         </svg>
         <div className="flex-1">
           <p className="mb-1 text-xs text-haze">{t('viz.decision.drag')}</p>

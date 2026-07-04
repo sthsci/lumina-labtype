@@ -122,7 +122,7 @@ export function MLLab() {
       <PageHeader kicker={t('common.fictionalBadge')} title={t('mllab.title')} subtitle={t('mllab.subtitle')}>
         <nav className="mt-5 flex flex-wrap gap-1.5" aria-label={t('mllab.title')}>
           {sections.map((s) => (
-            <a key={s} href={`#${s}`} className="rounded-lg border border-line bg-white/[0.02] px-2.5 py-1 text-xs text-haze hover:text-parchment">
+            <a key={s} href={`#${s}`} className="rounded-lg border border-line bg-slate850/40 px-2.5 py-1 text-xs text-haze hover:text-parchment">
               {t(`mllab.sections.${s}`)}
             </a>
           ))}
@@ -145,7 +145,7 @@ export function MLLab() {
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-haze">{t('mllab.study.body')}</p>
         <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-4">
           {(['measure', 'clean', 'model', 'explain'] as const).map((step, i) => (
-            <div key={step} className="rounded-xl border border-line bg-white/[0.025] p-4">
+            <div key={step} className="rounded-xl border border-line bg-slate850/40 p-4">
               <p className="font-mono text-xs text-amber-glow/90">0{i + 1}</p>
               <h3 className="mt-2 text-sm font-semibold text-parchment">{t(`mllab.study.steps.${step}.title`)}</h3>
               <p className="mt-1 text-xs leading-relaxed text-haze">{t(`mllab.study.steps.${step}.body`)}</p>
@@ -271,7 +271,7 @@ export function MLLab() {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl border border-line bg-white/[0.025] p-4 transition-colors hover:border-lumina-400/45 hover:bg-white/[0.055]"
+                className="rounded-xl border border-line bg-slate850/40 p-4 transition-colors hover:border-lumina-400/45 hover:bg-slate850/60"
               >
                 <h3 className="text-sm font-semibold text-parchment">{t(`mllab.resources.${id}.title`)}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-haze">{t(`mllab.resources.${id}.body`)}</p>

@@ -14,8 +14,8 @@ export function PipelineStageArt({ stage, reduced }: { stage: string; reduced: b
     r: 0.8 + rng.next() * 2.2,
   }));
 
-  const accent = '#5fdcf7';
-  const warm = '#f2b64c';
+  const accent = '#0d7f9b';
+  const warm = '#c26d10';
 
   return (
     <svg viewBox="0 0 100 100" className="h-full w-full" role="img" aria-label={stage}>

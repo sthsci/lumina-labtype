@@ -314,6 +314,18 @@
     "noneShort": "—",
     "generate": "生成交叉解讀",
     "header": "{archetype} · {sbti} · {zodiac}",
+    "sections": {
+      "openingScene": "實驗室開場",
+      "researchDecision": "你如何做研究決策",
+      "experimentDesign": "你如何設計實驗",
+      "collaboration": "你如何和別人一起工作",
+      "pressureResponse": "壓力來臨時",
+      "usefulContradiction": "一個有用的矛盾",
+      "laboratoryRole": "你在實驗室裡的位置",
+      "failureMode": "可能的翻車方式",
+      "survivalAdvice": "實用生存建議",
+      "shareLine": "可分享的一句話"
+    },
     "aspectTitles": {
       "decision": "研究決策方式",
       "design": "實驗設計與風險偏好",

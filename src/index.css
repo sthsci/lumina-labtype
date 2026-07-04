@@ -4,33 +4,18 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    @apply bg-void text-parchment/90 font-sans antialiased;
+    @apply bg-void text-parchment font-sans antialiased;
     margin: 0;
     min-height: 100vh;
+    /* Flat warm paper with a faint measurement grid — no atmospheric gradients. */
     background-image:
-      linear-gradient(118deg, rgba(43, 111, 116, 0.16) 0%, rgba(43, 111, 116, 0.04) 26%, transparent 42%),
-      linear-gradient(242deg, transparent 0%, rgba(137, 112, 76, 0.12) 58%, rgba(229, 193, 132, 0.05) 100%),
-      linear-gradient(180deg, #080907 0%, #10120f 56%, #090a08 100%);
-    background-attachment: fixed;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 7px),
-      repeating-linear-gradient(24deg, rgba(95, 220, 247, 0.018) 0 1px, transparent 1px 11px),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 22%, rgba(0, 0, 0, 0.18));
-    background-size: auto, auto, 100% 100%;
-    mix-blend-mode: soft-light;
-    opacity: 0.58;
+      linear-gradient(rgba(34, 38, 44, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 38, 44, 0.032) 1px, transparent 1px);
+    background-size: 36px 36px;
   }
 
   #root {
@@ -49,23 +34,18 @@
     text-wrap: balance;
   }
 
+  p, li, dd {
+    overflow-wrap: break-word;
+  }
+
   ::selection {
-    background: rgba(46, 194, 230, 0.28);
+    background: rgba(14, 116, 144, 0.18);
   }
 }
 
 @layer components {
   .panel {
-    @apply rounded-2xl border border-line bg-panel shadow-panel backdrop-blur-md;
-    background-image:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.075), transparent 34%, rgba(242, 182, 76, 0.035) 100%),
-      repeating-linear-gradient(92deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 5px);
-    background-blend-mode: screen, normal;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.08) inset,
-      0 -1px 0 rgba(0, 0, 0, 0.3) inset,
-      0 18px 44px -26px rgba(0, 0, 0, 0.86),
-      0 36px 90px -58px rgba(242, 182, 76, 0.28);
+    @apply rounded-2xl border border-line bg-panel shadow-panel;
   }
 
   .panel-grid {
@@ -74,39 +54,30 @@
   }
 
   .hero-material {
+    @apply bg-panel;
     background-image:
-      linear-gradient(140deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02) 32%, transparent 52%),
-      linear-gradient(28deg, rgba(95, 220, 247, 0.16), transparent 42%, rgba(242, 182, 76, 0.12)),
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4px),
+      linear-gradient(180deg, rgba(14, 116, 144, 0.05), transparent 45%),
       theme('backgroundImage.grid');
-    background-size: 100% 100%, 100% 100%, auto, theme('backgroundSize.grid');
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.12) inset,
-      0 -32px 90px -72px rgba(242, 182, 76, 0.42) inset,
-      0 32px 90px -56px rgba(0, 0, 0, 0.88);
+    background-size: 100% 100%, theme('backgroundSize.grid');
   }
 
   .specimen-card {
-    background-image:
-      linear-gradient(156deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.028) 36%, rgba(95, 220, 247, 0.045) 100%),
-      repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 8px);
+    @apply bg-panel;
   }
 
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium
       transition-colors duration-150 focus-visible:outline-none disabled:opacity-40 disabled:pointer-events-none;
     min-height: 44px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 14px 32px -26px rgba(0, 0, 0, 0.75);
   }
 
   .btn-primary {
-    @apply btn bg-lumina-400 text-void hover:bg-lumina-300;
-    background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.28), transparent 42%, rgba(16, 82, 98, 0.2));
+    @apply btn bg-lumina-300 text-void hover:bg-lumina-200;
+    box-shadow: 0 8px 18px -10px rgba(14, 116, 144, 0.5);
   }
 
   .btn-ghost {
-    @apply btn border border-line bg-white/[0.025] text-parchment/85 hover:bg-white/[0.07];
-    background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.065), transparent 55%);
+    @apply btn border border-line bg-panel text-parchment/85 hover:bg-slate850/60;
   }
 
   .btn-quiet {
@@ -114,7 +85,7 @@
   }
 
   .kicker {
-    @apply text-xs font-medium uppercase tracking-[0.22em] text-lumina-300/80;
+    @apply text-xs font-medium uppercase tracking-[0.22em] text-lumina-300;
   }
 
   .card-hover {
@@ -123,8 +94,8 @@
 
   .measure-grid {
     background-image:
-      linear-gradient(rgba(148, 173, 210, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 173, 210, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(34, 38, 44, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 38, 44, 0.05) 1px, transparent 1px);
     background-size: 28px 28px;
   }
 

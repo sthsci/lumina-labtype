@@ -118,10 +118,10 @@ export function BootstrapStability({ answers }: { answers: Answers }) {
                 <span className="w-24 shrink-0 truncate text-parchment/80" title={t(`archetypes.${code}.name`)}>
                   {t(`archetypes.${code}.name`)}
                 </span>
-                <span className="relative h-4 flex-1 overflow-hidden rounded bg-white/[0.04]">
+                <span className="relative h-4 flex-1 overflow-hidden rounded bg-slate850/60">
                   <motion.span
                     className="absolute inset-y-0 left-0 rounded"
-                    style={{ background: code === result.primary ? '#f2b054' : '#3b82c4' }}
+                    style={{ background: code === result.primary ? '#c26d10' : '#2f6fb0' }}
                     initial={{ width: 0 }}
                     animate={{ width: `${(freq / maxFreq) * 100}%` }}
                     transition={{ duration: 0.5 }}
@@ -135,14 +135,14 @@ export function BootstrapStability({ answers }: { answers: Answers }) {
           <p className="mb-1 mt-4 text-xs font-medium text-haze">{t('viz.bootstrap.unstableDims')}</p>
           <div className="flex flex-wrap gap-1.5">
             {result.dimensionVariability.slice(0, 4).map((d) => (
-              <span key={d.id} className="rounded bg-white/[0.04] px-2 py-1 text-[11px] text-parchment/75">
+              <span key={d.id} className="rounded bg-slate850/60 px-2 py-1 text-[11px] text-parchment/75">
                 {t(`dimensions.${d.id}.name`)} <span className="font-mono text-haze">±{d.std.toFixed(1)}</span>
               </span>
             ))}
           </div>
         </div>
       )}
-      <p className="mt-3 rounded-lg border border-line bg-white/[0.02] px-3 py-2 text-[11px] leading-relaxed text-haze">
+      <p className="mt-3 rounded-lg border border-line bg-slate850/40 px-3 py-2 text-[11px] leading-relaxed text-haze">
         {t('viz.bootstrap.note')}
       </p>
     </ChartFrame>

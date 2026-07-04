@@ -1,35 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="cell" cx="36%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#c8fbff"/>
-      <stop offset="48%" stop-color="#4ed7ee"/>
-      <stop offset="100%" stop-color="#0d5670"/>
-    </radialGradient>
-    <linearGradient id="paper" x1="17" y1="10" x2="50" y2="52">
-      <stop offset="0%" stop-color="#fff4cf"/>
-      <stop offset="52%" stop-color="#f2b64c"/>
-      <stop offset="100%" stop-color="#8b531b"/>
-    </linearGradient>
-    <linearGradient id="line" x1="8" y1="8" x2="56" y2="56">
-      <stop offset="0%" stop-color="#75e7f9"/>
-      <stop offset="60%" stop-color="#36b8d2"/>
-      <stop offset="100%" stop-color="#f2b64c"/>
-    </radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.52"/>
-    </filter>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="#070a0f"/>
-  <path d="M7 52 C19 41 26 19 57 10" fill="none" stroke="#5fdcf7" stroke-opacity=".12" stroke-width="2"/>
-  <path d="M9 14 H56 M9 24 H56 M9 34 H56 M9 44 H56 M18 8 V56 M28 8 V56 M38 8 V56 M48 8 V56" stroke="#ffffff" stroke-opacity=".055" stroke-width="1"/>
-  <g filter="url(#shadow)">
-    <rect x="12" y="12" width="40" height="40" rx="10" fill="#10130f" stroke="#8ea3c4" stroke-opacity=".32" stroke-width="1.5"/>
-    <circle cx="30" cy="31" r="13" fill="url(#cell)" fill-opacity=".18" stroke="url(#line)" stroke-width="2.2"/>
-    <circle cx="34" cy="27" r="4.2" fill="url(#cell)" stroke="#c8fbff" stroke-opacity=".8" stroke-width="1.1"/>
-    <circle cx="22" cy="38" r="2.8" fill="#5fdcf7"/>
-    <circle cx="43" cy="21" r="2.8" fill="#f2b64c"/>
-    <path d="M22 38 L34 27 L43 21" fill="none" stroke="#e8e2d1" stroke-opacity=".52" stroke-width="1.4"/>
-    <rect x="27" y="42" width="22" height="8" rx="2.5" fill="url(#paper)" fill-opacity=".92"/>
-    <text x="38" y="48.2" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="5.6" font-weight="700" fill="#17120a">bio</text>
+  <rect width="64" height="64" rx="14" fill="#f4f1e8"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="#fdfcf8" stroke="#22262c" stroke-width="3"/>
+  <path d="M14 12 L14 50 L52 50" fill="none" stroke="#9aa0a8" stroke-width="2.2"/>
+  <g fill="#b8874a">
+    <circle cx="43" cy="42" r="2.4"/>
+    <circle cx="48.5" cy="37.5" r="2"/>
+    <circle cx="40" cy="46.5" r="1.7"/>
   </g>
+  <g fill="#0e7490">
+    <circle cx="27" cy="22" r="3.2"/>
+    <circle cx="34.5" cy="19" r="2.7"/>
+    <circle cx="32" cy="28" r="2.7"/>
+    <circle cx="24" cy="29.5" r="2.2"/>
+  </g>
+  <path d="M18.5 17 L41 12.5 L43.5 28.5 L29 36.5 L17.5 30.5 Z" fill="none" stroke="#22262c" stroke-width="2.6" stroke-linejoin="round" stroke-dasharray="5 3.4"/>
 </svg>

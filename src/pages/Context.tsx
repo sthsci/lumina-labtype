@@ -34,7 +34,7 @@ function OptionGrid({
             className={`rounded-xl border px-3 py-3 text-left text-sm transition-colors ${
               value === opt
                 ? 'border-lumina-400 bg-lumina-400/15 text-parchment'
-                : 'border-line bg-white/[0.02] text-haze hover:border-lumina-400/40 hover:text-parchment'
+                : 'border-line bg-slate850/40 text-haze hover:border-lumina-400/40 hover:text-parchment'
             }`}
           >
             {t(`${prefix}.${opt}`)}

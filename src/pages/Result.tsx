@@ -151,7 +151,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
             transition={{ duration: reduced ? 0 : 0.7, ease: 'easeOut' }}
             className="shrink-0"
           >
-            <EmblemGlyph emblem={archetype.emblem} size={150} title={result.primary} className="drop-shadow-emblem" />
+            <EmblemGlyph emblem={archetype.emblem} code={result.primary} size={150} title={result.primary} className="drop-shadow-emblem" />
           </motion.div>
           <div className="min-w-0">
             <p className="kicker">{t('result.kicker')}</p>
@@ -197,7 +197,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
         </div>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {raw<string[]>(`archetypes.${result.primary}.keywords`).map((k) => (
-            <span key={k} className="rounded-full border border-line bg-white/[0.03] px-2.5 py-0.5 text-xs text-haze">
+            <span key={k} className="rounded-full border border-line bg-slate850/50 px-2.5 py-0.5 text-xs text-haze">
               #{k}
             </span>
           ))}
@@ -212,12 +212,12 @@ function ResultContent({ result }: { result: ScoreResult }) {
             {visibleRanked.map((d, i) => (
               <li key={d.code} className="flex items-center gap-3 text-sm">
                 <span className="w-5 font-mono text-haze">{i + 1}</span>
-                <EmblemGlyph emblem={archetypeByCode.get(d.code)!.emblem} size={28} />
+                <EmblemGlyph emblem={archetypeByCode.get(d.code)!.emblem} code={d.code} size={28} />
                 <span className="min-w-0 flex-1 truncate">
                   <span className="font-mono text-xs text-haze">{d.code}</span>{' '}
                   <span className="text-parchment/90">{t(`archetypes.${d.code}.name`)}</span>
                 </span>
-                <span className="relative h-2 w-24 overflow-hidden rounded-full bg-white/[0.06]">
+                <span className="relative h-2 w-24 overflow-hidden rounded-full bg-slate850/70">
                   <span
                     className="absolute inset-y-0 left-0 rounded-full bg-lumina-400"
                     style={{ width: `${Math.round(d.similarity * 100)}%` }}
@@ -239,7 +239,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
                   <span className="font-mono text-xs text-haze">{Math.round(g.score)}</span>
                 </div>
                 <p className="text-xs text-haze">{t(`groups.${g.id}.description`)}</p>
-                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate850/70">
                   <span
                     className="block h-full rounded-full"
                     style={{ width: `${g.score}%`, background: groupColor(g.id) }}
@@ -287,7 +287,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
             <div>
               <dt className="font-semibold text-lumina-200">{t('result.idealCollaborator')}</dt>
               <dd className="mt-1 flex items-center gap-2 text-parchment/80">
-                <EmblemGlyph emblem={archetypeByCode.get(archetype.idealCollaborator)!.emblem} size={26} />
+                <EmblemGlyph emblem={archetypeByCode.get(archetype.idealCollaborator)!.emblem} code={archetype.idealCollaborator} size={26} />
                 <span className="font-mono text-xs text-haze">{archetype.idealCollaborator}</span>
                 {t(`archetypes.${archetype.idealCollaborator}.name`)}
               </dd>
@@ -295,7 +295,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
             <div>
               <dt className="font-semibold text-amber-glow">{t('result.difficultCollaborator')}</dt>
               <dd className="mt-1 flex items-center gap-2 text-parchment/80">
-                <EmblemGlyph emblem={archetypeByCode.get(archetype.difficultCollaborator)!.emblem} size={26} />
+                <EmblemGlyph emblem={archetypeByCode.get(archetype.difficultCollaborator)!.emblem} code={archetype.difficultCollaborator} size={26} />
                 <span className="font-mono text-xs text-haze">{archetype.difficultCollaborator}</span>
                 {t(`archetypes.${archetype.difficultCollaborator}.name`)}
               </dd>
@@ -315,7 +315,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
             <div className="border-t border-line pt-3">
               <dt className="text-xs text-haze">{t('common.secondary')}</dt>
               <dd className="mt-1 flex items-center gap-2">
-                <EmblemGlyph emblem={secondaryArchetype.emblem} size={30} />
+                <EmblemGlyph emblem={secondaryArchetype.emblem} code={result.secondary} size={30} />
                 <div>
                   <span className="font-mono text-xs text-haze">{result.secondary}</span>{' '}
                   <span className="text-parchment/90">{t(`archetypes.${result.secondary}.name`)}</span>
@@ -415,7 +415,7 @@ function ResultContent({ result }: { result: ScoreResult }) {
 
 function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
-    <div className="rounded-xl border border-line bg-white/[0.03] px-3 py-2 text-left">
+    <div className="rounded-xl border border-line bg-slate850/50 px-3 py-2 text-left">
       <p className="text-[10px] uppercase tracking-wider text-haze">{label}</p>
       <p className="font-mono text-lg text-parchment">{value}</p>
       {note && <p className="max-w-[140px] text-[9px] leading-tight text-haze/80">{note}</p>}

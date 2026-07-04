@@ -8,7 +8,7 @@ import { createRng, kMeans, silhouetteScore } from '@/lib/mathematics';
 const W = 320;
 const H = 300;
 const PAD = 20;
-const CLUSTER_COLORS = ['#5fdcf7', '#f2b054', '#8f7bff', '#4ad6a8', '#ef7d8f', '#a0d468', '#ff9f68', '#6bb8ff'];
+const CLUSTER_COLORS = ['#0d7f9b', '#c26d10', '#6d4fc9', '#0f9d76', '#c34f6b', '#6f8f24', '#b8562a', '#3577c2'];
 
 /** Deterministic 2-D synthetic points drawn from a few seeded blobs. */
 function makePoints(seed: number, count = 90): number[][] {
@@ -78,7 +78,7 @@ export function KMeansAnimation() {
         {t('viz.kmeans.label')}
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-md" role="img" aria-label={t('viz.kmeans.title')}>
-        <rect x={PAD} y={PAD} width={W - 2 * PAD} height={H - 2 * PAD} fill="none" stroke="rgba(148,173,210,0.12)" />
+        <rect x={PAD} y={PAD} width={W - 2 * PAD} height={H - 2 * PAD} fill="none" stroke="rgba(52,64,80,0.12)" />
         {points.map((p, i) => (
           <circle key={i} cx={x(p[0])} cy={y(p[1])} r={2.6} fill={CLUSTER_COLORS[step.assignments[i] % CLUSTER_COLORS.length]} fillOpacity={0.8} />
         ))}

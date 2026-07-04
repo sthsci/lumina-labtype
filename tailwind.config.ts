@@ -1,38 +1,49 @@
 import type { Config } from 'tailwindcss';
 
+/**
+ * LBTI light editorial theme — "lab notebook" direction.
+ *
+ * Token names are kept from the earlier dark theme (void/parchment/haze/...)
+ * so components did not need a rename sweep; only their VALUES flipped:
+ *   void      = warm paper background
+ *   parchment = primary ink text
+ *   haze      = secondary grey text
+ *   panel     = card surface (near-white)
+ *   lumina    = teal accent ramp (low numbers dark → readable on paper)
+ *   amber     = editorial highlight
+ */
 const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // LUMINA soft lab-material palette
-        void: '#080907',
-        ink: '#11120f',
-        slate850: '#1a1b18',
-        panel: 'rgba(24, 26, 23, 0.74)',
-        line: 'rgba(218, 208, 184, 0.16)',
-        haze: '#a7b6b0',
-        parchment: '#ede7d8',
+        void: '#f4f1e8',
+        ink: '#22262c',
+        slate850: '#e9e4d8',
+        panel: '#fdfcf8',
+        line: 'rgba(34, 38, 44, 0.14)',
+        haze: '#5f6774',
+        parchment: '#23272e',
         lumina: {
-          50: '#eafcff',
-          100: '#c9f5ff',
-          200: '#98ecff',
-          300: '#5fdcf7',
-          400: '#2ec2e6',
-          500: '#12a4cc',
-          600: '#0d81a8',
-          700: '#116586',
-          800: '#16536d',
-          900: '#17455c',
+          50: '#083344',
+          100: '#0b4f63',
+          200: '#0d6478',
+          300: '#0e7490',
+          400: '#0c7f97',
+          500: '#2ba3bd',
+          600: '#6cc5d6',
+          700: '#a5dde8',
+          800: '#cdeef4',
+          900: '#e6f7fa',
         },
         amber: {
-          glow: '#f2b64c',
+          glow: '#a8650e',
         },
         signal: {
-          pos: '#ff8a5c',
-          neg: '#4aa9ff',
-          neutral: '#7d8aa0',
+          pos: '#bb4a2a',
+          neg: '#2f6fb0',
+          neutral: '#8a919c',
         },
       },
       fontFamily: {
@@ -68,13 +79,11 @@ const config: Config = {
         ],
       },
       boxShadow: {
-        panel:
-          '0 1px 0 rgba(255,255,255,0.08) inset, 0 18px 44px -26px rgba(0,0,0,0.86), 0 36px 90px -58px rgba(242,182,76,0.28)',
-        emblem: '0 0 36px -14px rgba(95, 220, 247, 0.55), 0 18px 36px -28px rgba(242, 182, 76, 0.5)',
+        panel: '0 1px 2px rgba(34, 38, 44, 0.05), 0 10px 28px -18px rgba(34, 38, 44, 0.18)',
+        emblem: '0 12px 30px -14px rgba(34, 38, 44, 0.3)',
       },
       backgroundImage: {
-        grid:
-          'linear-gradient(rgba(237,231,216,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(237,231,216,0.045) 1px, transparent 1px)',
+        grid: 'linear-gradient(rgba(34, 38, 44, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 38, 44, 0.05) 1px, transparent 1px)',
       },
       backgroundSize: {
         grid: '32px 32px',
@@ -84,14 +93,9 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
       },
       animation: {
         'fade-up': 'fade-up 0.5s ease-out both',
-        shimmer: 'shimmer 2.4s linear infinite',
       },
     },
   },

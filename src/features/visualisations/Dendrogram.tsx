@@ -52,7 +52,7 @@ export function Dendrogram({ result }: { result?: ScoreResult }) {
   const clusters = cutTree(root, thresholdDist);
   const clusterOf = new Map<number, number>();
   clusters.forEach((c, ci) => c.forEach((leaf) => clusterOf.set(leaf, ci)));
-  const CLUSTER_COLORS = ['#5fdcf7', '#f2b054', '#8f7bff', '#4ad6a8', '#ef7d8f', '#a0d468'];
+  const CLUSTER_COLORS = ['#0d7f9b', '#c26d10', '#6d4fc9', '#0f9d76', '#c34f6b', '#6f8f24'];
 
   const lines: JSX.Element[] = [];
   const drawNode = (n: DendrogramNode) => {
@@ -62,7 +62,7 @@ export function Dendrogram({ result }: { result?: ScoreResult }) {
     n.children.forEach((child) => {
       const cy = positions.get(child.id)!.y;
       const cx = x(child.leaf !== null ? 0 : child.height);
-      lines.push(<path key={`${n.id}-${child.id}`} d={`M ${px} ${py} L ${px} ${cy} L ${cx} ${cy}`} fill="none" stroke="rgba(148,173,210,0.4)" strokeWidth={0.8} />);
+      lines.push(<path key={`${n.id}-${child.id}`} d={`M ${px} ${py} L ${px} ${cy} L ${cx} ${cy}`} fill="none" stroke="rgba(52,64,80,0.4)" strokeWidth={0.8} />);
       drawNode(child);
     });
   };
@@ -108,7 +108,7 @@ export function Dendrogram({ result }: { result?: ScoreResult }) {
       </div>
       <div className="overflow-x-auto">
         <svg viewBox={`0 0 ${W} ${H + 6}`} className="mx-auto w-full max-w-md" role="img" aria-label={t('viz.dendro.title')}>
-          {threshold > 0 && <line x1={x(thresholdDist)} y1={0} x2={x(thresholdDist)} y2={H} stroke="#f2b054" strokeOpacity={0.5} strokeDasharray="3 2" />}
+          {threshold > 0 && <line x1={x(thresholdDist)} y1={0} x2={x(thresholdDist)} y2={H} stroke="#c26d10" strokeOpacity={0.5} strokeDasharray="3 2" />}
           {lines}
           {leaves.map((leaf) => {
             // leaf node ids equal their original index in hierarchicalCluster
@@ -118,12 +118,12 @@ export function Dendrogram({ result }: { result?: ScoreResult }) {
             const cc = CLUSTER_COLORS[(clusterOf.get(leaf) ?? 0) % CLUSTER_COLORS.length];
             return (
               <g key={leaf}>
-                <circle cx={x(0)} cy={py} r={2.4} fill={threshold > 0 ? cc : '#8ea3c4'} />
+                <circle cx={x(0)} cy={py} r={2.4} fill={threshold > 0 ? cc : '#5d6570'} />
                 <text
                   x={W - LABEL_W + 4}
                   y={py + 2.5}
                   fontSize={7}
-                  fill={isWinner ? '#f2b054' : isSecondary ? '#8f7bff' : '#e8e2d1'}
+                  fill={isWinner ? '#c26d10' : isSecondary ? '#6d4fc9' : '#262b31'}
                   fontWeight={isWinner || isSecondary ? 'bold' : 'normal'}
                 >
                   {codes[leaf]}

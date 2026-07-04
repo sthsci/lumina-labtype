@@ -3,7 +3,6 @@ import { NavLink, Outlet, Link } from 'react-router-dom';
 import { useI18n } from '@/i18n/I18nProvider';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { SettingsMenu } from '@/components/SettingsMenu';
-import { joinBase, BASE_URL } from '@/lib/basePath';
 
 const NAV = [
   { to: '/', key: 'home', end: true },
@@ -28,10 +27,13 @@ export function Layout() {
 
       <header className="sticky top-0 z-20 border-b border-line bg-void/70 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-          <Link to="/" className="flex items-center gap-2.5" title={t('common.appFullName')}>
+          <Link to="/" className="flex min-w-0 items-center gap-2.5" title={t('common.appFullName')}>
             <LogoMark />
-            <span className="font-display text-lg font-semibold tracking-tight text-parchment">
-              LBTI
+            <span className="min-w-0 leading-none">
+              <span className="block font-display text-lg font-bold tracking-tight text-parchment">LBTI</span>
+              <span className="hidden truncate text-[9px] uppercase tracking-[0.18em] text-haze md:block">
+                {t('common.appFullName')}
+              </span>
             </span>
           </Link>
 
@@ -43,7 +45,7 @@ export function Layout() {
                 end={'end' in item ? item.end : undefined}
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-2 text-sm transition-colors ${
-                    isActive ? 'bg-white/[0.06] text-parchment' : 'text-haze hover:text-parchment'
+                    isActive ? 'bg-slate850/70 text-parchment' : 'text-haze hover:text-parchment'
                   }`
                 }
               >
@@ -80,7 +82,7 @@ export function Layout() {
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
                     `rounded-lg px-3 py-2.5 text-sm ${
-                      isActive ? 'bg-white/[0.06] text-parchment' : 'text-haze'
+                      isActive ? 'bg-slate850/70 text-parchment' : 'text-haze'
                     }`
                   }
                 >
@@ -114,18 +116,44 @@ export function Layout() {
   );
 }
 
-function LogoMark() {
+/**
+ * LBTI gate-badge mark: a flow-cytometry-style scatter with one cluster caught
+ * inside a gate — literally "classifying lab behaviour into a type".
+ */
+export function LogoMark({ size = 32 }: { size?: number }) {
   return (
-    <span
-      className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full border border-parchment/15 bg-void shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 40 40"
       aria-hidden="true"
+      className="shrink-0"
     >
-      <img
-        src={joinBase(BASE_URL, '/favicon.svg')}
-        alt=""
-        className="h-full w-full object-cover"
-        draggable={false}
+      <rect x="1.5" y="1.5" width="37" height="37" rx="9" fill="#fdfcf8" stroke="#22262c" strokeWidth="2" />
+      {/* axes */}
+      <path d="M8 7 L8 32 L33 32" fill="none" stroke="#9aa0a8" strokeWidth="1.4" />
+      {/* off-type events */}
+      <g fill="#b8874a">
+        <circle cx="27" cy="27" r="1.5" />
+        <circle cx="30.5" cy="24" r="1.3" />
+        <circle cx="25" cy="30" r="1.1" />
+      </g>
+      {/* the typed cluster */}
+      <g fill="#0e7490">
+        <circle cx="17" cy="14" r="2" />
+        <circle cx="21.5" cy="12" r="1.7" />
+        <circle cx="20" cy="17.5" r="1.7" />
+        <circle cx="15" cy="18.5" r="1.4" />
+      </g>
+      {/* the gate */}
+      <path
+        d="M11.5 11 L25.5 8 L27 18 L18 23 L11 19.5 Z"
+        fill="none"
+        stroke="#22262c"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+        strokeDasharray="3.2 2.2"
       />
-    </span>
+    </svg>
   );
 }

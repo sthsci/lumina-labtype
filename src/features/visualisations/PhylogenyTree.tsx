@@ -10,7 +10,7 @@ const SIZE = 340;
 const CX = SIZE / 2;
 const CY = SIZE / 2;
 const R_LEAF = 122;
-const FAMILY_COLORS = ['#5fdcf7', '#f2b054', '#8f7bff', '#4ad6a8', '#ef7d8f'];
+const FAMILY_COLORS = ['#0d7f9b', '#c26d10', '#6d4fc9', '#0f9d76', '#c34f6b'];
 const FAMILY_COUNT = 5;
 
 /**
@@ -123,7 +123,7 @@ export function PhylogenyTree({ highlight }: { highlight?: string }) {
       }
     >
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="mx-auto w-full max-w-lg" role="img" aria-label={t('viz.phylogeny.title')}>
-        <circle cx={CX} cy={CY} r={R_LEAF} fill="none" stroke="rgba(148,173,210,0.08)" />
+        <circle cx={CX} cy={CY} r={R_LEAF} fill="none" stroke="rgba(52,64,80,0.08)" />
         {model.links.map((l, i) => (
           <motion.line
             key={i}
@@ -131,7 +131,7 @@ export function PhylogenyTree({ highlight }: { highlight?: string }) {
             y1={l.y1}
             x2={l.x2}
             y2={l.y2}
-            stroke="rgba(148,173,210,0.45)"
+            stroke="rgba(52,64,80,0.45)"
             strokeWidth={0.9}
             initial={reduced ? false : { pathLength: 0 }}
             animate={{ pathLength: 1 }}
@@ -149,12 +149,12 @@ export function PhylogenyTree({ highlight }: { highlight?: string }) {
           const isHl = highlight === code;
           return (
             <g key={leaf}>
-              <circle cx={fx} cy={fy} r={isHl ? 5 : 3} fill={FAMILY_COLORS[family % FAMILY_COLORS.length]} stroke={isHl ? '#fff' : 'none'} strokeWidth={1} />
+              <circle cx={fx} cy={fy} r={isHl ? 5 : 3} fill={FAMILY_COLORS[family % FAMILY_COLORS.length]} stroke={isHl ? '#22262c' : 'none'} strokeWidth={1} />
               <text
                 x={lx}
                 y={ly}
                 fontSize={7}
-                fill={isHl ? '#f2b054' : '#c9d4e6'}
+                fill={isHl ? '#c26d10' : '#454c55'}
                 fontWeight={isHl ? 'bold' : 'normal'}
                 textAnchor={Math.cos(a) < -0.15 ? 'end' : Math.cos(a) > 0.15 ? 'start' : 'middle'}
                 dominantBaseline="middle"

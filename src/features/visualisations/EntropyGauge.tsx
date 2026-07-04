@@ -35,11 +35,11 @@ export function EntropyGauge({ result }: { result: ScoreResult }) {
       summary={t('viz.entropy.summary', { value: value.toFixed(2), phrase })}
     >
       <svg viewBox="0 0 260 155" className="mx-auto w-full max-w-sm" role="img" aria-label={t('viz.entropy.title')}>
-        <path d={arc(Math.PI, 0)} fill="none" stroke="rgba(148,173,210,0.15)" strokeWidth={12} strokeLinecap="round" />
+        <path d={arc(Math.PI, 0)} fill="none" stroke="rgba(52,64,80,0.15)" strokeWidth={12} strokeLinecap="round" />
         <defs>
           <linearGradient id="entropy-grad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#5fdcf7" />
-            <stop offset="100%" stopColor="#f2b054" />
+            <stop offset="0%" stopColor="#0d7f9b" />
+            <stop offset="100%" stopColor="#c26d10" />
           </linearGradient>
         </defs>
         <motion.path
@@ -52,9 +52,9 @@ export function EntropyGauge({ result }: { result: ScoreResult }) {
           animate={{ pathLength: value }}
           transition={{ duration: reduced ? 0 : 0.9, ease: 'easeOut' }}
         />
-        <line x1={cx} y1={cy} x2={nx} y2={ny} stroke="#e8e2d1" strokeWidth={2} />
-        <circle cx={cx} cy={cy} r={4} fill="#e8e2d1" />
-        <text x={cx} y={cy + 31} fontSize={24} fill="#e8e2d1" textAnchor="middle" className="font-mono">{value.toFixed(2)}</text>
+        <line x1={cx} y1={cy} x2={nx} y2={ny} stroke="#262b31" strokeWidth={2} />
+        <circle cx={cx} cy={cy} r={4} fill="#262b31" />
+        <text x={cx} y={cy + 31} fontSize={24} fill="#262b31" textAnchor="middle" className="font-mono">{value.toFixed(2)}</text>
       </svg>
       <div className="mx-auto mt-1 flex max-w-sm items-start justify-between gap-4 text-[11px] leading-snug text-haze">
         <span className="max-w-[45%]">{t('viz.entropy.low')}</span>

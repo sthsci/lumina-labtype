@@ -109,7 +109,7 @@ export function RadarChart({ result }: RadarProps) {
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-2xl overflow-visible" role="img" aria-label={t('viz.radar.title')}>
         {[0.25, 0.5, 0.75, 1].map((f) => (
-          <circle key={f} cx={CX} cy={CY} r={R * f} fill="none" stroke="rgba(148,173,210,0.14)" />
+          <circle key={f} cx={CX} cy={CY} r={R * f} fill="none" stroke="rgba(52,64,80,0.14)" />
         ))}
         {axes.map((a, i) => {
           const [x, y] = point(i, 108);
@@ -118,13 +118,13 @@ export function RadarChart({ result }: RadarProps) {
           const lines = labelLines(a.label, grouped);
           return (
             <g key={a.id}>
-              <line x1={CX} y1={CY} x2={point(i, 100)[0]} y2={point(i, 100)[1]} stroke="rgba(148,173,210,0.1)" />
+              <line x1={CX} y1={CY} x2={point(i, 100)[0]} y2={point(i, 100)[1]} stroke="rgba(52,64,80,0.1)" />
               <circle cx={x} cy={y} r={1.6} fill={groupColor(a.group)} />
               <text
                 x={lx}
                 y={ly}
                 fontSize={grouped ? 10 : 8.5}
-                fill="#8ea3c4"
+                fill="#5d6570"
                 textAnchor={anchor}
                 dominantBaseline="middle"
               >

@@ -56,11 +56,11 @@ export function ContributionPlot({ result }: { result: ScoreResult }) {
       }
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-lg" role="img" aria-label={t('viz.contribution.title')}>
-        <line x1={x(0)} y1={PAD} x2={x(0)} y2={H - PAD} stroke="rgba(148,173,210,0.25)" strokeDasharray="3 3" />
-        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
-        <text x={W - PAD} y={H - 8} fontSize={8} fill="#8ea3c4" textAnchor="end">→ {t('viz.contribution.supporting')}</text>
-        <text x={PAD} y={H - 8} fontSize={8} fill="#8ea3c4" textAnchor="start">{t('viz.contribution.opposing')} ←</text>
-        <text x={10} y={PAD} fontSize={7.5} fill="#8ea3c4" transform={`rotate(-90 10 ${PAD + 40})`}>{t('viz.contribution.yAxis')}</text>
+        <line x1={x(0)} y1={PAD} x2={x(0)} y2={H - PAD} stroke="rgba(52,64,80,0.25)" strokeDasharray="3 3" />
+        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(52,64,80,0.2)" />
+        <text x={W - PAD} y={H - 8} fontSize={8} fill="#5d6570" textAnchor="end">→ {t('viz.contribution.supporting')}</text>
+        <text x={PAD} y={H - 8} fontSize={8} fill="#5d6570" textAnchor="start">{t('viz.contribution.opposing')} ←</text>
+        <text x={10} y={PAD} fontSize={7.5} fill="#5d6570" transform={`rotate(-90 10 ${PAD + 40})`}>{t('viz.contribution.yAxis')}</text>
 
         {points.map((p) => (
           <circle
@@ -70,7 +70,7 @@ export function ContributionPlot({ result }: { result: ScoreResult }) {
             r={hover === p.id ? 6 : 4}
             fill={color(p.contribution)}
             fillOpacity={0.8}
-            stroke={hover === p.id ? '#fff' : 'none'}
+            stroke={hover === p.id ? '#22262c' : 'none'}
             strokeWidth={0.8}
             tabIndex={0}
             role="img"
@@ -84,7 +84,7 @@ export function ContributionPlot({ result }: { result: ScoreResult }) {
         ))}
       </svg>
       {hovered && (
-        <p className="mt-1 rounded bg-white/[0.03] px-3 py-2 text-xs text-parchment/80">
+        <p className="mt-1 rounded bg-slate850/50 px-3 py-2 text-xs text-parchment/80">
           <span className="font-mono" style={{ color: color(hovered.contribution) }}>
             {hovered.contribution > 0 ? '+' : ''}{hovered.contribution.toFixed(2)}
           </span>{' '}

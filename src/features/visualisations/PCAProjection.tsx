@@ -75,7 +75,7 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
       summary={t('viz.pca.summary', { total: pc1 + pc2, primary: t(`archetypes.${result.primary}.name`) })}
       controls={
         <>
-          <span className="rounded bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-haze">
+          <span className="rounded bg-slate850/60 px-2 py-1 font-mono text-[10px] text-haze">
             {t('viz.pca.explained', { pc1, pc2 })}
           </span>
           <button className="btn-quiet px-2 py-1 text-xs" onClick={() => setShowLoadings((v) => !v)} aria-pressed={showLoadings}>
@@ -106,10 +106,10 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
       }
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-2xl" role="img" aria-label={t('viz.pca.title')}>
-        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
-        <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
-        <text x={W - PAD} y={H - PAD + 12} fontSize={9} fill="#8ea3c4" textAnchor="end">PC1 · {pc1}%</text>
-        <text x={PAD - 6} y={PAD} fontSize={9} fill="#8ea3c4" textAnchor="end" transform={`rotate(-90 ${PAD - 6} ${PAD})`}>PC2 · {pc2}%</text>
+        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(52,64,80,0.2)" />
+        <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(52,64,80,0.2)" />
+        <text x={W - PAD} y={H - PAD + 12} fontSize={9} fill="#5d6570" textAnchor="end">PC1 · {pc1}%</text>
+        <text x={PAD - 6} y={PAD} fontSize={9} fill="#5d6570" textAnchor="end" transform={`rotate(-90 ${PAD - 6} ${PAD})`}>PC2 · {pc2}%</text>
 
         {/* synthetic reference points */}
         {model.synthPts.map((p, i) => (
@@ -125,9 +125,9 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
             const ey = cy - l.y * loadScale;
             return (
               <g key={l.id}>
-                <line x1={cx} y1={cy} x2={ex} y2={ey} stroke="#f2b054" strokeOpacity={0.55} markerEnd="url(#arrow)" />
-                <circle cx={ex} cy={ey} r={6.5} fill="#1e1b13" stroke="#f2b054" strokeOpacity={0.6} />
-                <text x={ex} y={ey + 2.4} fontSize={7.5} fill="#f2b054" textAnchor="middle" fontWeight={700}>
+                <line x1={cx} y1={cy} x2={ex} y2={ey} stroke="#c26d10" strokeOpacity={0.55} markerEnd="url(#arrow)" />
+                <circle cx={ex} cy={ey} r={6.5} fill="#1e1b13" stroke="#c26d10" strokeOpacity={0.6} />
+                <text x={ex} y={ey + 2.4} fontSize={7.5} fill="#c26d10" textAnchor="middle" fontWeight={700}>
                   {i + 1}
                 </text>
               </g>
@@ -135,7 +135,7 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
           })}
         <defs>
           <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="#f2b054" fillOpacity="0.5" />
+            <path d="M0,0 L6,3 L0,6 Z" fill="#c26d10" fillOpacity="0.5" />
           </marker>
         </defs>
 
@@ -148,11 +148,11 @@ export function PCAProjection({ result }: { result: ScoreResult }) {
                 cx={x(p.xy[0])}
                 cy={y(p.xy[1])}
                 r={isNear ? 4 : 2.6}
-                fill={isNear ? SIGNAL.primary : '#8ea3c4'}
+                fill={isNear ? SIGNAL.primary : '#5d6570'}
                 fillOpacity={isNear ? 0.9 : 0.5}
               />
               {(hover === p.code || isNear) && (
-                <text x={x(p.xy[0]) + 5} y={y(p.xy[1]) + 3} fontSize={7} fill="#e8e2d1">
+                <text x={x(p.xy[0]) + 5} y={y(p.xy[1]) + 3} fontSize={7} fill="#262b31">
                   {p.code}
                 </text>
               )}

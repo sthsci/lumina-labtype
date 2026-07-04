@@ -71,7 +71,7 @@ export function QuestionFlow() {
           <span>{t('question.answeredCount', { answered: answeredCount, total })}</span>
         </div>
         <div
-          className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10"
+          className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/10"
           role="progressbar"
           aria-valuenow={answeredCount}
           aria-valuemin={0}
@@ -97,7 +97,7 @@ export function QuestionFlow() {
           {t(`questions.${questionId}`)}
         </p>
 
-        <div className="mt-5 rounded-xl border border-line bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)]">
+        <div className="mt-5 rounded-xl border border-line bg-slate850/40 p-4">
           <p className="kicker mb-2 text-[10px] text-amber-glow/80">{t('question.exampleLabel')}</p>
           <p className="text-sm leading-relaxed text-parchment/75">{t(`question.examples.${questionId}`)}</p>
         </div>
@@ -117,7 +117,7 @@ export function QuestionFlow() {
               className={`flex min-h-[64px] flex-col items-center justify-center gap-1 rounded-xl border px-2 py-3 text-center text-xs transition-all ${
                 current === value
                   ? 'border-lumina-400 bg-lumina-400/20 text-parchment'
-                  : 'border-line bg-white/[0.02] text-haze hover:border-lumina-400/40 hover:text-parchment'
+                  : 'border-line bg-slate850/40 text-haze hover:border-lumina-400/40 hover:text-parchment'
               }`}
             >
               <span className="font-mono text-base text-lumina-200">{value}</span>

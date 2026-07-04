@@ -71,7 +71,7 @@ export function SankeyFlow({ result }: { result: ScoreResult }) {
         x: COL[2],
         y: i * (aH + aGap),
         h: aH,
-        color: '#f2b054',
+        color: '#c26d10',
         kind: 'arch',
       };
       // dim -> archetype alignment
@@ -161,7 +161,7 @@ export function SankeyFlow({ result }: { result: ScoreResult }) {
               x={n.kind === 'arch' ? n.x - 3 : n.x + 13}
               y={n.y + n.h / 2 + 2}
               fontSize={n.kind === 'dim' ? 5.5 : 7}
-              fill={isActive(n.id) ? '#e8e2d1' : '#5c6a7d'}
+              fill={isActive(n.id) ? '#262b31' : '#5c6a7d'}
               textAnchor={n.kind === 'arch' ? 'end' : 'start'}
             >
               {n.kind === 'arch' ? n.label : n.label}

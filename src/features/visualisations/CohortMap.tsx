@@ -9,7 +9,7 @@ import type { CohortRecord } from '@/features/cohort/cohortStorage';
 const W = 520;
 const H = 360;
 const PAD = 38;
-const CLUSTER_COLORS = ['#5fdcf7', '#f2b054', '#8f7bff', '#4ad6a8', '#ef7d8f'];
+const CLUSTER_COLORS = ['#0d7f9b', '#c26d10', '#6d4fc9', '#0f9d76', '#c34f6b'];
 
 function spreadDomain(values: number[]): [number, number] {
   const min = Math.min(...values);
@@ -84,10 +84,10 @@ export function CohortMap({ records }: { records: CohortRecord[] }) {
       })}
       controls={
         <>
-          <span className="rounded bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-haze">
+          <span className="rounded bg-slate850/60 px-2 py-1 font-mono text-[10px] text-haze">
             {t('cohort.cellCount', { count: records.length })}
           </span>
-          <span className="rounded bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-haze">
+          <span className="rounded bg-slate850/60 px-2 py-1 font-mono text-[10px] text-haze">
             {t('cohort.silhouette', { value: model.silhouette.toFixed(2) })}
           </span>
         </>
@@ -123,19 +123,19 @@ export function CohortMap({ records }: { records: CohortRecord[] }) {
       }
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-3xl" role="img" aria-label={t('cohort.plotTitle')}>
-        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
-        <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(148,173,210,0.2)" />
-        <text x={W - PAD} y={H - PAD + 14} fontSize={10} fill="#8ea3c4" textAnchor="end">
+        <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(52,64,80,0.2)" />
+        <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(52,64,80,0.2)" />
+        <text x={W - PAD} y={H - PAD + 14} fontSize={10} fill="#5d6570" textAnchor="end">
           PC1 · {pc1}%
         </text>
-        <text x={PAD - 8} y={PAD} fontSize={10} fill="#8ea3c4" textAnchor="end" transform={`rotate(-90 ${PAD - 8} ${PAD})`}>
+        <text x={PAD - 8} y={PAD} fontSize={10} fill="#5d6570" textAnchor="end" transform={`rotate(-90 ${PAD - 8} ${PAD})`}>
           PC2 · {pc2}%
         </text>
 
         {model.protoPts.map((point) => (
           <g key={point.code}>
-            <circle cx={x(point.xy[0])} cy={y(point.xy[1])} r={2.2} fill="#8ea3c4" fillOpacity={0.28} />
-            <text x={x(point.xy[0]) + 4} y={y(point.xy[1]) + 3} fontSize={7} fill="#8ea3c4" fillOpacity={0.55}>
+            <circle cx={x(point.xy[0])} cy={y(point.xy[1])} r={2.2} fill="#5d6570" fillOpacity={0.28} />
+            <text x={x(point.xy[0]) + 4} y={y(point.xy[1]) + 3} fontSize={7} fill="#5d6570" fillOpacity={0.55}>
               {point.code}
             </text>
           </g>
@@ -179,12 +179,12 @@ export function CohortMap({ records }: { records: CohortRecord[] }) {
               height={42}
               rx={7}
               fill="#0c111b"
-              stroke="rgba(148,173,210,0.35)"
+              stroke="rgba(52,64,80,0.35)"
             />
-            <text x={Math.min(W - 178, x(hoveredCell.xy[0]) + 20)} y={Math.max(30, y(hoveredCell.xy[1]) - 14)} fontSize={10} fill="#e8e2d1">
+            <text x={Math.min(W - 178, x(hoveredCell.xy[0]) + 20)} y={Math.max(30, y(hoveredCell.xy[1]) - 14)} fontSize={10} fill="#262b31">
               {t('cohort.hoverCell', { cell: model.cellPts.indexOf(hoveredCell) + 1, cluster: hoveredCell.cluster + 1 })}
             </text>
-            <text x={Math.min(W - 178, x(hoveredCell.xy[0]) + 20)} y={Math.max(30, y(hoveredCell.xy[1]) + 2)} fontSize={9} fill="#8ea3c4">
+            <text x={Math.min(W - 178, x(hoveredCell.xy[0]) + 20)} y={Math.max(30, y(hoveredCell.xy[1]) + 2)} fontSize={9} fill="#5d6570">
               {hoveredCell.record.primary} · {t(`archetypes.${hoveredCell.record.primary}.name`)}
             </text>
           </g>

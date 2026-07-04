@@ -110,12 +110,12 @@ export function NearestNeighbourMap({ result }: { result: ScoreResult }) {
           const a = archetypeByCode.get(nb.d.code)!;
           return (
             <g key={nb.d.code}>
-              <circle cx={ax} cy={ay} r={17} fill="#0c1119" stroke="rgba(148,173,210,0.2)" />
+              <circle cx={ax} cy={ay} r={17} fill="#ffffff" stroke="rgba(52,64,80,0.2)" />
               <g transform={`translate(${ax - 15}, ${ay - 15})`}>
-                <EmblemGlyph emblem={a.emblem} size={30} />
+                <EmblemGlyph emblem={a.emblem} code={nb.d.code} size={30} />
               </g>
-              <text x={ax} y={ay + 27} fontSize={7.5} fill="#e8e2d1" textAnchor="middle">{nb.d.code}</text>
-              <text x={ax} y={ay + 36} fontSize={6.5} fill="#8ea3c4" textAnchor="middle" className="font-mono">
+              <text x={ax} y={ay + 27} fontSize={7.5} fill="#262b31" textAnchor="middle">{nb.d.code}</text>
+              <text x={ax} y={ay + 36} fontSize={6.5} fill="#5d6570" textAnchor="middle" className="font-mono">
                 {fmt(nb.d)}
               </text>
             </g>

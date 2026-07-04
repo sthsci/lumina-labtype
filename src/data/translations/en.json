@@ -314,6 +314,18 @@
     "noneShort": "—",
     "generate": "Generate cross-reading",
     "header": "{archetype} · {sbti} · {zodiac}",
+    "sections": {
+      "openingScene": "Laboratory opening scene",
+      "researchDecision": "How you make research decisions",
+      "experimentDesign": "How you design experiments",
+      "collaboration": "How you work with people",
+      "pressureResponse": "When pressure arrives",
+      "usefulContradiction": "Your useful contradiction",
+      "laboratoryRole": "Your laboratory role",
+      "failureMode": "Likely failure mode",
+      "survivalAdvice": "Practical survival advice",
+      "shareLine": "Shareable final line"
+    },
     "aspectTitles": {
       "decision": "Research decisions",
       "design": "Experiment design & risk",

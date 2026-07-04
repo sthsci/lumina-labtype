@@ -102,7 +102,7 @@ function FloatingEmblems({ reduced }: { reduced: boolean }) {
           }
           transition={{ duration: 6 + i, repeat: reduced ? 0 : Infinity, ease: 'easeInOut' }}
         >
-          <EmblemGlyph emblem={a.emblem} size={positions[i].size} />
+          <EmblemGlyph emblem={a.emblem} code={a.code} size={positions[i].size} />
         </motion.div>
       ))}
     </div>

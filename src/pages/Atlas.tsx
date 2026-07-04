@@ -38,7 +38,7 @@ export function Atlas() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('atlas.searchPlaceholder')}
             aria-label={t('atlas.searchPlaceholder')}
-            className="w-full max-w-xs rounded-xl border border-line bg-white/[0.03] px-4 py-2.5 text-sm text-parchment placeholder:text-haze/60 focus:border-lumina-400/60 focus:outline-none"
+            className="w-full max-w-xs rounded-xl border border-line bg-slate850/50 px-4 py-2.5 text-sm text-parchment placeholder:text-haze/60 focus:border-lumina-400/60 focus:outline-none"
           />
           <span className="text-xs text-haze">{t('atlas.visibleCount', { count: filtered.length })}</span>
         </div>
@@ -67,7 +67,7 @@ export function Atlas() {
                     : 'border-line bg-panel'
               }`}
             >
-              <EmblemGlyph emblem={a.emblem} size={72} title={a.code} />
+              <EmblemGlyph emblem={a.emblem} code={a.code} size={72} title={a.code} />
               <span className="font-mono text-[10px] tracking-[0.25em] text-haze">{a.code}</span>
               <span className="text-sm font-semibold leading-tight text-parchment">{t(`archetypes.${a.code}.name`)}</span>
               <span className="text-xs leading-snug text-haze">{t(`archetypes.${a.code}.tagline`)}</span>
@@ -92,7 +92,7 @@ export function Atlas() {
               <li key={a.code} className="panel flex flex-col items-center gap-2 p-5 text-center">
                 {unlocked ? (
                   <>
-                    <EmblemGlyph emblem={a.emblem} size={72} title={a.code} />
+                    <EmblemGlyph emblem={a.emblem} code={a.code} size={72} title={a.code} />
                     <span className="font-mono text-[10px] tracking-[0.25em] text-amber-glow">{a.code}</span>
                     <span className="text-sm font-semibold">{t(`archetypes.${a.code}.name`)}</span>
                     <span className="text-xs text-haze">{t(`archetypes.${a.code}.tagline`)}</span>
@@ -132,7 +132,7 @@ function DetailPanel({ archetype, onClose }: { archetype: Archetype; onClose: ()
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <EmblemGlyph emblem={archetype.emblem} size={84} title={code} />
+          <EmblemGlyph emblem={archetype.emblem} code={code} size={84} title={code} />
           <div>
             <p className="font-mono text-xs tracking-[0.3em] text-amber-glow">{code}</p>
             <h3 className="text-2xl font-semibold">{t(`archetypes.${code}.name`)}</h3>
@@ -204,7 +204,7 @@ function DetailPanel({ archetype, onClose }: { archetype: Archetype; onClose: ()
 
       <div className="mt-4 flex flex-wrap gap-1.5">
         {raw<string[]>(`archetypes.${code}.keywords`).map((k) => (
-          <span key={k} className="rounded-full border border-line bg-white/[0.03] px-2.5 py-0.5 text-xs text-haze">
+          <span key={k} className="rounded-full border border-line bg-slate850/50 px-2.5 py-0.5 text-xs text-haze">
             #{k}
           </span>
         ))}

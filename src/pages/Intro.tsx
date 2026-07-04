@@ -39,7 +39,7 @@ export function Intro() {
         <p className="mt-2 text-sm leading-relaxed text-parchment/80">{t('intro.scaleBody')}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {[1, 2, 3, 4, 5].map((v) => (
-            <span key={v} className="rounded-lg border border-line bg-white/[0.03] px-3 py-1.5 text-xs text-haze">
+            <span key={v} className="rounded-lg border border-line bg-slate850/50 px-3 py-1.5 text-xs text-haze">
               {t(`question.scale.${v}`)}
             </span>
           ))}

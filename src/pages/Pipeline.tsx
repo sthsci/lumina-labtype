@@ -79,7 +79,7 @@ export function Pipeline() {
       </div>
 
       <div
-        className="mb-5 h-1.5 overflow-hidden rounded-full bg-white/10"
+        className="mb-5 h-1.5 overflow-hidden rounded-full bg-ink/10"
         role="progressbar"
         aria-valuenow={overallPct}
         aria-valuemin={0}
@@ -111,7 +111,7 @@ export function Pipeline() {
           <li
             key={s}
             className={`h-1 rounded-full transition-colors ${
-              i <= stage ? 'bg-lumina-400' : 'bg-white/10'
+              i <= stage ? 'bg-lumina-400' : 'bg-ink/10'
             }`}
           />
         ))}

@@ -11,8 +11,9 @@ const METRICS: Metric[] = ['euclidean', 'cosine', 'pearson'];
 // perceptual: 0 (dissimilar) -> 1 (similar)
 function simColor(v: number): string {
   const t = Math.max(0, Math.min(1, v));
-  const l = 12 + t * 46;
-  return `hsl(${188 - t * 20}, ${30 + t * 45}%, ${l}%)`;
+  // paper (dissimilar) -> deep teal ink (similar)
+  const l = 94 - t * 60;
+  return `hsl(${190 - t * 14}, ${14 + t * 48}%, ${l}%)`;
 }
 
 export function SimilarityMatrix({ result }: { result?: ScoreResult }) {
@@ -88,7 +89,7 @@ export function SimilarityMatrix({ result }: { result?: ScoreResult }) {
                     width={cell + 0.2}
                     height={cell + 0.2}
                     fill={simColor(sim[ri][ci])}
-                    stroke={isWinnerRow || isWinnerCol ? '#f2b054' : isHover ? '#fff' : 'none'}
+                    stroke={isWinnerRow || isWinnerCol ? '#c26d10' : isHover ? '#22262c' : 'none'}
                     strokeWidth={isWinnerRow || isWinnerCol ? 0.4 : isHover ? 0.4 : 0}
                     onMouseEnter={() => setHover({ i: ii, j: jj })}
                     onMouseLeave={() => setHover(null)}
@@ -99,7 +100,7 @@ export function SimilarityMatrix({ result }: { result?: ScoreResult }) {
               }),
             )}
             {order.map((ri, ii) => (
-              <text key={`r${ii}`} x={-1} y={ii * cell + cell / 2 + 1} fontSize={2.6} fill={winner && codes[ri] === winner ? '#f2b054' : '#8ea3c4'} textAnchor="end" dominantBaseline="middle">
+              <text key={`r${ii}`} x={-1} y={ii * cell + cell / 2 + 1} fontSize={2.6} fill={winner && codes[ri] === winner ? '#c26d10' : '#5d6570'} textAnchor="end" dominantBaseline="middle">
                 {codes[ri]}
               </text>
             ))}
