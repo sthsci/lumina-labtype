@@ -16,12 +16,12 @@ import type { ScoreResult } from '@/features/scoring/types';
  * paper with the archetype's own hue family, exported client-side as PNG.
  * Never contains raw answers.
  */
-type Format = 'square' | 'portrait' | 'wechat' | 'landscape';
+type Format = 'square' | 'portrait' | 'identity' | 'summary';
 const FORMATS: { id: Format; w: number; h: number }[] = [
   { id: 'square', w: 540, h: 540 },
   { id: 'portrait', w: 480, h: 640 },
-  { id: 'wechat', w: 420, h: 748 },
-  { id: 'landscape', w: 680, h: 400 },
+  { id: 'identity', w: 420, h: 748 },
+  { id: 'summary', w: 680, h: 400 },
 ];
 
 const PAPER = '#f6f3ec';
@@ -68,6 +68,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
   const spec = FORMATS.find((f) => f.id === format)!;
   const name = t(`archetypes.${result.primary}.name`);
   const tagline = t(`archetypes.${result.primary}.tagline`);
+  const shareLine = t(`archetypes.${result.primary}.shareCard`);
 
   const download = async () => {
     if (!cardRef.current || busy) return;
@@ -183,6 +184,30 @@ export function ShareCard({ result }: { result: ScoreResult }) {
     </span>
   );
 
+  const LabRules = ({ dense = false }: { dense?: boolean }) => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: dense ? 'repeat(6, 1fr)' : 'repeat(5, 1fr)',
+        gap: 4,
+        width: '100%',
+      }}
+    >
+      {Array.from({ length: dense ? 18 : 10 }, (_, i) => (
+        <span
+          key={i}
+          style={{
+            height: i % 5 === 0 ? 18 : 10,
+            alignSelf: 'end',
+            background: i % 4 === 0 ? deep : tintBorder,
+            borderRadius: 2,
+            opacity: i % 3 === 0 ? 0.9 : 0.58,
+          }}
+        />
+      ))}
+    </div>
+  );
+
   /* format layouts -------------------------------------------------------- */
 
   const cardBase: React.CSSProperties = {
@@ -190,7 +215,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
     height: spec.h,
     background: CARD,
     border: `1px solid ${tintBorder}`,
-    borderRadius: 18,
+    borderRadius: 10,
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
@@ -276,7 +301,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
             </>
           )}
 
-          {format === 'wechat' && (
+          {format === 'identity' && (
             <>
               <div style={{ padding: '18px 20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Brand caption={false} />
@@ -288,7 +313,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
                   {result.primary}
                 </div>
                 <div style={{ fontFamily: SERIF, fontSize: 28, fontWeight: 700, textAlign: 'center', lineHeight: 1.2 }}>{name}</div>
-                <div style={{ fontSize: 13, color: GREY, textAlign: 'center', lineHeight: 1.55, maxWidth: 300 }}>“{tagline}”</div>
+                <div style={{ fontSize: 15, color: INK, textAlign: 'center', lineHeight: 1.45, maxWidth: 300, fontFamily: SERIF }}>“{shareLine}”</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, marginTop: 4 }}>
                   {dims.map((d) => (
                     <span key={d.id} style={{ fontSize: 11, color: deep, fontWeight: 600 }}>
@@ -297,7 +322,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
                   ))}
                 </div>
                 <div style={{ alignSelf: 'stretch' }}>
-                  <ProfileGlyph height={34} />
+                  <LabRules dense />
                 </div>
               </div>
               <div style={{ padding: '10px 20px 16px' }}>
@@ -306,7 +331,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
             </>
           )}
 
-          {format === 'landscape' && (
+          {format === 'summary' && (
             <>
               <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
                 <div
@@ -330,7 +355,7 @@ export function ShareCard({ result }: { result: ScoreResult }) {
                     <Brand />
                     <span style={{ fontSize: 9, color: GREY }}>{t('common.fictionalBadge')}</span>
                   </div>
-                  <div style={{ fontSize: 12, color: GREY, lineHeight: 1.5 }}>{tagline}</div>
+                  <div style={{ fontSize: 13, color: GREY, lineHeight: 1.5 }}>{tagline}</div>
                   <ProfileGlyph height={44} />
                   <div style={{ display: 'flex', gap: 16, fontFamily: MONO, fontSize: 11, color: INK }}>
                     <span>

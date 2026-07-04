@@ -32,23 +32,28 @@ export function ChartFrame({
   const summaryId = useId();
 
   return (
-    <figure className={`panel p-4 sm:p-5 ${className ?? ''}`} aria-describedby={summaryId}>
-      <figcaption className="mb-3 flex flex-wrap items-start justify-between gap-3">
+    <figure className={`panel overflow-hidden p-0 ${className ?? ''}`} aria-describedby={summaryId}>
+      <figcaption className="flex flex-wrap items-start justify-between gap-3 border-b border-line bg-slate850/35 px-4 py-3 sm:px-5">
         <div className="min-w-0">
-          <h3 className="text-base font-semibold text-parchment">{title}</h3>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-haze">LBTI / visual assay</p>
+          <h3 className="mt-1 text-base font-semibold text-parchment">{title}</h3>
           {description && <p className="mt-1 text-sm text-haze">{description}</p>}
         </div>
         {controls && <div className="flex flex-wrap items-center gap-2">{controls}</div>}
       </figcaption>
 
-      <div className="relative">{children}</div>
+      <div className="relative px-3 pt-4 sm:px-4">
+        <div className="absolute left-4 top-4 h-8 w-8 border-l border-t border-line" aria-hidden="true" />
+        <div className="absolute bottom-0 right-4 h-8 w-8 border-b border-r border-line" aria-hidden="true" />
+        {children}
+      </div>
 
-      <p id={summaryId} className="mt-3 text-sm leading-relaxed text-parchment/70">
+      <p id={summaryId} className="px-4 pb-3 pt-2 text-sm leading-relaxed text-parchment/70 sm:px-5">
         {summary}
       </p>
 
       {table && (
-        <div className="mt-2">
+        <div className="border-t border-line px-4 pb-4 sm:px-5">
           <button
             type="button"
             className="btn-quiet px-2 py-1 text-xs"

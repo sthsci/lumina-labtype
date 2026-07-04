@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type CSSProperties } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -61,6 +61,14 @@ function ResultContent({ result }: { result: ScoreResult }) {
 
   const archetype = archetypeByCode.get(result.primary)!;
   const secondaryArchetype = archetypeByCode.get(result.secondary)!;
+  const heroAccent = `hsl(${archetype.emblem.hue}, 54%, 32%)`;
+  const heroWash = `hsl(${archetype.emblem.hue}, 56%, 93%)`;
+  const heroStyle = {
+    '--poster-accent': heroAccent,
+    borderColor: `hsl(${archetype.emblem.hue}, 34%, 74%)`,
+    background:
+      `radial-gradient(circle at 18% 22%, ${heroWash} 0%, transparent 34%), linear-gradient(135deg, #fdfcf8 0%, #f8f4ea 100%)`,
+  } as CSSProperties;
 
   // A small deterministic sync bootstrap feeds the prose; the interactive
   // stability panel below runs its own (larger) resampling in a Web Worker.
@@ -143,38 +151,40 @@ function ResultContent({ result }: { result: ScoreResult }) {
       )}
 
       {/* hero */}
-      <section className="panel panel-grid relative overflow-hidden p-6 sm:p-10">
-        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+      <section className="poster-card relative overflow-hidden p-6 sm:p-8" style={heroStyle}>
+        <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
           <motion.div
             initial={reduced ? false : { scale: 0.6, opacity: 0, rotate: -12 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ duration: reduced ? 0 : 0.7, ease: 'easeOut' }}
-            className="shrink-0"
+            className="flex flex-col items-center justify-center gap-3 border-b border-line pb-5 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-6"
           >
             <EmblemGlyph emblem={archetype.emblem} code={result.primary} size={150} title={result.primary} className="drop-shadow-emblem" />
+            <span className="font-mono text-2xl font-bold tracking-[0.28em]" style={{ color: heroAccent }}>
+              {result.primary}
+            </span>
           </motion.div>
-          <div className="min-w-0">
-            <p className="kicker">{t('result.kicker')}</p>
+          <div className="min-w-0 text-center sm:text-left">
+            <p className="kicker" style={{ color: heroAccent }}>{t('result.kicker')}</p>
             {result.hidden.triggered && (
               <p className="mt-2 inline-block rounded-full border border-amber-glow/50 bg-amber-glow/10 px-3 py-1 text-xs text-amber-glow">
-                ★ {t('result.hiddenUnlocked')} — {t('result.hiddenNote')}
+                {t('result.hiddenUnlocked')} — {t('result.hiddenNote')}
               </p>
             )}
             <h1 className="mt-2 flex flex-wrap items-baseline justify-center gap-x-3 sm:justify-start">
-              <span className="font-mono text-lg tracking-[0.3em] text-amber-glow" data-testid="archetype-code">
-                {result.primary}
-              </span>
               <span className="text-3xl font-semibold sm:text-5xl">{t(`archetypes.${result.primary}.name`)}</span>
             </h1>
-            <p className="mt-2 text-lg text-lumina-200">{t(`archetypes.${result.primary}.tagline`)}</p>
+            <span className="sr-only" data-testid="archetype-code">{result.primary}</span>
+            <p className="mt-2 max-w-2xl text-lg text-parchment/75">{t(`archetypes.${result.primary}.tagline`)}</p>
             <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
-              <Stat label={t('result.matchStrength')} value={`${result.matchStrength}`} note={t('result.matchStrengthNote')} />
-              <Stat label={t('result.classificationMargin')} value={result.classificationMargin.toFixed(2)} />
-              <Stat label={t('result.profileStability')} value={`${Math.round(quickStability)}%`} />
+              <Stat label={t('result.matchStrength')} value={`${result.matchStrength}`} note={t('result.matchStrengthNote')} accent={heroAccent} />
+              <Stat label={t('result.classificationMargin')} value={result.classificationMargin.toFixed(2)} accent={heroAccent} />
+              <Stat label={t('result.profileStability')} value={`${Math.round(quickStability)}%`} accent={heroAccent} />
               <Stat
                 label={t('result.cohortPercentile')}
                 value={cohortPercentile === null ? '—' : `${cohortPercentile}%`}
                 note={t(cohortPercentile === null ? 'result.cohortPercentileUnavailable' : 'result.cohortPercentileNote')}
+                accent={heroAccent}
               />
             </div>
             <p className="mt-4 text-sm text-haze">
@@ -413,11 +423,11 @@ function ResultContent({ result }: { result: ScoreResult }) {
   );
 }
 
-function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
+function Stat({ label, value, note, accent }: { label: string; value: string; note?: string; accent?: string }) {
   return (
-    <div className="rounded-xl border border-line bg-slate850/50 px-3 py-2 text-left">
+    <div className="rounded-lg border border-line bg-panel/75 px-3 py-2 text-left">
       <p className="text-[10px] uppercase tracking-wider text-haze">{label}</p>
-      <p className="font-mono text-lg text-parchment">{value}</p>
+      <p className="font-mono text-lg text-parchment" style={accent ? { color: accent } : undefined}>{value}</p>
       {note && <p className="max-w-[140px] text-[9px] leading-tight text-haze/80">{note}</p>}
     </div>
   );

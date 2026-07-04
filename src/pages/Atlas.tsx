@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type CSSProperties } from 'react';
 import { motion } from 'framer-motion';
 import { PageHeader } from '@/components/PageHeader';
 import { EmblemGlyph } from '@/components/Emblem';
@@ -47,7 +47,7 @@ export function Atlas() {
       <PhylogenyTree highlight={result?.primary} />
 
       {/* card grid */}
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {filtered.map((a, i) => (
           <motion.li
             key={a.code}
@@ -55,26 +55,12 @@ export function Atlas() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: Math.min(i * 0.02, 0.3) }}
           >
-            <button
-              type="button"
+            <ArchetypePoster
+              archetype={a}
+              selected={selected === a.code}
+              matched={result?.primary === a.code}
               onClick={() => setSelected(selected === a.code ? null : a.code)}
-              aria-expanded={selected === a.code}
-              className={`card-hover flex w-full flex-col items-center gap-2 rounded-2xl border p-4 text-center transition-colors hover:-translate-y-0.5 ${
-                selected === a.code
-                  ? 'border-lumina-400 bg-lumina-400/10'
-                  : result?.primary === a.code
-                    ? 'border-amber-glow/60 bg-amber-glow/5'
-                    : 'border-line bg-panel'
-              }`}
-            >
-              <EmblemGlyph emblem={a.emblem} code={a.code} size={72} title={a.code} />
-              <span className="font-mono text-[10px] tracking-[0.25em] text-haze">{a.code}</span>
-              <span className="text-sm font-semibold leading-tight text-parchment">{t(`archetypes.${a.code}.name`)}</span>
-              <span className="text-xs leading-snug text-haze">{t(`archetypes.${a.code}.tagline`)}</span>
-              {result?.primary === a.code && (
-                <span className="rounded-full bg-amber-glow/15 px-2 py-0.5 text-[10px] text-amber-glow">{t('common.you')} ★</span>
-              )}
-            </button>
+            />
           </motion.li>
         ))}
       </ul>
@@ -120,23 +106,97 @@ export function Atlas() {
   );
 }
 
+function ArchetypePoster({
+  archetype,
+  selected,
+  matched,
+  onClick,
+}: {
+  archetype: Archetype;
+  selected: boolean;
+  matched: boolean;
+  onClick: () => void;
+}) {
+  const { t, raw } = useI18n();
+  const hue = archetype.emblem.hue;
+  const accent = `hsl(${hue}, 54%, 33%)`;
+  const wash = `hsl(${hue}, 54%, 93%)`;
+  const border = selected ? accent : matched ? '#a8650e' : `hsl(${hue}, 30%, 77%)`;
+  const keywords = raw<string[]>(`archetypes.${archetype.code}.keywords`).slice(0, 2);
+  const style = {
+    '--poster-accent': accent,
+    borderColor: border,
+    background:
+      `linear-gradient(160deg, ${wash} 0%, #fdfcf8 42%, #f8f4ea 100%)`,
+  } as CSSProperties;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-expanded={selected}
+      className="poster-card card-hover flex w-full flex-col p-4 text-left transition-transform hover:-translate-y-0.5"
+      style={style}
+    >
+      <span className="mb-3 flex items-center justify-between gap-2">
+        <span className="font-mono text-[11px] font-semibold tracking-[0.24em]" style={{ color: accent }}>
+          {archetype.code}
+        </span>
+        {matched && (
+          <span className="rounded-full bg-amber-glow/15 px-2 py-0.5 text-[10px] font-semibold text-amber-glow">
+            {t('common.you')}
+          </span>
+        )}
+      </span>
+
+      <span className="flex items-start gap-3">
+        <EmblemGlyph emblem={archetype.emblem} code={archetype.code} size={78} title={archetype.code} />
+        <span className="min-w-0 flex-1 pt-1">
+          <span className="block text-base font-semibold leading-tight text-parchment">
+            {t(`archetypes.${archetype.code}.name`)}
+          </span>
+          <span className="mt-1 block text-xs leading-snug text-haze">
+            {t(`archetypes.${archetype.code}.tagline`)}
+          </span>
+        </span>
+      </span>
+
+      <span className="mt-4 block h-[42px]">
+        <ProfileBars vector={archetype.vector} height={42} />
+      </span>
+
+      <span className="mt-3 flex min-h-6 flex-wrap gap-1.5">
+        {keywords.map((k) => (
+          <span key={k} className="rounded-full border border-line bg-panel/75 px-2 py-0.5 text-[10px] text-haze">
+            #{k}
+          </span>
+        ))}
+      </span>
+    </button>
+  );
+}
+
 function DetailPanel({ archetype, onClose }: { archetype: Archetype; onClose: () => void }) {
   const { t, raw } = useI18n();
   const code = archetype.code;
+  const hue = archetype.emblem.hue;
+  const accent = `hsl(${hue}, 54%, 33%)`;
+  const wash = `hsl(${hue}, 54%, 93%)`;
   return (
     <motion.section
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="panel border-lumina-400/40 p-6"
+      className="panel overflow-hidden p-0"
+      style={{ borderColor: accent }}
       aria-label={t(`archetypes.${code}.name`)}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line p-6" style={{ background: wash }}>
         <div className="flex items-center gap-4">
           <EmblemGlyph emblem={archetype.emblem} code={code} size={84} title={code} />
           <div>
-            <p className="font-mono text-xs tracking-[0.3em] text-amber-glow">{code}</p>
+            <p className="font-mono text-xs font-semibold tracking-[0.3em]" style={{ color: accent }}>{code}</p>
             <h3 className="text-2xl font-semibold">{t(`archetypes.${code}.name`)}</h3>
-            <p className="text-sm text-lumina-200">{t(`archetypes.${code}.tagline`)}</p>
+            <p className="text-sm text-parchment/75">{t(`archetypes.${code}.tagline`)}</p>
           </div>
         </div>
         <button type="button" className="btn-ghost px-3 py-1.5 text-xs" onClick={onClose}>
@@ -144,7 +204,8 @@ function DetailPanel({ archetype, onClose }: { archetype: Archetype; onClose: ()
         </button>
       </div>
 
-      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-parchment/85">{t(`archetypes.${code}.description`)}</p>
+      <div className="p-6">
+      <p className="max-w-3xl text-sm leading-relaxed text-parchment/85">{t(`archetypes.${code}.description`)}</p>
 
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
         <div>
@@ -208,6 +269,7 @@ function DetailPanel({ archetype, onClose }: { archetype: Archetype; onClose: ()
             #{k}
           </span>
         ))}
+      </div>
       </div>
     </motion.section>
   );
