@@ -11,6 +11,7 @@ import { Methodology } from '@/pages/Methodology';
 import { Privacy } from '@/pages/Privacy';
 import { Disclaimer } from '@/pages/Disclaimer';
 import { About } from '@/pages/About';
+import { Letterbox } from '@/pages/Letterbox';
 import { NotFound } from '@/pages/NotFound';
 
 // Heavy, visualisation-rich pages are code-split to keep the initial bundle small.
@@ -82,6 +83,7 @@ export function App() {
           <Route path="privacy" element={<Privacy />} />
           <Route path="disclaimer" element={<Disclaimer />} />
           <Route path="about" element={<About />} />
+          <Route path="letterbox" element={<Letterbox />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

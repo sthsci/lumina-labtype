@@ -108,6 +108,7 @@ export function Layout() {
             <Link to="/methodology" className="hover:text-parchment">{t('nav.methodology')}</Link>
             <Link to="/privacy" className="hover:text-parchment">{t('nav.privacy')}</Link>
             <Link to="/disclaimer" className="hover:text-parchment">{t('nav.disclaimer')}</Link>
+            <Link to="/letterbox" className="hover:text-parchment">{t('nav.letterbox')}</Link>
             <Link to="/about" className="hover:text-parchment">{t('nav.about')}</Link>
           </nav>
         </div>

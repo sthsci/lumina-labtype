@@ -163,6 +163,7 @@ export const TranslationFileSchema = z.object({
   result: z.record(z.string(), stringTree),
   cross: z.record(z.string(), stringTree),
   cohort: z.record(z.string(), stringTree),
+  letterbox: z.record(z.string(), stringTree),
   mllab: z.record(z.string(), stringTree),
   atlas: z.record(z.string(), stringTree),
   methodology: z.record(z.string(), stringTree),

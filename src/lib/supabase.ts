@@ -21,3 +21,5 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
   : null;
 
 export const COHORT_TABLE = 'cohort_records';
+export const TYPE_SUGGESTIONS_TABLE = 'type_suggestions';
+export const QUESTION_SUGGESTIONS_TABLE = 'question_suggestions';

@@ -54,6 +54,7 @@
     "methodology": "方法說明",
     "privacy": "隱私",
     "disclaimer": "免責聲明",
+    "letterbox": "意見信箱",
     "about": "關於"
   },
   "landing": {
@@ -283,6 +284,7 @@
     "openCohort": "開啟群體圖譜",
     "exploreUniverse": "探索另一個科研平行宇宙",
     "openMlLab": "開啟 ML 實驗室",
+    "openLetterbox": "給 LBTI 寫封信",
     "restartTest": "再測一次",
     "deleteData": "刪除我全部的本地資料",
     "deleteConfirm": "這會從本裝置清除你的答案與設定。要繼續嗎？",
@@ -393,6 +395,96 @@
       "cluster": "群",
       "recorded": "記錄時間",
       "action": "操作"
+    }
+  },
+  "letterbox": {
+    "kicker": "社群來信",
+    "title": "LBTI 意見信箱",
+    "subtitle": "提交一個人格點子、一道題，或者給 LBTI 寫封信。",
+    "intro": "覺得我們漏掉了一種實驗室生物？或者你想到了一道能讓科研人沉默三秒的問題？把它投進來。我們會認真看，但不保證每個點子都會變成新物種。",
+    "privacy": "預設匿名提交。請不要在正文裡寫姓名、電子郵件、導師姓名、機構、精確地點或未公開的實驗資料。",
+    "unconfiguredNote": "這個部署還沒設定 Supabase 意見信箱，所以暫時無法真正入庫。",
+    "tabs": {
+      "label": "意見信箱提交類型",
+      "type": "提交一個人格點子",
+      "typeBody": "如果你見過一種圖鑑裡還沒完整收錄的實驗室生物。",
+      "question": "提交一道題",
+      "questionBody": "如果你想到一個能暴露真實科研習慣的具體場景。"
+    },
+    "common": {
+      "required": "必填",
+      "extraNotes": "補充說明",
+      "attachType": "可以附上我的 LBTI 類型",
+      "attachTypeHelp": "只附上 {type}。你的原始答案不會上傳。",
+      "noCurrentType": "先完成測試，才能選擇附上類型。",
+      "autosave": "草稿只保存在本裝置。"
+    },
+    "type": {
+      "name": "擬議人格名稱",
+      "code": "短代碼",
+      "codeHelp": "選填，2–12 個大寫字母或數字。",
+      "summary": "一句話描述",
+      "summaryHelp": "這種人會在實驗室裡反覆做什麼？",
+      "behaviour": "具體實驗室行為例子",
+      "behaviourHelp": "給一個真實、具體、最好有點好笑的場景。",
+      "distinction": "現有類型為什麼不夠描述它",
+      "distinctionHelp": "說清楚缺口，而不是換個近義詞。",
+      "tagline": "建議標語",
+      "discipline": "科學領域或工作環境",
+      "strength": "現實中的強項",
+      "failure": "現實中的翻車方式",
+      "notesHelp": "其他能幫助我們觀察這個潛在物種的線索。"
+    },
+    "question": {
+      "questionText": "擬議題目或陳述",
+      "questionHelp": "盡量寫成具體場景，而不是「你是否具有創新精神？」。",
+      "rationale": "為什麼這道題有意思",
+      "distinction": "它想區分哪種行為或決策",
+      "distinctionHelp": "比如：先重複對照、先建新機制、先整理資料夾，還是先找合作者。",
+      "dimension": "建議對應的 LBTI 維度",
+      "scenario": "實驗室場景",
+      "answerFormat": "作答形式",
+      "answerFormatEmpty": "還不確定",
+      "reverseScored": "這題可能需要反向計分",
+      "reverseScoredHelp": "只有當「同意」可能指向反方向時再勾選。",
+      "lowMeaning": "低分可能意味著什麼",
+      "highMeaning": "高分可能意味著什麼",
+      "discipline": "科學領域"
+    },
+    "answerFormats": {
+      "five_point_agreement": "5 點同意量表",
+      "seven_point_agreement": "7 點同意量表",
+      "frequency": "頻率量表",
+      "forced_choice": "強制二選一",
+      "situational_choice": "情境選擇",
+      "free_text_research_idea": "自由填寫研究想法"
+    },
+    "actions": {
+      "submit": "投進培養皿",
+      "sending": "投遞中…",
+      "another": "再投一個",
+      "result": "返回結果頁",
+      "atlas": "看看現有人格"
+    },
+    "success": {
+      "type": "收到。這個新物種已經進入觀察培養皿。",
+      "question": "收到。這道題已經進入候選題庫，等待下一輪實驗室人類審查。",
+      "duplicate": "這個一模一樣的點子已經在培養皿裡了。資料庫沒有再複製一份。"
+    },
+    "errors": {
+      "required": "這裡需要一句真實內容。",
+      "tooShort": "再多一點細節，我們才看得清。",
+      "tooLong": "培養皿裝不下這麼多。請剪短一點。",
+      "code": "只能使用大寫字母和數字。",
+      "html": "請去掉尖括號或 HTML。",
+      "punctuation": "只有標點符號，長不出實驗室物種。",
+      "honeypot": "隱藏欄位被填寫了，看起來像自動提交。",
+      "payload": "整封信太大了。請縮短補充說明。",
+      "tooFast": "先讓培養皿適應幾秒鐘，再投遞。",
+      "cooldown": "剛剛那封已經進去了。請再等大約 {seconds} 秒。",
+      "unconfigured": "這個部署還沒設定意見信箱資料庫。你的草稿仍保存在本裝置。",
+      "submitFailed": "沒有投進去。內容還在，資料庫只是暫時不配合。",
+      "details": "資料庫細節：{message}"
     }
   },
   "mllab": {

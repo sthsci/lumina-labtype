@@ -17,6 +17,7 @@ const routes = [
   'ml-lab',
   'atlas',
   'cohort',
+  'letterbox',
   'methodology',
   'privacy',
   'disclaimer',

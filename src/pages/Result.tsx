@@ -407,6 +407,9 @@ function ResultContent({ result }: { result: ScoreResult }) {
         <a href="#alternate-universe" className="btn-ghost">
           {t('result.exploreUniverse')}
         </a>
+        <Link to="/letterbox" className="btn-ghost">
+          {t('result.openLetterbox')}
+        </Link>
         <button type="button" className="btn-ghost" onClick={restart}>
           {t('result.restartTest')}
         </button>

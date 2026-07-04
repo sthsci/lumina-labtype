@@ -54,6 +54,7 @@
     "methodology": "Methodology",
     "privacy": "Privacy",
     "disclaimer": "Disclaimer",
+    "letterbox": "Letterbox",
     "about": "About"
   },
   "landing": {
@@ -283,6 +284,7 @@
     "openCohort": "Open cohort atlas",
     "exploreUniverse": "Explore an alternate research universe",
     "openMlLab": "Open the ML Lab",
+    "openLetterbox": "Write to LBTI",
     "restartTest": "Take the test again",
     "deleteData": "Delete all my local data",
     "deleteConfirm": "This will erase your answers and settings from this device. Continue?",
@@ -393,6 +395,96 @@
       "cluster": "Cluster",
       "recorded": "Recorded",
       "action": "Action"
+    }
+  },
+  "letterbox": {
+    "kicker": "Community letterbox",
+    "title": "LBTI Letterbox",
+    "subtitle": "Send us a possible new lab species, or a question that would make researchers go quiet for three seconds.",
+    "intro": "Think we missed a laboratory creature? Thought of a question that would neatly expose a research habit? Drop it here. We will read it seriously, but not every specimen becomes a new species.",
+    "privacy": "Submissions are anonymous by default. Please do not write names, emails, supervisor names, institutions, precise locations or unpublished experimental data in the text.",
+    "unconfiguredNote": "This deployment has no Supabase letterbox configured yet, so submissions cannot be stored here.",
+    "tabs": {
+      "label": "Letterbox submission type",
+      "type": "Suggest an LBTI type",
+      "typeBody": "For a lab creature the current atlas does not quite capture.",
+      "question": "Suggest a questionnaire item",
+      "questionBody": "For a scenario that reveals how research people actually behave."
+    },
+    "common": {
+      "required": "required",
+      "extraNotes": "Extra notes",
+      "attachType": "Attach my current LBTI type",
+      "attachTypeHelp": "Attach {type} only. Your raw answers are never uploaded.",
+      "noCurrentType": "Take the test first if you want to attach a type.",
+      "autosave": "Drafts are saved on this device only."
+    },
+    "type": {
+      "name": "Proposed type name",
+      "code": "Short code",
+      "codeHelp": "Optional, 2–12 uppercase letters or numbers.",
+      "summary": "One-sentence description",
+      "summaryHelp": "What kind of lab behaviour does this person repeatedly do?",
+      "behaviour": "Concrete laboratory behaviour example",
+      "behaviourHelp": "Give one real, specific, preferably slightly funny scene.",
+      "distinction": "Why existing types do not quite cover it",
+      "distinctionHelp": "Name the gap, not just a synonym.",
+      "tagline": "Suggested tagline",
+      "discipline": "Scientific field or working environment",
+      "strength": "Realistic strength",
+      "failure": "Realistic failure mode",
+      "notesHelp": "Anything else that helps us observe this possible species."
+    },
+    "question": {
+      "questionText": "Proposed question or statement",
+      "questionHelp": "Try a concrete scene, not “Are you innovative?”",
+      "rationale": "Why this question is interesting",
+      "distinction": "What behaviour or decision it distinguishes",
+      "distinctionHelp": "For example: repeat the control, build a new mechanism, clean the folder first, or ask a collaborator.",
+      "dimension": "Suggested LBTI dimension",
+      "scenario": "Laboratory scenario",
+      "answerFormat": "Answer format",
+      "answerFormatEmpty": "Not sure yet",
+      "reverseScored": "This might be reverse-scored",
+      "reverseScoredHelp": "Tick this only if agreement probably points away from the obvious label.",
+      "lowMeaning": "What a low response might mean",
+      "highMeaning": "What a high response might mean",
+      "discipline": "Scientific field"
+    },
+    "answerFormats": {
+      "five_point_agreement": "5-point agreement scale",
+      "seven_point_agreement": "7-point agreement scale",
+      "frequency": "Frequency scale",
+      "forced_choice": "Forced choice",
+      "situational_choice": "Situational choice",
+      "free_text_research_idea": "Free-text research idea"
+    },
+    "actions": {
+      "submit": "Send to the dish",
+      "sending": "Sending…",
+      "another": "Send another",
+      "result": "Return to result",
+      "atlas": "Browse existing types"
+    },
+    "success": {
+      "type": "Received. This new species has entered the observation dish.",
+      "question": "Received. This question has entered the candidate pool for the next round of lab-human review.",
+      "duplicate": "This exact thing is already in the dish. The database did not make a second copy."
+    },
+    "errors": {
+      "required": "This field needs a real sentence.",
+      "tooShort": "A little more detail would help us see it.",
+      "tooLong": "This is overflowing the dish. Please trim it down.",
+      "code": "Use only uppercase letters and numbers.",
+      "html": "Please remove angle brackets or HTML.",
+      "punctuation": "Punctuation alone cannot become a lab species.",
+      "honeypot": "The hidden field was filled, so this looks automated.",
+      "payload": "The full submission is too large. Please shorten the notes.",
+      "tooFast": "Give the dish a few seconds before submitting.",
+      "cooldown": "That one landed. Please wait about {seconds}s before sending another.",
+      "unconfigured": "The letterbox database is not configured here yet. Your draft is still on this device.",
+      "submitFailed": "It did not land. Your text is still here; the database is just not cooperating.",
+      "details": "Database detail: {message}"
     }
   },
   "mllab": {
