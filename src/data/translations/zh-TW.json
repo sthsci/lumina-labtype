@@ -291,9 +291,9 @@
     "readAloudSummary": "你配對到人格 {primary}，{secondary} 緊隨其後。你最強的訊號是 {dims}。",
     "share": {
       "square": "方形",
-      "portrait": "海報",
-      "identity": "人格名片",
-      "summary": "結果摘要",
+      "portrait": "直式",
+      "wechat": "微信直式",
+      "landscape": "橫式",
       "download": "匯出 PNG"
     }
   },

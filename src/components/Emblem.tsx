@@ -301,18 +301,22 @@ const MOTIFS: Record<string, MotifFn> = {
     </g>
   ),
 
-  /* Early-Release Sprinter — paper plane, speed lines, v1 tag */
-  PREPRINT: ({ deep, mid, accent }) => (
+  /* Early-Release Sprinter — manuscript v1 launched with figure panel */
+  PREPRINT: ({ deep, mid, soft, accent }) => (
     <g>
-      <path d="M28 54 L74 30 L58 68 L50 54 Z" fill="none" stroke={deep} strokeWidth="2.6" strokeLinejoin="round" />
-      <path d="M74 30 L50 54" stroke={deep} strokeWidth="2" />
-      <path d="M50 54 L48 66 L54 60" fill="none" stroke={mid} strokeWidth="2" strokeLinejoin="round" />
-      <g stroke={mid} strokeWidth="2" strokeLinecap="round">
-        <line x1="24" y1="40" x2="34" y2="40" />
-        <line x1="20" y1="47" x2="30" y2="47" />
+      <rect x="28" y="22" width="36" height="48" rx="3.5" fill="#fdfcf8" stroke={deep} strokeWidth="2.4" />
+      <path d="M56 22 L64 30 L56 30 Z" fill={soft} stroke={deep} strokeWidth="1.6" strokeLinejoin="round" />
+      <g stroke={soft} strokeWidth="1.8" strokeLinecap="round">
+        <line x1="35" y1="34" x2="55" y2="34" />
+        <line x1="35" y1="40" x2="51" y2="40" />
       </g>
-      <rect x="58" y="66" width="16" height="10" rx="2.5" fill={accent} />
-      <text x="66" y="73.6" textAnchor="middle" fontSize="7.2" fontWeight="700" fill="#fdfcf8" fontFamily="Menlo, monospace">v1</text>
+      <rect x="35" y="47" width="18" height="12" rx="2" fill="none" stroke={mid} strokeWidth="1.8" />
+      <path d="M38 56 Q42 47 46 53 T51 50" fill="none" stroke={accent} strokeWidth="1.6" />
+      <path d="M62 58 L76 42 L68 70 L62 62 Z" fill="#fdfcf8" stroke={deep} strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M76 42 L62 62" stroke={deep} strokeWidth="1.6" />
+      <path d="M66 37 L66 28 M66 28 L61 33 M66 28 L71 33" fill="none" stroke={accent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="36" y="63" width="17" height="10" rx="2.5" fill={accent} />
+      <text x="44.5" y="70.4" textAnchor="middle" fontSize="7" fontWeight="700" fill="#fdfcf8" fontFamily="Menlo, monospace">v1</text>
     </g>
   ),
 

@@ -291,9 +291,9 @@
     "readAloudSummary": "You matched the archetype {primary}, with {secondary} as a close second. Your strongest signals are {dims}.",
     "share": {
       "square": "Square",
-      "portrait": "Poster",
-      "identity": "Identity card",
-      "summary": "Summary",
+      "portrait": "Portrait",
+      "wechat": "WeChat portrait",
+      "landscape": "Landscape",
       "download": "Export PNG"
     }
   },

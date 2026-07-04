@@ -291,9 +291,9 @@
     "readAloudSummary": "你匹配到人格 {primary}，{secondary} 紧随其后。你最强的信号是 {dims}。",
     "share": {
       "square": "方形",
-      "portrait": "海报",
-      "identity": "人格名片",
-      "summary": "结果摘要",
+      "portrait": "竖版",
+      "wechat": "微信竖版",
+      "landscape": "横版",
       "download": "导出 PNG"
     }
   },
